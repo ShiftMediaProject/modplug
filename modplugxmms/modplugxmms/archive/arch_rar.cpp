@@ -5,14 +5,14 @@
  */
 
 //open()
-#include<sys/types.h>
-#include<sys/stat.h>
-#include<fcntl.h>
-#include<unistd.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <fcntl.h>
+#include <unistd.h>
+#include <stdio.h>
 
 #include "arch_rar.h"
 #include <iostream>
-#include <procbuf.h>
 #include <vector>
 	
 arch_Rar::arch_Rar(const string& aFileName)
@@ -23,10 +23,8 @@ arch_Rar::arch_Rar(const string& aFileName)
 	uint32 lLength;
 	uint32 lCount;
 	uint32 lPos = 0;
-	vector<uint32> lSizes;
 	bool lFound = false;
-	uint32 lFileNum = 0;
-	string lName;
+	string lName, lGoodName;
 
 	if(lFileDesc == -1)
 	{
@@ -35,29 +33,27 @@ arch_Rar::arch_Rar(const string& aFileName)
 	}
 	
 	close(lFileDesc);
-	
-	procbuf lPipeBuf;
+
 	string lCommand = "unrar l \"" + aFileName + '\"';   //get info
-	iostream lPipe(&lPipeBuf);
-	if(!lPipeBuf.open(lCommand.c_str(), ios::in))
+	FILE *f = popen(lCommand.c_str(), "r");
+	
+	if(f <= 0)
 	{
 		mSize = 0;
 		return;
 	}
+
+	int num = 7;
+	while (num--) // ignore 7 lines.
+		fgets(lBuffer, 90, f);
 	
-	lPipe.ignore(90, '\n'); //ignore a line.
-	lPipe.ignore(90, '\n'); //ignore a line.
-	lPipe.ignore(90, '\n'); //ignore a line.
-	lPipe.ignore(90, '\n'); //ignore a line.
-	lPipe.ignore(90, '\n'); //ignore a line.
-	lPipe.ignore(90, '\n'); //ignore a line.
-	lPipe.ignore(90, '\n'); //ignore a line.
-	
-	while(lPipe)
+	bool eof = false;
+	while(!eof)
 	{
-		lPipe.getline(lBuffer, 350);
-		if(lBuffer[0] == '-')
+		if(fgets(lBuffer, 350, f) <= 0 || f <= 0)
 			break;
+		if (strlen(lBuffer) > 1)
+			lBuffer[strlen(lBuffer)-1] = 0;
 		
 		lLength = strlen(lBuffer);
 		lCount = 0;
@@ -80,18 +76,15 @@ arch_Rar::arch_Rar(const string& aFileName)
 		
 		while(lBuffer[lPos] == '\0')
 			lPos++;
-		
-		lName = lBuffer;
+		lName = &lBuffer[1]; // get rid of the space.
+
 		mSize = strtol(lBuffer + lPos, NULL, 10);
 		
 		if(IsOurFile(lName))
 		{
 			lFound = true;
 			break;
-		}
-		
-		lSizes.insert(lSizes.end(), mSize);
-		lFileNum++;
+		}		
 	}
 	
 	if(!lFound)
@@ -99,8 +92,8 @@ arch_Rar::arch_Rar(const string& aFileName)
 		mSize = 0;
 		return;
 	}
-	
-	lPipeBuf.close();
+
+	pclose(f);
 	
 	mMap = new char[mSize];
 	if(mMap == NULL)
@@ -109,21 +102,19 @@ arch_Rar::arch_Rar(const string& aFileName)
 		return;
 	}
 	
-	lCommand = "unrar p -inul \"" + aFileName + '\"';  //decompress to stdout
-	if(!lPipeBuf.open(lCommand.c_str(), ios::in))
+	lCommand = "unrar p -inul \"" + aFileName + "\" \"" + lName + '\"';  
+        //decompress to stdout
+	f = popen(lCommand.c_str(), "r");
+	
+	if (f <= 0)
 	{
 		mSize = 0;
 		return;
 	}
+
+	fread((char *)mMap, sizeof(char), mSize, f);
 	
-	for(uint32 i = 0; i < lFileNum; i++)
-	{
-		lPipe.ignore(lSizes[i]);
-	}
-	
-	lPipe.read(mMap, mSize);
-	
-	lPipeBuf.close();
+	pclose(f);
 }
 
 arch_Rar::~arch_Rar()
@@ -145,26 +136,25 @@ bool arch_Rar::ContainsMod(const string& aFileName)
 		return false;
 	
 	close(lFileDesc);
-	
-	procbuf lPipeBuf;
+
 	string lCommand = "unrar l \"" + aFileName + '\"';   //get info
-	iostream lPipe(&lPipeBuf);
-	if(!lPipeBuf.open(lCommand.c_str(), ios::in))
+	FILE *f = popen(lCommand.c_str(), "r");
+	
+	if(f <= 0)
 		return false;
-	
-	lPipe.ignore(90, '\n'); //ignore a line.
-	lPipe.ignore(90, '\n'); //ignore a line.
-	lPipe.ignore(90, '\n'); //ignore a line.
-	lPipe.ignore(90, '\n'); //ignore a line.
-	lPipe.ignore(90, '\n'); //ignore a line.
-	lPipe.ignore(90, '\n'); //ignore a line.
-	lPipe.ignore(90, '\n'); //ignore a line.
-	
-	while(lPipe)
+
+	int num = 7;
+	while (num--)
+		fgets(lBuffer, 90, f); //ignore a line.
+
+	bool eof = false;
+	while(!eof)
 	{
-		lPipe.getline(lBuffer, 350);
-		if(lBuffer[0] == '-')
+		if(fgets(lBuffer, 350, f) || f <= 0)
+			if(f <= 0)
 			break;
+		if (strlen(lBuffer) > 1)
+			lBuffer[strlen(lBuffer)-1] = 0;
 		
 		lLength = strlen(lBuffer);
 		lCount = 0;
@@ -184,9 +174,12 @@ bool arch_Rar::ContainsMod(const string& aFileName)
 		
 		lName = lBuffer;
 		
-		if(IsOurFile(lName))
+		if(IsOurFile(lName)) {
+			pclose(f);
 			return true;
+		}
 	}
-	
+
+	pclose(f);	
 	return false;
 }

@@ -40,7 +40,9 @@ create_About (void)
   gtk_widget_show (vbox1);
   gtk_container_add (GTK_CONTAINER (About), vbox1);
 
-  label1 = gtk_label_new (_("Modplug Input Plugin for XMMS\nModplug sound engine written by Olivier Lapicque.\nXMMS interface for Modplug by Kenton Varda.\n(c)2000 Olivier Lapicque and Kenton Varda"));
+  label1 = gtk_label_new (_("Modplug Input Plugin for XMMS ver"
+			VERSION
+			"\nModplug sound engine written by Olivier Lapicque.\nXMMS interface for Modplug by Kenton Varda.\n(c)2000 Olivier Lapicque and Kenton Varda\nUpdates and Maintainance by Konstanty Bialkowski"));
   gtk_widget_ref (label1);
   gtk_object_set_data_full (GTK_OBJECT (About), "label1", label1,
                             (GtkDestroyNotify) gtk_widget_unref);
@@ -655,7 +657,7 @@ create_Config (void)
   gtk_widget_show (vbox16);
   gtk_container_add (GTK_CONTAINER (frame10), vbox16);
 
-  label20 = gtk_label_new (_("Note:  Setting the preamp too high may cause\nclipping (annoying clicks and pops)!"));
+  label20 = gtk_label_new (_("Note:  Setting the preamp too high may cause\nclipping / distortion!"));
   gtk_widget_ref (label20);
   gtk_object_set_data_full (GTK_OBJECT (Config), "label20", label20,
                             (GtkDestroyNotify) gtk_widget_unref);

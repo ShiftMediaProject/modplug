@@ -5,12 +5,12 @@
  */
 
 //open()
-#include<sys/types.h>
-#include<sys/stat.h>
-#include<fcntl.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <fcntl.h>
 //mmap()
-#include<unistd.h>
-#include<sys/mman.h>
+#include <unistd.h>
+#include <sys/mman.h>
 
 #include "arch_raw.h"
 

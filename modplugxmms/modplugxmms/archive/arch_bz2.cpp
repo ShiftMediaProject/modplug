@@ -8,14 +8,14 @@
 // BZ2 support added by Colin DeVilbiss <crdevilb@mtu.edu>
 
 //open()
-#include<sys/types.h>
-#include<sys/stat.h>
-#include<fcntl.h>
-#include<unistd.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <fcntl.h>
+#include <unistd.h>
+#include <stdio.h>
 
 #include "arch_bz2.h"
 #include <iostream>
-#include <procbuf.h>
  	
 arch_Bzip2::arch_Bzip2(const string& aFileName)
 {
@@ -31,18 +31,18 @@ arch_Bzip2::arch_Bzip2(const string& aFileName)
 	close(lFileDesc);
 	
 	//ok, continue
-	procbuf lPipeBuf;
 	string lCommand = "bzcat \'" + aFileName + "\' | wc -c";   //get info
-	iostream lPipe(&lPipeBuf);
-	if(!lPipeBuf.open(lCommand.c_str(), ios::in))
+	FILE *f = popen(lCommand.c_str(), "r");
+
+	if (f <= 0)
 	{
 		mSize = 0;
 		return;
 	}
 	
-	lPipe >> mSize;         //this is our size.
+	fscanf(f, "%u", &mSize); // this is the size.
 	
-	lPipeBuf.close();
+	pclose(f);
 	
 	mMap = new char[mSize];
 	if(mMap == NULL)
@@ -52,15 +52,17 @@ arch_Bzip2::arch_Bzip2(const string& aFileName)
 	}
 	
 	lCommand = "bzcat \'" + aFileName + '\'';  //decompress to stdout
-	if(!lPipeBuf.open(lCommand.c_str(), ios::in))
+	popen(lCommand.c_str(), "r");
+
+	if (f <= 0)
 	{
 		mSize = 0;
 		return;
 	}
-	
-	lPipe.read(mMap, mSize);
-	
-	lPipeBuf.close();
+
+	fread((char *)mMap, sizeof(char), mSize, f);
+
+	pclose(f);
 }
 
 arch_Bzip2::~arch_Bzip2()

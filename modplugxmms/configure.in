@@ -1,9 +1,8 @@
 dnl Process this file with autoconf to produce a configure script.
 AC_INIT(Makefile.am)
 
+AM_INIT_AUTOMAKE(modplugxmms, 2.05)
 AM_CONFIG_HEADER(config.h)
-
-AM_INIT_AUTOMAKE(modplugxmms, 2.0)
 
 dnl Checks for programs.
 dnl  I am disabling static libraries here because otherwise libtool insists on
@@ -15,8 +14,8 @@ AM_DISABLE_STATIC
 AC_PROG_CC
 AC_PROG_CXX
 AC_C_BIGENDIAN     #this will cause problems when cross-compiling...
-AC_PROG_RANLIB
 AM_PROG_LIBTOOL
+AC_HEADER_STDC
 
 CXXFLAGS="$CXXFLAGS -fno-exceptions -Wall -ffast-math -D_REENTRANT `glib-config --cflags`"
 # CXXFLAGS="-fno-exceptions -g -Wall -ffast-math -D_REENTRANT `glib-config --cflags`"
@@ -27,17 +26,28 @@ case ${target_os} in
 		;;
 esac
 
+AM_PATH_GTK(1.2.0, ,
+            AC_MSG_ERROR(Cannot find GTK: Is gtk-config in path?))
+
+dnl Add the languages which your application supports here.
+ALL_LINGUAS=""
+AM_GLIB_GNU_GETTEXT
+
 dnl find install dir
 AM_PATH_XMMS(1.0.0, , AC_MSG_ERROR([*** XMMS >= 1.0.0 not installed - please install first ***]))
+
+PKG_CHECK_MODULES(LIBMODPLUG, libmodplug >= 0.7) 
+AC_SUBST(LIBMODPLUG_CFLAGS)
+AC_SUBST(LIBMODPLUG_LIBS)
 
 plugindir=$XMMS_INPUT_PLUGIN_DIR
 AC_SUBST(plugindir)
 
 AC_OUTPUT(Makefile
-          libmodplug/Makefile
           modplugxmms/Makefile
           modplugxmms/gui/Makefile
           modplugxmms/archive/Makefile
+	  modplugplay/Makefile
           glade/Makefile
          )
 

@@ -5,43 +5,43 @@
  */
 
 //open()
-#include<sys/types.h>
-#include<sys/stat.h>
-#include<fcntl.h>
-#include<unistd.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <fcntl.h>
+#include <unistd.h>
+#include <stdio.h>
 
 #include "arch_gzip.h"
-#include <iostream>
-#include <procbuf.h>
+
 	
 arch_Gzip::arch_Gzip(const string& aFileName)
 {
 	//check if file exists
 	int lFileDesc = open(aFileName.c_str(), O_RDONLY);
-
+	
 	if(lFileDesc == -1)
 	{
 		mSize = 0;
 		return;
-	}
-	
+	}       
 	close(lFileDesc);
-	
-	//ok, continue
-	procbuf lPipeBuf;
+
+	// file exists.       
 	string lCommand = "gunzip -l \"" + aFileName + '\"';   //get info
-	iostream lPipe(&lPipeBuf);
-	if(!lPipeBuf.open(lCommand.c_str(), ios::in))
+	FILE *f = popen(lCommand.c_str(), "r");
+	
+	if (f <= 0)
 	{
 		mSize = 0;
 		return;
 	}
 	
-	lPipe.ignore(80, '\n'); //ignore a line.
-	lPipe >> mSize;         //ignore a number.
-	lPipe >> mSize;         //this is our size.
+	char line[81];
+	fgets(line, 80, f);   // ignore a line.
+	fscanf(f, "%u", &mSize); // ignore first number.
+	fscanf(f, "%u", &mSize); // keep second number.
 	
-	lPipeBuf.close();
+	pclose(f);
 	
 	mMap = new char[mSize];
 	if(mMap == NULL)
@@ -51,15 +51,18 @@ arch_Gzip::arch_Gzip(const string& aFileName)
 	}
 	
 	lCommand = "gunzip -c \"" + aFileName + '\"';  //decompress to stdout
-	if(!lPipeBuf.open(lCommand.c_str(), ios::in))
+        f = popen(lCommand.c_str(), "r");
+	
+	if (f <= 0)
 	{
 		mSize = 0;
 		return;
 	}
+
+	fread((char *)mMap, sizeof(char), mSize, f);
+
+	pclose(f);
 	
-	lPipe.read(mMap, mSize);
-	
-	lPipeBuf.close();
 }
 
 arch_Gzip::~arch_Gzip()
@@ -72,25 +75,34 @@ bool arch_Gzip::ContainsMod(const string& aFileName)
 {
 	string lName;
 	int lFileDesc = open(aFileName.c_str(), O_RDONLY);
-	char lBuffer[257];
+	uint32 num;
+	float fnum;
 
 	if(lFileDesc == -1)
 		return false;
 	
 	close(lFileDesc);
-	
-	procbuf lPipeBuf;
+
+	// file exists.       
 	string lCommand = "gunzip -l \"" + aFileName + '\"';   //get info
-	iostream lPipe(&lPipeBuf);
-	if(!lPipeBuf.open(lCommand.c_str(), ios::in))
-		return false;
+	FILE *f = popen(lCommand.c_str(),"r");
 	
-	lPipe.ignore(80, '\n'); //ignore a line.
-	lPipe >> lName;         //ignore a number.
-	lPipe >> lName;         //ignore size.
-	lPipe >> lName;         //ignore ratio.
-	lPipe.getline(lBuffer, 257);
-	lName = lBuffer;
+	if (f <= 0) {
+		pclose(f);
+		return false;
+	}
+	
+	char line[300];
+	fgets(line, 80, f);   // ignore a line.
+	fscanf(f, "%i", &num); // ignore first number
+	fscanf(f, "%i", &num); // ignore second number
+	fscanf(f, "%f%%", &fnum); // ignore ratio
+	fgets(line, 300, f);   // read in correct line safely.
+	if (strlen(line) > 1)
+		line[strlen(line)-1] = 0;
+	lName = line;
+	
+	pclose(f);
 	
 	return IsOurFile(lName);
 }

@@ -17,6 +17,7 @@ public:
 	virtual ~arch_Zip();
 	
 	static bool ContainsMod(const string& aFileName);
+	static bool processLine(char *buffer, uint32 *mSize, char *filename);
 };
 
 #endif

@@ -1,4 +1,4 @@
-INCLUDES = `gtk-config --cflags`
+INCLUDES = `gtk-config --cflags` -I../../..
 
 noinst_LTLIBRARIES = libgui.la
 libgui_la_LDFLAGS = -module -avoid-version

@@ -4,16 +4,16 @@
  * This source code is public domain.
  */
 
-#include<pthread.h>
-#include<fstream>
-#include<unistd.h>
-#include<math.h>
+#include <pthread.h>
+#include <fstream>
+#include <unistd.h>
+#include <math.h>
 
-#include"modplugxmms.h"
-#include"libmodplug/stdafx.h"
-#include"libmodplug/sndfile.h"
-#include"stddefs.h"
-#include"archive/open.h"
+#include "modplugxmms.h"
+#include <libmodplug/stdafx.h>
+#include <libmodplug/sndfile.h>
+#include "stddefs.h"
+#include "archive/open.h"
 
 // ModplugXMMS member functions ===============================
 
@@ -252,6 +252,8 @@ bool ModplugXMMS::CanPlayFile(const string& aFilename)
 		return true;
 	if (lExt == ".itgz")
 		return true;
+	if (lExt == ".dmf")
+		return true;
 	
 	if (lExt == ".zip")
 		return ContainsMod(aFilename);
@@ -297,13 +299,26 @@ void ModplugXMMS::PlayLoop()
 			if(mModProps.mBits == 16)
 			{
 				uint n = mBufSize >> 1;
-				for(uint i = 0; i < n; i++)
+				for(uint i = 0; i < n; i++) {
+					short old = ((short*)mBuffer)[i];
 					((short*)mBuffer)[i] *= mPreampFactor;
+					// detect overflow and clip!
+					if ((old & 0x8000) != 
+					 (((short*)mBuffer)[i] & 0x8000))
+					  ((short*)mBuffer)[i] = old | 0x7FFF;
+						
+				}
 			}
 			else
 			{
-				for(uint i = 0; i < mBufSize; i++)
+				for(uint i = 0; i < mBufSize; i++) {
+					uchar old = ((uchar*)mBuffer)[i];
 					((uchar*)mBuffer)[i] *= mPreampFactor;
+					// detect overflow and clip!
+					if ((old & 0x80) != 
+					 (((uchar*)mBuffer)[i] & 0x80))
+					  ((uchar*)mBuffer)[i] = old | 0x7F;
+				}
 			}
 		}
 		
@@ -336,7 +351,7 @@ void ModplugXMMS::PlayLoop()
 		mPlayed += mBufTime;
 	}
 
-	mOutPlug->flush(0);
+//	mOutPlug->flush(0);
 	mOutPlug->close_audio();
 
 	//Unload the file
@@ -578,7 +593,8 @@ void ModplugXMMS::GetSongInfo(const string& aFilename, char*& aTitle, int32& aLe
 		
 		lDone = true;
 
-		lModFile.open(aFilename.c_str(), ios::in | ios::nocreate);
+		// previously ios::nocreate was used (X Standard C++ Library)
+		lModFile.open(aFilename.c_str(), ios::in);
 
 		lPos = aFilename.find_last_of('.');
 		if((int)lPos == 0)

@@ -6,6 +6,15 @@
 
 #include "archive.h"
 
+
+
+///* Open a read pipe */ File f;
+//f=popen("gzip -d compressed.file.name","r");
+///* Read some data in the usual manner, for example */
+//fscanf(f,"%d %f %f",name,&age,$id);
+///* Close the pipe */
+//pclose(f); 
+
 Archive::~Archive()
 {
 }

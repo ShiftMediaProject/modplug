@@ -1,3 +1,26 @@
+ModPlug-XMMS v2.05 Oct. 11, 2003
+- Seperate of libmodplug in source (so it can be used without the XMMS front end)
+- modplugplay upgraded to 1.0
+
+ModPlug-XMMS v2.04 May. 10, 2003
+- Changes to autoconf/automake files so that they work using newer glibc (basically #define USE_NLS when needed)
+- Start of a translation system for the gtk gui
+- Removal of strstream C++ code (which is depricated) - replaced via stringstream. - This can cause problems for older compilers (if it becomes too much of a problem - then the simple C sprintf will be used instead.
+- Inclusion of a small command line modplug player 'modplugplay' - Thanks to Gurkan Sengun
+
+ModPlug-XMMS v2.03 Oct. 8, 2002
++ Configure script modified for simpler operation
+
+ModPlug-XMMS v2.02 Jul. 21, 2002
++ Created modplugxmms.spec to create RPM
++ Two seperate RPMs libmodplug0, modplug-xmms
++ Fixed archive importing, .zip, .rar, .gz, .bz2 (should work on all compilers too)
++ Patches for AMF decoding on Intel ARM
+
+ModPlug-XMMS v2.01 Jun. 18, 2002
++ (New Maintainer Konstanty Bialkowski)
++  Modified to work with GCC 3.x
+
 ModPlug-XMMS v2.0 / libmodplug v0.7, Oct. 27, 2001
 + ModPlug rendering engine moved into a separate library --
   libmodplug created.

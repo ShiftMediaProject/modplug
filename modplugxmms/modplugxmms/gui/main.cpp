@@ -8,25 +8,26 @@
 #endif
 
 #include <gtk/gtk.h>
+#include <libintl.h>
 
 #include "interface.h"
 #include "support.h"
 #include "main.h"
 
-#include<strstream>
+#include <sstream>
 //open()
-#include<sys/types.h>
-#include<sys/stat.h>
-#include<fcntl.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <fcntl.h>
 //mmap()
-#include<unistd.h>
-#include<sys/mman.h>
-#include<fstream>
+#include <unistd.h>
+#include <sys/mman.h>
+#include <fstream>
 
-#include"modplugxmms/stddefs.h"
-#include"libmodplug/stdafx.h"
-#include"libmodplug/sndfile.h"
-#include"modplugxmms/archive/open.h"
+#include "modplugxmms/stddefs.h"
+#include <libmodplug/stdafx.h>
+#include <libmodplug/sndfile.h>
+#include "modplugxmms/archive/open.h"
 
 #define MAX_MESSAGE_LENGTH 4000
 
@@ -137,7 +138,7 @@ void ShowInfoWindow(const string& aFilename)
 	uint32 lSongTime, lNumSamples, lNumInstruments, i;
 	string lInfo;
 	char lBuffer[33];
-	strstream lStrStream(lBuffer, 33);   //C++ replacement for sprintf()
+	stringstream lStrStream(ios::out);   //C++ replacement for sprintf()
 
 	CSoundFile* lSoundFile;
 
@@ -236,45 +237,22 @@ void ShowInfoWindow(const string& aFilename)
 	lInfo += '\n';
 
 	lSongTime = lSoundFile->GetSongTime();
-	lStrStream.seekp(0);
-	lStrStream << lSongTime / 60 << '\0';
-	lInfo += lBuffer;
-	lInfo += ':';
-	lStrStream.seekp(0);
-	lStrStream << lSongTime % 60 << '\0';
-	if(lBuffer[1] == '\0')  //single digit for seconds?
-		lInfo += '0';        //yes, so add a 0.
-	lInfo += lBuffer;
-	lInfo += '\n';
+	lStrStream.clear();
+	lStrStream << (int)(lSongTime / 60) << ":";
+	if(lSongTime % 60 < 10)  //single digit for seconds?
+		lStrStream << '0';        //yes, so add a 0.
+	lStrStream << (int)(lSongTime % 60);
 
-	lStrStream.seekp(0);
-	lStrStream << (int)lSoundFile->GetMusicSpeed() << '\0';
-	lInfo += lBuffer;
-	lInfo += '\n';
+	lStrStream << '\n';
 
-	lStrStream.seekp(0);
-	lStrStream << (int)lSoundFile->GetMusicTempo() << '\0';
-	lInfo += lBuffer;
-	lInfo += '\n';
-
-	lStrStream.seekp(0);
-	lStrStream << (int)(lNumSamples = lSoundFile->GetNumSamples()) << '\0';
-	lInfo += lBuffer;
-	lInfo += '\n';
-
-	lStrStream.seekp(0);
-	lStrStream << (int)(lNumInstruments = lSoundFile->GetNumInstruments()) << '\0';
-	lInfo += lBuffer;
-	lInfo += '\n';
-
-	lStrStream.seekp(0);
-	lStrStream << (int)(lSoundFile->GetNumPatterns()) << '\0';
-	lInfo += lBuffer;
-	lInfo += '\n';
-
-	lStrStream.seekp(0);
-	lStrStream << (int)lSoundFile->GetNumChannels() << '\0';
-	lInfo += lBuffer;
+	lStrStream << (int)lSoundFile->GetMusicSpeed() << '\n';
+	lStrStream << (int)lSoundFile->GetMusicTempo() << '\n';
+	lStrStream << (int)(lNumSamples = lSoundFile->GetNumSamples()) << '\n';
+	lStrStream << (int)(lNumInstruments = lSoundFile->GetNumInstruments());
+	lStrStream << '\n';
+	lStrStream << (int)(lSoundFile->GetNumPatterns()) << '\n';
+	lStrStream << (int)lSoundFile->GetNumChannels();
+	lInfo += lStrStream.str();
 
 	gtk_label_set_text((GtkLabel*)lookup_widget(InfoWin, "info_general"), lInfo.c_str());
 
@@ -291,7 +269,6 @@ void ShowInfoWindow(const string& aFilename)
 	for(i = 0; i < lNumInstruments; i++)
 	{
 		lSoundFile->GetInstrumentName(i, lBuffer);
-	
 		lInfo += lBuffer;
 		lInfo += '\n';
 	}

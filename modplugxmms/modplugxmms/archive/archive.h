@@ -9,6 +9,9 @@
 
 #include "modplugxmms/stddefs.h"
 #include <string>
+#include <cctype>
+
+using namespace std;
 
 class Archive
 {

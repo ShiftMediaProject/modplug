@@ -7,13 +7,15 @@
 #ifndef __MODPLUGXMMS_CMODPLUGXMMS_H_INCLUDED__
 #define __MODPLUGXMMS_CMODPLUGXMMS_H_INCLUDED__
 
-#include<string>
+#include <string>
 
 #ifndef __MODPLUGXMMS_STDDEFS_H__INCLUDED__
-#include"stddefs.h"
+#include "stddefs.h"
 #endif
 
 #include "plugin.h"
+
+using namespace std;
 
 class CSoundFile;
 class Archive;

@@ -5,7 +5,7 @@
  */
 
 #include "plugin.h"
-#include "libmodplug/modplug.h"
+#include <libmodplug/modplug.h>
 #include "gui/main.h"
 
 extern InputPlugin gModPlug;
