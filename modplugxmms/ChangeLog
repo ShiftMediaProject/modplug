@@ -1,3 +1,8 @@
+ModPlug-XMMS v2.06 (TBA)
+- A fix for 2 channel MOD files not being played - Patch contributed by Alistair Strachan
+- Added a check to see if the external program exists (with stat), and if it does not exist do not run it [A problem is caused if the file exists, but is not executable by the current user]
+- Added all debian modplugxmms changes into main stream [including: rar with no mod files infinitite loop, rar/unrar filenames]
+- Checked in all changes from local CVS to Sourceforce CVS
 ModPlug-XMMS v2.05 Oct. 11, 2003
 - Seperate of libmodplug in source (so it can be used without the XMMS front end)
 - modplugplay upgraded to 1.0
