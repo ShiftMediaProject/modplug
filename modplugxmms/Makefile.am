@@ -1,0 +1,5 @@
+SUBDIRS = libmodplug modplugxmms glade
+
+EXTRA_DIST = AUTHORS COPYING ChangeLog INSTALL README TODO
+
+AUTOMAKE_OPTIONS = foreign
