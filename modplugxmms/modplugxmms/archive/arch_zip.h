@@ -12,6 +12,8 @@
 
 class arch_Zip: public Archive
 {
+protected:
+	static bool HasExternalProgram();
 public:
 	arch_Zip(const string& aFileName);
 	virtual ~arch_Zip();

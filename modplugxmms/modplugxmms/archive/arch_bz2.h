@@ -15,6 +15,8 @@
 
 class arch_Bzip2: public Archive
 {
+protected:
+	bool HasExternalProgram();
 public:
 	arch_Bzip2(const string& aFileName);
 	virtual ~arch_Bzip2();

@@ -14,9 +14,30 @@
 #include "arch_rar.h"
 #include <iostream>
 #include <vector>
+
+// Find RAR on the system
+bool arch_Rar::HasExternalProgram()
+{
+	struct stat rarStats;
+	int lRarNotExists = stat("/usr/bin/rar", &rarStats);
+	if (lRarNotExists) {
+		lRarNotExists = stat("/usr/bin/unrar", &rarStats);
+		if (lRarNotExists)
+			return(false);
+		externalProgramName = "/usr/bin/unrar";
+	} else {
+		externalProgramName = "/usr/bin/rar";
+	}
+	return(true);
+}
 	
 arch_Rar::arch_Rar(const string& aFileName)
 {
+	if (!HasExternalProgram()) {
+		mSize = 0;
+		return;
+	}
+
 	//check if file exists
 	int lFileDesc = open(aFileName.c_str(), O_RDONLY);
 	char lBuffer[350];
@@ -34,7 +55,7 @@ arch_Rar::arch_Rar(const string& aFileName)
 	
 	close(lFileDesc);
 
-	string lCommand = "unrar l \"" + aFileName + '\"';   //get info
+	string lCommand = externalProgramName + " l \"" + aFileName + '\"';   //get info
 	FILE *f = popen(lCommand.c_str(), "r");
 	
 	if(f <= 0)
@@ -102,7 +123,7 @@ arch_Rar::arch_Rar(const string& aFileName)
 		return;
 	}
 	
-	lCommand = "unrar p -inul \"" + aFileName + "\" \"" + lName + '\"';  
+	lCommand = externalProgramName + " p -inul \"" + aFileName + "\" \"" + lName + '\"';  
         //decompress to stdout
 	f = popen(lCommand.c_str(), "r");
 	
@@ -125,7 +146,10 @@ arch_Rar::~arch_Rar()
 
 bool arch_Rar::ContainsMod(const string& aFileName)
 {
-	//check if file exists
+	if (externalProgramName.empty() && !HasExternalProgram()) {
+		return false;
+	}
+
 	string lName;
 	int lFileDesc = open(aFileName.c_str(), O_RDONLY);
 	char lBuffer[350];
@@ -137,7 +161,7 @@ bool arch_Rar::ContainsMod(const string& aFileName)
 	
 	close(lFileDesc);
 
-	string lCommand = "unrar l \"" + aFileName + '\"';   //get info
+	string lCommand = externalProgramName + " l \"" + aFileName + '\"';   //get info
 	FILE *f = popen(lCommand.c_str(), "r");
 	
 	if(f <= 0)
@@ -147,12 +171,12 @@ bool arch_Rar::ContainsMod(const string& aFileName)
 	while (num--)
 		fgets(lBuffer, 90, f); //ignore a line.
 
-	bool eof = false;
-	while(!eof)
+	while(!feof(f))
 	{
 		if(fgets(lBuffer, 350, f) || f <= 0)
 			if(f <= 0)
 			break;
+
 		if (strlen(lBuffer) > 1)
 			lBuffer[strlen(lBuffer)-1] = 0;
 		

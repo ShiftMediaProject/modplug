@@ -15,6 +15,8 @@
 ///* Close the pipe */
 //pclose(f); 
 
+std::string Archive::externalProgramName;
+
 Archive::~Archive()
 {
 }

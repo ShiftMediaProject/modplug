@@ -15,9 +15,26 @@
 #include "arch_zip.h"
 #include <iostream>
 #include <vector>
+
+bool arch_Zip::HasExternalProgram()
+{
+	struct stat zipStats;
+	int lZipNotExists = stat("/usr/bin/unzip", &zipStats);
+	if (lZipNotExists) {
+		return(false);
+	} else {
+		externalProgramName = "/usr/bin/uzip";
+	}
+	return(true);
+}
 	
 arch_Zip::arch_Zip(const string& aFileName)
 {
+	if (!HasExternalProgram()) {
+		mSize = 0;
+		return;
+	}
+
 	//check if file exists
 	int lFileDesc = open(aFileName.c_str(), O_RDONLY);
 	string lGoodName;
@@ -32,7 +49,7 @@ arch_Zip::arch_Zip(const string& aFileName)
 	close(lFileDesc);
 	
 	// file exists.
-	string lCommand = "unzip -l -qq \"" + aFileName + '\"';   //get info
+	string lCommand = externalProgramName + " -l -qq \"" + aFileName + '\"';   //get info
 	FILE *f = popen(lCommand.c_str(), "r");
 
 	if(f <= 0)
@@ -71,7 +88,7 @@ arch_Zip::arch_Zip(const string& aFileName)
 	
 	mMap = new char[mSize];
 	
-	lCommand = "unzip -p \"" + aFileName + "\" \"" + lGoodName + '\"';
+	lCommand = externalProgramName + " -p \"" + aFileName + "\" \"" + lGoodName + '\"';
 	//decompress to stdout
 	f = popen(lCommand.c_str(), "r");
 	
@@ -110,6 +127,10 @@ arch_Zip::~arch_Zip()
 	
 bool arch_Zip::ContainsMod(const string& aFileName)
 {
+	if (externalProgramName.empty() && !HasExternalProgram()) {
+		return false;
+	}
+
 	int lFileDesc = open(aFileName.c_str(), O_RDONLY);
 
 	if(lFileDesc == -1)
@@ -118,7 +139,7 @@ bool arch_Zip::ContainsMod(const string& aFileName)
 	close(lFileDesc);
 	
 	// file exists.
-	string lCommand = "unzip -l -qq \"" + aFileName + '\"';   //get info
+	string lCommand = externalProgramName + " -l -qq \"" + aFileName + '\"';   //get info
 	FILE *f = popen(lCommand.c_str(), "r");
 
 	if(f <= 0)

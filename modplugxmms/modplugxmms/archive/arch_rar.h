@@ -12,6 +12,8 @@
 
 class arch_Rar: public Archive
 {
+protected:
+	static bool HasExternalProgram();
 public:
 	arch_Rar(const string& aFileName);
 	virtual ~arch_Rar();

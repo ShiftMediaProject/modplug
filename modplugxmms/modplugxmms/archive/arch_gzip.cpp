@@ -13,9 +13,25 @@
 
 #include "arch_gzip.h"
 
+// Find RAR on the system
+bool arch_Gzip::HasExternalProgram()
+{
+	struct stat gzipStats;
+	int lGzipNotExists = stat("/usr/bin/gunzip", &gzipStats);
+	if (lGzipNotExists) {
+		return(false);
+	} else {
+		externalProgramName = "/usr/bin/gunzip";
+	}
+	return(true);
+}
 	
 arch_Gzip::arch_Gzip(const string& aFileName)
 {
+	if (!HasExternalProgram()) {
+		mSize = 0;
+		return;
+	}
 	//check if file exists
 	int lFileDesc = open(aFileName.c_str(), O_RDONLY);
 	
@@ -27,7 +43,7 @@ arch_Gzip::arch_Gzip(const string& aFileName)
 	close(lFileDesc);
 
 	// file exists.       
-	string lCommand = "gunzip -l \"" + aFileName + '\"';   //get info
+	string lCommand = externalProgramName + " -l \"" + aFileName + '\"';   //get info
 	FILE *f = popen(lCommand.c_str(), "r");
 	
 	if (f <= 0)
@@ -50,7 +66,7 @@ arch_Gzip::arch_Gzip(const string& aFileName)
 		return;
 	}
 	
-	lCommand = "gunzip -c \"" + aFileName + '\"';  //decompress to stdout
+	lCommand = externalProgramName + " -c \"" + aFileName + '\"';  //decompress to stdout
         f = popen(lCommand.c_str(), "r");
 	
 	if (f <= 0)
@@ -73,6 +89,10 @@ arch_Gzip::~arch_Gzip()
 
 bool arch_Gzip::ContainsMod(const string& aFileName)
 {
+	if (externalProgramName.empty() && !HasExternalProgram()) {
+		return false;
+	}
+
 	string lName;
 	int lFileDesc = open(aFileName.c_str(), O_RDONLY);
 	uint32 num;
@@ -84,7 +104,7 @@ bool arch_Gzip::ContainsMod(const string& aFileName)
 	close(lFileDesc);
 
 	// file exists.       
-	string lCommand = "gunzip -l \"" + aFileName + '\"';   //get info
+	string lCommand = externalProgramName + " -l \"" + aFileName + '\"';   //get info
 	FILE *f = popen(lCommand.c_str(),"r");
 	
 	if (f <= 0) {

@@ -13,7 +13,8 @@
 class arch_Raw: public Archive
 {
 	int mFileDesc;
-
+protected:
+	bool HasExternalProgram();
 public:
 	arch_Raw(const string& aFileName);
 	virtual ~arch_Raw();

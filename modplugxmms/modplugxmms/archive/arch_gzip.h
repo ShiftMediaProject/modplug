@@ -12,6 +12,8 @@
 
 class arch_Gzip: public Archive
 {
+protected:
+	static bool HasExternalProgram();
 public:
 	arch_Gzip(const string& aFileName);
 	virtual ~arch_Gzip();

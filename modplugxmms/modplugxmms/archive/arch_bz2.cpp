@@ -16,9 +16,26 @@
 
 #include "arch_bz2.h"
 #include <iostream>
+
+bool arch_Bzip2::HasExternalProgram()
+{
+	struct stat bz2Stats;
+	int lBz2NotExists = stat("/usr/bin/bzcat", &bz2Stats);
+	if (lBz2NotExists) {
+		return(false);
+	} else {
+		externalProgramName = "/usr/bin/bzcat";
+	}
+	return(true);
+}
  	
 arch_Bzip2::arch_Bzip2(const string& aFileName)
 {
+	if (!HasExternalProgram()) {
+		mSize = 0;
+		return;
+	}
+
 	//check if file exists
 	int lFileDesc = open(aFileName.c_str(), O_RDONLY);
 	
@@ -31,7 +48,7 @@ arch_Bzip2::arch_Bzip2(const string& aFileName)
 	close(lFileDesc);
 	
 	//ok, continue
-	string lCommand = "bzcat \'" + aFileName + "\' | wc -c";   //get info
+	string lCommand = externalProgramName + " \'" + aFileName + "\' | wc -c";   //get info
 	FILE *f = popen(lCommand.c_str(), "r");
 
 	if (f <= 0)
@@ -51,7 +68,7 @@ arch_Bzip2::arch_Bzip2(const string& aFileName)
 		return;
 	}
 	
-	lCommand = "bzcat \'" + aFileName + '\'';  //decompress to stdout
+	lCommand = externalProgramName + " \'" + aFileName + '\'';  //decompress to stdout
 	popen(lCommand.c_str(), "r");
 
 	if (f <= 0)
@@ -73,6 +90,7 @@ arch_Bzip2::~arch_Bzip2()
 
 bool arch_Bzip2::ContainsMod(const string& aFileName)
 {
+	// BZIP2 does not require external program to see if mod exists
 	string lName;
 	int lFileDesc = open(aFileName.c_str(), O_RDONLY);
  	if(lFileDesc == -1)

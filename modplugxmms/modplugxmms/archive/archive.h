@@ -18,6 +18,10 @@ class Archive
 protected:
 	uint32 mSize;
 	void* mMap;
+
+	// find which program to use to open the archive
+	static string externalProgramName;
+	static bool HasExternalProgram();
 	
 	//This version of IsOurFile is slightly different...
 	static bool IsOurFile(const string& aFileName);
