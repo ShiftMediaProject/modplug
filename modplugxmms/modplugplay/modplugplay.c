@@ -71,7 +71,7 @@ command line option handling
 #include <string.h>			/* strcpy */
 #include <stdlib.h>			/* srand/rand */
 #include <unistd.h>
-#include <modplug.h>			/* core */
+#include <libmodplug/modplug.h>			/* core */
 #include <sys/ioctl.h>			/* control device */
 #include <fcntl.h>
 
