@@ -35,6 +35,8 @@ bool Archive::IsOurFile(const string& aFileName)
 
 	if (lExt == ".669")
 		return true;
+	if (lExt == ".abc")
+		return true;
 	if (lExt == ".amf")
 		return true;
 	if (lExt == ".ams")
@@ -53,11 +55,15 @@ bool Archive::IsOurFile(const string& aFileName)
 		return true;
 	if (lExt == ".med")
 		return true;
+	if (lExt == ".mid")
+		return true;
 	if (lExt == ".mod")
 		return true;
 	if (lExt == ".mtm")
 		return true;
 	if (lExt == ".okt")
+		return true;
+	if (lExt == ".pat")
 		return true;
 	if (lExt == ".ptm")
 		return true;

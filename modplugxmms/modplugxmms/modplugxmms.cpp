@@ -183,6 +183,8 @@ bool ModplugXMMS::CanPlayFile(const string& aFilename)
 
 	if (lExt == ".669")
 		return true;
+	if (lExt == ".abc")
+		return true;
 	if (lExt == ".amf")
 		return true;
 	if (lExt == ".ams")
@@ -203,9 +205,13 @@ bool ModplugXMMS::CanPlayFile(const string& aFilename)
 		return true;
 	if (lExt == ".mod")
 		return true;
+	if (lExt == ".mid")
+		return true;
 	if (lExt == ".mtm")
 		return true;
 	if (lExt == ".okt")
+		return true;
+	if (lExt == ".pat")
 		return true;
 	if (lExt == ".ptm")
 		return true;
@@ -301,7 +307,7 @@ void ModplugXMMS::PlayLoop()
 				uint n = mBufSize >> 1;
 				for(uint i = 0; i < n; i++) {
 					short old = ((short*)mBuffer)[i];
-					((short*)mBuffer)[i] *= mPreampFactor;
+					((short*)mBuffer)[i] = (short)(old * mPreampFactor);
 					// detect overflow and clip!
 					if ((old & 0x8000) != 
 					 (((short*)mBuffer)[i] & 0x8000))
@@ -313,7 +319,7 @@ void ModplugXMMS::PlayLoop()
 			{
 				for(uint i = 0; i < mBufSize; i++) {
 					uchar old = ((uchar*)mBuffer)[i];
-					((uchar*)mBuffer)[i] *= mPreampFactor;
+					((uchar*)mBuffer)[i] = (uchar)(old * mPreampFactor);
 					// detect overflow and clip!
 					if ((old & 0x80) != 
 					 (((uchar*)mBuffer)[i] & 0x80))

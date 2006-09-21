@@ -1,4 +1,12 @@
-ModPlug-XMMS v2.06 (TBA)
+ModPlug-XMMS v2.11 Jul. 20, 2006 (To Be Released)
+- added support for MOD_TYPE_MID and MOD_TYPE_PAT in modplugxmms.cpp, gui/main.cpp and archive/archive.cpp
+- fixed compiler warning in modplugxmms.cpp
+- added support for MOD_TYPE_ABC in modplugxmms.cpp, gui/main.cpp and archive/archive.cpp
+- set VERSION to 2.11 in configure.in
+- changed generated Makefile.in files removing unrecognized option --tag=CXX and --tag=CC for libtool
+- added README.xmms with instructions for making the plugin work
+
+ModPlug-XMMS v2.06 2005 (Unreleased)
 - A fix for 2 channel MOD files not being played - Patch contributed by Alistair Strachan
 - Added a check to see if the external program exists (with stat), and if it does not exist do not run it [A problem is caused if the file exists, but is not executable by the current user]
 - Added all debian modplugxmms changes into main stream [including: rar with no mod files infinitite loop, rar/unrar filenames]

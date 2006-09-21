@@ -53,6 +53,7 @@ Contents
    Note(2): The format of the mod is NOT determined from the extension on
     compressed mods.  For example, if you zipped a UMX mod and gave it the
     extension MDZ, it would work fine.
+- Plays abc, following abcplus draft 2.0 IV.
 - Slightly better sound quality than Mikmod.  Vastly superior quality
    over Winamp.
 - All XMMS calls are supported exept for the band gains on the

@@ -230,6 +230,15 @@ void ShowInfoWindow(const string& aFilename)
 	case MOD_TYPE_PSM:
 		lInfo+= "PSM";
 		break;
+	case MOD_TYPE_ABC:
+		lInfo+= "ABC draft 2.0";
+		break;
+	case MOD_TYPE_MID:
+		lInfo+= "MIDI";
+		break;
+	case MOD_TYPE_PAT:
+		lInfo+= "Gravis Ultrasound Patch";
+		break;
 	default:
 		lInfo+= "Unknown";
 		break;
