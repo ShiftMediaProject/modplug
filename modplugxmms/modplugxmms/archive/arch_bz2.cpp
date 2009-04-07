@@ -13,9 +13,10 @@
 #include <fcntl.h>
 #include <unistd.h>
 #include <stdio.h>
+#include <iostream>
+#include <cstring>
 
 #include "arch_bz2.h"
-#include <iostream>
 
 bool arch_Bzip2::HasExternalProgram()
 {

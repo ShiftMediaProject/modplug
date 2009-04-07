@@ -10,6 +10,7 @@
 #include <fcntl.h>
 #include <unistd.h>
 #include <stdio.h>
+#include <cstring>
 
 #include "arch_gzip.h"
 

@@ -4,9 +4,9 @@
  * This source code is public domain.
  */
 
+#include <cstring>
+
 #include "archive.h"
-
-
 
 ///* Open a read pipe */ File f;
 //f=popen("gzip -d compressed.file.name","r");

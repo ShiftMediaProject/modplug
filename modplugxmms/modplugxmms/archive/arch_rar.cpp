@@ -10,10 +10,12 @@
 #include <fcntl.h>
 #include <unistd.h>
 #include <stdio.h>
-
-#include "arch_rar.h"
 #include <iostream>
 #include <vector>
+#include <cstring>
+#include <cstdlib>
+
+#include "arch_rar.h"
 
 // Find RAR on the system
 bool arch_Rar::HasExternalProgram()
