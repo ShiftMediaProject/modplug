@@ -86,7 +86,7 @@ command line option handling
 #include <sys/poll.h>			/* poll for keyboard input */
 #include <termios.h>			/* needed to get terminal size */
 
-#define VERSION "1.0"
+#define VERSION "1.1"
 
 #define BUF_SIZE 4096
 #define DEVICE_NAME "/dev/dsp"
@@ -158,6 +158,12 @@ void ansi_cursor(int visible)
     }
 }
 
+void versioninfo()
+{
+	printf("\nCopyright (C) 2003 Gürkan Sengün\n");
+	printf("Version %s compiled on %s at %s.\n",VERSION,__DATE__,__TIME__);
+}
+
 void help(char *s)
 {
 	printf("Copyright (C) 2003 Gürkan Sengün\n");
@@ -167,10 +173,9 @@ void help(char *s)
 	printf("Usage: modplugplay" /*[OPTIONS]*/" [FILES]\n");
 	printf("\n");
 
-/*	printf("  -v   print version info\n");
-	printf("  -h   print help\n");
+	printf("  -v/--version  print version info\n");
+	printf("  -h/--help   print help\n");
 	printf("  -l   start in looping mode\n");
-*/
 /*
 	printf("  -r   randomize play sequence\n");
 	printf("  -c   write to console instead of %s\n",DEVICE_NAME);
@@ -338,6 +343,30 @@ int main(int argc, char* argv[])
 
 for (song=1; song<argc; song++) {
 
+/* check if arguments need to be parsed */
+    if (argv[song][0] == '-') {
+      if (!songsplayed && strstr(argv[song],"-h")) {
+        printf("\n");
+        help(argv[0]);
+      } else if (!songsplayed && strstr(argv[song],"-v")) {
+	versioninfo();
+        exit(0);
+      } else if (strstr(argv[song],"-l")) {
+        loop=1;
+        continue;
+      }
+      if (argv[song][1] == '-') { // not a song
+        if (strstr(argv[song],"--help")) {
+          help(argv[0]);
+          exit(0);
+        } else if (strstr(argv[song],"--version")) {
+	  versioninfo();
+	  exit(0);
+	}
+        continue;
+       }
+      }
+
     /* O_NONBLOCK gave me the problem 
     that after about 5 seconds writing audiobuffer to DEVICE_NAME
     was not completed, like 3072 bytes instead of the full buffer 4096
@@ -358,20 +387,6 @@ for (song=1; song<argc; song++) {
     }
     printf("%s ",argv[song]);
     printf("[%d/%d]",song,argc-1);
-
-    if (argv[song][0] == '-') {
-      if (!songsplayed && strstr(argv[song],"-h")) {
-        printf("\n");
-        help(argv[0]);
-      } else if (!songsplayed && strstr(argv[song],"-v")) {
-        printf("\nCopyright (C) 2003 Gürkan Sengün\n");
-        printf("Version %s compiled on %s at %s.\n",VERSION,__DATE__,__TIME__);
-	exit(0);
-      } else if (strstr(argv[song],"-l")) {
-        loop=1;
-	continue;
-      }
-    }
 
     d = getFileData(argv[song], &size);
     if (d == NULL) continue;
