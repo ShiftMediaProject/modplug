@@ -1,3 +1,6 @@
+ModPlug-XMMS v2.11 Apr. 14, 2009 (TBR)
+- Added Patch #1613556 from SF - fixing typos in gunzip and unzip files.
+(Thanks to Ville Skyttä)
 ModPlug-XMMS v2.11 Jul. 20, 2006 (To Be Released)
 - added support for MOD_TYPE_MID and MOD_TYPE_PAT in modplugxmms.cpp, gui/main.cpp and archive/archive.cpp
 - fixed compiler warning in modplugxmms.cpp

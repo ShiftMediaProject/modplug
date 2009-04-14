@@ -23,7 +23,7 @@ bool arch_Zip::HasExternalProgram()
 	if (lZipNotExists) {
 		return(false);
 	} else {
-		externalProgramName = "/usr/bin/uzip";
+		externalProgramName = "/usr/bin/unzip";
 	}
 	return(true);
 }

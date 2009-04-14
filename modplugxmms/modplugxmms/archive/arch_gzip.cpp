@@ -14,7 +14,7 @@
 
 #include "arch_gzip.h"
 
-// Find RAR on the system
+// Find gunzip on the system
 bool arch_Gzip::HasExternalProgram()
 {
 	struct stat gzipStats;
