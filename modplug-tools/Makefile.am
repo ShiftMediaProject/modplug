@@ -1,0 +1,2 @@
+SUBDIRS = mpplay mp123
+
