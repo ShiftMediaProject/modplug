@@ -19,6 +19,7 @@ cflags_save="$CFLAGS"
 AC_PROG_CC
 CFLAGS="$cflags_save"
 
+AC_PROG_CXX
 AC_PROG_LIBTOOL
 
 dnl --------------------------------------------------
@@ -56,6 +57,8 @@ AC_TYPE_INT32_T
 AC_TYPE_UINT32_T
 AC_TYPE_INT64_T
 AC_TYPE_UINT64_T
+
+AC_CHECK_HEADERS([fcntl.h sys/ioctl.h sys/time.h ])
 
 
 AC_CONFIG_FILES([Makefile
