@@ -410,6 +410,14 @@ for (song=1; song<argc; song++) {
 	exit(1);
     }
 
+    /* Note: Basic settings must be set BEFORE ModPlug_Load */
+    settings.mResamplingMode = MODPLUG_RESAMPLE_FIR; /* RESAMP */
+    settings.mChannels = 2;
+    settings.mBits = 16;
+    settings.mFrequency = 44100;
+    /* insert more setting changes here */
+    ModPlug_SetSettings(&settings);
+
     f2 = ModPlug_Load(d, size);
     if (!f2) {
 	printf("could not load %s\n", argv[song]);
@@ -431,13 +439,6 @@ for (song=1; song<argc; song++) {
 //    settings.mBassRange   = 100; /* 10 - 100 hz */ 
 // [REV--DLY--] [SUR--DLY--] [BAS--RNG--]
 // [rev--dly--] [sur--dly--] [bas--rng--]
-
-    settings.mResamplingMode = MODPLUG_RESAMPLE_FIR; /* RESAMP */
-    settings.mChannels = 2;
-    settings.mBits = 16;
-    settings.mFrequency = 44100;
-    /* insert more setting changes here */
-    ModPlug_SetSettings(&settings);
 
     set_keypress();
     strcpy(songname, ModPlug_GetName(f2));
