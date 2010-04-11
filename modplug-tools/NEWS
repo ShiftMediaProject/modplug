@@ -1,0 +1,4 @@
+10 April 2010: New modplug-tools "package". With:
+modplugplay (used to be inside modplugxmms) - OSS based music player for mod files.
+modplug123 - uses libAO to play music to autodetected pulseaudio/alsa/oss etc
+
