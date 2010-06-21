@@ -94,7 +94,6 @@ command line option handling
 static struct termios stored_settings;
 int audio_fd, mixer_fd;
 unsigned char audio_buffer[BUF_SIZE];
-char order[3];
 
 typedef struct {
 	int x, y;
@@ -451,8 +450,8 @@ for (song=1; song<argc; song++) {
         strncpy(songname,st,41);
         songname[41] = 0;
     }
-    sprintf(status,"[1Gplaying %s (%%d.%%d/%d\") (%%d/%%d/%%d%%s)    \b\b\b\b",songname,ModPlug_GetLength(f2)/1000,speed,channels,settings.mBits,order);
-    if (loop) sprintf(status,"[1Glooping %s (%%d.%%d/%d\") (%%d/%%d/%%d%%s)    \b\b\b\b",songname,ModPlug_GetLength(f2)/1000,speed,channels,settings.mBits,order);
+    sprintf(status,"[1Gplaying %s (%%d.%%d/%d\") (%%d/%%d/%%d%%s)    \b\b\b\b",songname,ModPlug_GetLength(f2)/1000,speed,channels,settings.mBits);
+    if (loop) sprintf(status,"[1Glooping %s (%%d.%%d/%d\") (%%d/%%d/%%d%%s)    \b\b\b\b",songname,ModPlug_GetLength(f2)/1000,speed,channels,settings.mBits);
 
     gettimeofday(&tvstart,NULL);
     tvptotal.tv_sec=tvptotal.tv_usec=0;
@@ -470,7 +469,7 @@ for (song=1; song<argc; song++) {
     	    }
 	    /*printf("%d %d\n",mlen,len);*/
         }
-	printf(status,tv.tv_sec-tvstart.tv_sec-tvptotal.tv_sec,tv.tv_usec/100000,speed,channels,settings.mBits,order/*,rev,revdly,sur,surdly,bas,basrng*/);
+	printf(status,tv.tv_sec-tvstart.tv_sec-tvptotal.tv_sec,tv.tv_usec/100000,speed,channels,settings.mBits/*,rev,revdly,sur,surdly,bas,basrng*/);
 	fflush(stdout);
 
 	if ((mlen==0) && (loop==1)) {
