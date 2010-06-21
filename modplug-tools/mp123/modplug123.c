@@ -163,13 +163,14 @@ void versioninfo()
 	printf("Version %s compiled on %s at %s.\n",VERSION,__DATE__,__TIME__);
 }
 
-void help(char *s)
+void help(char *s, int exitcode)
 {
 	printf("Copyright (C) 2003 Gürkan Sengün\n");
         printf("Version %s compiled on %s at %s.\n",VERSION,__DATE__,__TIME__);
 	printf("\n");
-	printf("%s: too few arguments\n",s);
-	printf("Usage: modplugplay" /*[OPTIONS]*/" [FILES]\n");
+	if (exitcode!=0)
+		printf("%s: too few arguments\n",s);
+	printf("Usage: %s" /*[OPTIONS]*/" [FILES]\n",s);
 	printf("\n");
 
 	printf("  -v/--version  print version info\n");
@@ -181,7 +182,7 @@ void help(char *s)
 	printf("  -i   use stdin for file input\n");
 	printf("  -q   be quiet\n");
 */	
-	exit(1);
+	exit(exitcode);
 }
 
 char *getFileData(char *filename, long *size)
@@ -265,7 +266,7 @@ int main(int argc, char* argv[])
     pollfds.events = POLLIN;    /* Wait for input */
 
     if (argc==1) {
-	help(argv[0]);
+	help(argv[0],1);
     }
 
     if (!get_term_size(STDIN_FILENO,&terminal)) {
@@ -280,7 +281,7 @@ for (song=1; song<argc; song++) {
     if (argv[song][0] == '-') {
       if (!songsplayed && strstr(argv[song],"-h")) {
         printf("\n");
-        help(argv[0]);
+        help(argv[0],0);
       } else if (!songsplayed && strstr(argv[song],"-v")) {
 	versioninfo();
         exit(0);
@@ -290,8 +291,7 @@ for (song=1; song<argc; song++) {
       }
       if (argv[song][1] == '-') { // not a song
         if (strstr(argv[song],"--help")) {
-          help(argv[0]);
-          exit(0);
+          help(argv[0],0);
         } else if (strstr(argv[song],"--version")) {
 	  versioninfo();
 	  exit(0);
