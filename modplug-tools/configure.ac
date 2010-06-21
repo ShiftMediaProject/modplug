@@ -35,14 +35,14 @@ dnl check for pkg-config itself so we don't try the m4 macro without pkg-config
 AC_CHECK_PROG(HAVE_PKG_CONFIG, pkg-config, yes)
 if test "x$HAVE_PKG_CONFIG" = "xyes"
 then
- PKG_CHECK_MODULES(LIBMODPLUG, libmodplug >= 0.8, HAVE_MODPLUG=yes, HAVE_MODPLUG=no)
+ PKG_CHECK_MODULES(LIBMODPLUG, libmodplug >= 0.8.8, HAVE_MODPLUG=yes, HAVE_MODPLUG=no)
  AC_SUBST(LIBMODPLUG_CFLAGS)
  AC_SUBST(LIBMODPLUG_LIBS)
 fi
 
 if test "x$HAVE_MODPLUG" = "xno"
 then
-	AC_MSG_ERROR(libmodplug >= 0.8 required !)
+	AC_MSG_ERROR(libmodplug >= 0.8.8 required !)
 fi
 
 PKG_CHECK_MODULES(AO, ao >= 0.8.0,,build_modplug123=no; AC_MSG_WARN(libao too old; >= 0.8.0 required))
