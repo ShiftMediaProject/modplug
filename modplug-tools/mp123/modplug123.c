@@ -355,7 +355,15 @@ for (song=1; song<argc; song++) {
 
     set_keypress();
     strcpy(songname, ModPlug_GetName(f2));
-    if (strlen(songname)==0) strcpy(songname,argv[song]);
+
+    /* if no modplug "name" - use last 41 characters of filename */
+    if (strlen(songname)==0) {
+        int l = strlen(argv[song]);
+	char *st = argv[song];
+        if (st >= 41) st = argv[song] + l - 41;
+        strncpy(songname,st,41);
+        songname[41] = 0;
+    }
     sprintf(status,"[1Gplaying %s (%%d.%%d/%d\") (%%d/%%d/%%d%%s)    \b\b\b\b",songname,ModPlug_GetLength(f2)/1000,format.rate,format.channels,settings.mBits,order);
     if (loop) sprintf(status,"[1Glooping %s (%%d.%%d/%d\") (%%d/%%d/%%d%%s)    \b\b\b\b",songname,ModPlug_GetLength(f2)/1000,format.rate,format.channels,settings.mBits,order);
 
