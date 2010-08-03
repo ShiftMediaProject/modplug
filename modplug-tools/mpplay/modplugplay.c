@@ -386,7 +386,7 @@ for (song=1; song<argc; song++) {
 
     d = getFileData(argv[song], &size);
     if (d == NULL) continue;
-    printf(" [%d]\n",size);
+    printf(" [%ld]\n",size);
 
     if (ioctl(audio_fd,SNDCTL_DSP_SETFMT, &format) == -1) {
 	perror("SND_CTL_DSP_SETFMT");
@@ -447,8 +447,8 @@ for (song=1; song<argc; song++) {
         strncpy(songname,st,41);
         songname[41] = 0;
     }
-    sprintf(status,"[1Gplaying %s (%%d.%%d/%d\") (%%d/%%d/%%d%%s)    \b\b\b\b",songname,ModPlug_GetLength(f2)/1000,speed,channels,settings.mBits);
-    if (loop) sprintf(status,"[1Glooping %s (%%d.%%d/%d\") (%%d/%%d/%%d%%s)    \b\b\b\b",songname,ModPlug_GetLength(f2)/1000,speed,channels,settings.mBits);
+    sprintf(status,"[1Gplaying %s (%%d.%%d/%d\") (%%d/%%d/%%d%%s)    \b\b\b\b",songname,ModPlug_GetLength(f2)/1000);
+    if (loop) sprintf(status,"[1Glooping %s (%%d.%%d/%d\") (%%d/%%d/%%d%%s)    \b\b\b\b",songname,ModPlug_GetLength(f2)/1000);
 
     gettimeofday(&tvstart,NULL);
     tvptotal.tv_sec=tvptotal.tv_usec=0;
