@@ -208,13 +208,10 @@ int get_byteorder()
     if (lit == sz && big == 0) {
         /*printf("little endian\n");*/
 	format = AFMT_S16_LE;
-	strcpy(order, "LE");
     } else if (big == sz && lit == 0) {
         /*printf("big endian\n");*/
 	format = AFMT_S16_BE;
-	strcpy(order, "BE");
     } else {
-        strcpy(order, "??");
 	format = -1;
     }
     return(format);
@@ -446,7 +443,7 @@ for (song=1; song<argc; song++) {
     if (strlen(songname)==0) {
         int l = strlen(argv[song]);
 	char *st = argv[song];
-        if (st >= 41) st = argv[song] + l - 41;
+        if (l >= 41) st = argv[song] + l - 41;
         strncpy(songname,st,41);
         songname[41] = 0;
     }
@@ -639,16 +636,12 @@ for (song=1; song<argc; song++) {
 			/* 8/16 bit */
 			/*format=;*/
 			bits^=1;
-			if (bits) { format=AFMT_U8; strcpy(order,""); } else {
-			    if (get_byteorder()==0)  {
-				format=AFMT_S16_LE;
-				strcpy(order,"LE");
-			    } else if (get_byteorder()==1) {
-			    	format=AFMT_S16_BE;
-				strcpy(order,"BE");
-			    } else {
+			if (bits) { format=AFMT_U8; } else {
+                            switch (get_byteorder()) {
+                              case 0: format=AFMT_S16_LE; break;
+                              case 1: format=AFMT_S16_BE; break;
+                              default:
 				printf("could not determine byte order.\n");
-				strcpy(order,"??");
 				return 1;
 			    }
 			}

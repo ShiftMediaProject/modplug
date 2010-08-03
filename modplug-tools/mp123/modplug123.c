@@ -359,7 +359,7 @@ for (song=1; song<argc; song++) {
     if (strlen(songname)==0) {
         int l = strlen(argv[song]);
 	char *st = argv[song];
-        if (st >= 41) st = argv[song] + l - 41;
+        if (l >= 41) st = argv[song] + l - 41;
         strncpy(songname,st,41);
         songname[41] = 0;
     }
