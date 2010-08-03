@@ -6,7 +6,7 @@ AC_CANONICAL_TARGET
 
 AC_PREREQ(2.53)
 
-AM_INIT_AUTOMAKE([modplugtools],[0.5.1])
+AM_INIT_AUTOMAKE([modplugtools],[0.5.2])
 AM_MAINTAINER_MODE
 
 AM_CONFIG_HEADER([config.h])
