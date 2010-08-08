@@ -87,7 +87,7 @@ command line option handling
 
 
 
-#define VERSION "0.5"
+#define VERSION "0.5.2"
 
 #define BUF_SIZE 4096
 
@@ -159,13 +159,15 @@ void ansi_cursor(int visible)
 
 void versioninfo()
 {
-	printf("\nCopyright (C) 2003 Gürkan Sengün\n");
+	printf("\nmodplug123 - libAO based console player - Konstanty Bialkowski");
+	printf("Based on modplugplay - Copyright (C) 2003 Gürkan Sengün\n");
 	printf("Version %s compiled on %s at %s.\n",VERSION,__DATE__,__TIME__);
 }
 
 void help(char *s, int exitcode)
 {
-	printf("Copyright (C) 2003 Gürkan Sengün\n");
+	printf("modplug123 - libAO based console player - Konstanty Bialkowski\n");
+	printf("Based on modplugplay Copyright (C) 2003 Gürkan Sengün\n");
         printf("Version %s compiled on %s at %s.\n",VERSION,__DATE__,__TIME__);
 	printf("\n");
 	if (exitcode!=0)
@@ -176,6 +178,8 @@ void help(char *s, int exitcode)
 	printf("  -v/--version  print version info\n");
 	printf("  -h/--help   print help\n");
 	printf("  -l   start in looping mode\n");
+	printf("  -ao <audio output driver> use specific libAO output driver\n");
+	printf("       eg. -ao wav (file writing to output.wav)\n");
 /*
 	printf("  -r   randomize play sequence\n");
 	printf("  -c   write to console instead of %s\n",DEVICE_NAME);
@@ -207,42 +211,74 @@ char *getFileData(char *filename, long *size)
 int main(int argc, char* argv[])
 {
     long size;
-    char *d;
+    char *filedata;
     term_size terminal;
     ModPlugFile *f2;
     int mlen, len;
     struct timeval tvstart;
     struct timeval tv;
-    struct timeval tvpause;
-    struct timeval tvunpause;
+    struct timeval tvpause, tvunpause;
     struct timeval tvptotal;
     char status[161];
     char songname[41];
     char notpaus[4];
+
+    int loop=0; // kontest
     
     int songsplayed = 0;
+
+    int nFiles = 0, fnOffset[100];
+    int i;
 
     ModPlug_Settings settings;
     ModPlug_GetSettings(&settings);
 
-    ao_device *device;
     ao_sample_format format;
     int default_driver;
     
     ao_initialize();
-    default_driver = ao_default_driver_id(); //ao_driver_id("wav");
+    default_driver = ao_default_driver_id();
+
+    for (i=1; i<argc; i++) {
+     /* check if arguments need to be parsed */
+     if (argv[i][0] == '-') {
+      if (strstr(argv[i],"-h")) {
+        printf("\n");
+        help(argv[0],0);
+      } else if (strstr(argv[i],"-v")) {
+	versioninfo();
+        exit(0);
+      } else if (strstr(argv[i],"-l")) {
+        loop=1;
+        continue;
+      } else if (strstr(argv[i],"-ao")) {
+        default_driver = ao_driver_id(argv[++i]);
+        continue;
+      }
+      if (argv[i][1] == '-') { // not a song
+        if (strstr(argv[i],"--help")) {
+          help(argv[0],0);
+        } else if (strstr(argv[i],"--version")) {
+	  versioninfo();
+	  exit(0);
+	}
+        continue;
+       }
+      }
+      /* "valid" filename - store it */
+      fnOffset[nFiles++] = i;
+    }
+
     format.bits = 16;
     format.channels = 2;
     format.rate = 44100;
     format.byte_format = AO_FMT_LITTLE;
-
 //	printf("Default driver = %i\n", default_driver);
 
     char buffer[128];
     int result, nread;
     struct pollfd pollfds;
     int timeout = 1;            /* Timeout in msec. */
-    int loop=0; // kontest
     int pause=0;
     int mono=0;
     int bits=0;
@@ -275,47 +311,27 @@ int main(int argc, char* argv[])
     
     srand(time(NULL));
 
-for (song=1; song<argc; song++) {
+for (song=0; song<nFiles; song++) {
 
-/* check if arguments need to be parsed */
-    if (argv[song][0] == '-') {
-      if (!songsplayed && strstr(argv[song],"-h")) {
-        printf("\n");
-        help(argv[0],0);
-      } else if (!songsplayed && strstr(argv[song],"-v")) {
-	versioninfo();
-        exit(0);
-      } else if (strstr(argv[song],"-l")) {
-        loop=1;
-        continue;
-      }
-      if (argv[song][1] == '-') { // not a song
-        if (strstr(argv[song],"--help")) {
-          help(argv[0],0);
-        } else if (strstr(argv[song],"--version")) {
-	  versioninfo();
-	  exit(0);
-	}
-        continue;
-       }
-      }
-
+    char *filename = argv[fnOffset[song]];
+    ao_device *device;
 
 /* -- Open driver -- */
-    device = ao_open_live(default_driver, &format, NULL /* no options */);
-//    device = ao_open_file(default_driver, "t.wav", 1, &format, NULL /*no options*/);
+    if (default_driver == ao_driver_id("wav")) {
+        device = ao_open_file(default_driver, "output.wav", 1, &format, NULL /*no options*/);
+    } else {
+        device = ao_open_live(default_driver, &format, NULL /* no options */);
+    }
     if (device == NULL) {
- 	fprintf(stderr, "Error opening device. (%s)\n", argv[song]);
+ 	fprintf(stderr, "Error opening device. (%s)\n", filename);
 	fprintf(stderr, "ERROR: %i\n", errno);
         return 1;
-    } else {
-	printf("opened sound device.\n"); //,DEVICE_NAME);
     }
-    printf("%s ",argv[song]);
-    printf("[%d/%d]",song,argc-1);
+    printf("%s ",filename);
+    printf("[%d/%d]",song+1,nFiles);
 
-    d = getFileData(argv[song], &size);
-    if (d == NULL) continue;
+    filedata = getFileData(filename, &size);
+    if (filedata == NULL) continue;
     printf(" [%ld]\n",size);
 
     // Note: All "Basic Settings" must be set before ModPlug_Load.
@@ -328,11 +344,11 @@ for (song=1; song<argc; song++) {
     /* insert more setting changes here */
     ModPlug_SetSettings(&settings);
 
-    f2 = ModPlug_Load(d, size);
+    f2 = ModPlug_Load(filedata, size);
     if (!f2) {
-	printf("could not load %s\n", argv[song]);
+	printf("could not load %s\n", filename);
 	close(audio_fd);
-	free(d); /* ? */
+	free(filedata); /* ? */
     } else {
       songsplayed++;
 /*    settings.mFlags=MODPLUG_ENABLE_OVERSAMPLING | \
@@ -351,15 +367,14 @@ for (song=1; song<argc; song++) {
 // [rev--dly--] [sur--dly--] [bas--rng--]
 
 
-
     set_keypress();
     strcpy(songname, ModPlug_GetName(f2));
 
     /* if no modplug "name" - use last 41 characters of filename */
     if (strlen(songname)==0) {
-        int l = strlen(argv[song]);
-	char *st = argv[song];
-        if (l >= 41) st = argv[song] + l - 41;
+        int l = strlen(filename);
+	char *st = filename;
+        if (l >= 41) st = filename + l - 41;
         strncpy(songname,st,41);
         songname[41] = 0;
     }
@@ -412,7 +427,7 @@ for (song=1; song<argc; song++) {
                     buffer[nread] = 0;
                     /* printf("%s", buffer); */
 
-		    if (buffer[0]=='q') { mlen=0; song=argc;  } /* quit */
+		    if (buffer[0]=='q') { mlen=0; song=nFiles;  } /* quit */
 
 		    if (buffer[0]=='f') {
 			if ((tv.tv_sec-tvstart.tv_sec-tvptotal.tv_sec+10) < (ModPlug_GetLength(f2)/1000)) {
@@ -552,7 +567,7 @@ for (song=1; song<argc; song++) {
     ModPlug_Unload(f2);
     ao_close(device);
     fprintf(stderr, "Closing audio device.\n");
-    free(d);
+    free(filedata);
     } /* valid module */
     
 } /* for */
