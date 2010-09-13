@@ -3,6 +3,8 @@ AC_INIT
 AC_CONFIG_SRCDIR([Makefile.am])
 
 AM_INIT_AUTOMAKE(modplugxmms, 2.05)
+m4_ifdef([AM_SILENT_RULES], [AM_SILENT_RULES])
+AM_SILENT_RULES([yes])
 AC_CONFIG_HEADERS([config.h])
 
 dnl Checks for programs.
