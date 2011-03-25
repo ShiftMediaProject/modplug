@@ -233,7 +233,8 @@ int main(int argc, char* argv[])
     ModPlug_Settings settings;
     ModPlug_GetSettings(&settings);
 
-    ao_sample_format format;
+    ao_device *device;
+    ao_sample_format format = {0};
     int default_driver;
     
     ao_initialize();
@@ -314,7 +315,6 @@ int main(int argc, char* argv[])
 for (song=0; song<nFiles; song++) {
 
     char *filename = argv[fnOffset[song]];
-    ao_device *device;
 
 /* -- Open driver -- */
     if (default_driver == ao_driver_id("wav")) {
