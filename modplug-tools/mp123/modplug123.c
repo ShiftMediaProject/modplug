@@ -87,7 +87,7 @@ command line option handling
 
 
 
-#define VERSION "0.5.2"
+#define VERSION "0.5.3"
 
 #define BUF_SIZE 4096
 
