@@ -1,0 +1,16 @@
+.deps/
+.libs/
+autom4te.cache/
+config.guess
+config.h
+config.log
+config.status
+config.sub
+configure
+Makefile
+Makefile.in
+stamp-h1
+*.la
+*.lo
+*~
+libmodplug/libmodplug.pc
