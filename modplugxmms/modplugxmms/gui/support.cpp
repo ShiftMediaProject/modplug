@@ -47,7 +47,7 @@ lookup_widget                          (GtkWidget       *widget,
 }
 
 /* This is a dummy pixmap we use when a pixmap can't be found. */
-static char *dummy_pixmap_xpm[] = {
+static const char *dummy_pixmap_xpm[] = {
 /* columns rows colors chars-per-pixel */
 "1 1 1 1",
 "  c None",
