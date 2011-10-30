@@ -445,7 +445,7 @@ for (song=1; song<argc; song++) {
 	char *st = argv[song];
         if (l >= 41) st = argv[song] + l - 41;
         strncpy(songname,st,41);
-        songname[41] = 0;
+        songname[40] = 0;
     }
     sprintf(status,"[1Gplaying %s (%%d.%%d/%d\") (%%d/%%d/%%d%%s)    \b\b\b\b",songname,ModPlug_GetLength(f2)/1000);
     if (loop) sprintf(status,"[1Glooping %s (%%d.%%d/%d\") (%%d/%%d/%%d%%s)    \b\b\b\b",songname,ModPlug_GetLength(f2)/1000);

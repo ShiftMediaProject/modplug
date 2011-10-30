@@ -376,7 +376,7 @@ for (song=0; song<nFiles; song++) {
 	char *st = filename;
         if (l >= 41) st = filename + l - 41;
         strncpy(songname,st,41);
-        songname[41] = 0;
+        songname[40] = 0;
     }
     sprintf(status,"[1Gplaying %s (%%d.%%d/%d\") (%%d/%%d/%%d)    \b\b\b\b",songname,ModPlug_GetLength(f2)/1000);
     if (loop) sprintf(status,"[1Glooping %s (%%d.%%d/%d\") (%%d/%%d/%%d)    \b\b\b\b",songname,ModPlug_GetLength(f2)/1000);
