@@ -42,7 +42,7 @@ create_About (void)
 
   label1 = gtk_label_new (_("Modplug Input Plugin for XMMS ver"
 			VERSION
-			"\nModplug sound engine written by Olivier Lapicque.\nXMMS interface for Modplug by Kenton Varda.\n(c)2000 Olivier Lapicque and Kenton Varda\nUpdates and Maintainance by Konstanty Bialkowski"));
+			"\nModplug sound engine written by Olivier Lapicque.\nXMMS interface for Modplug by Kenton Varda.\n(c)2000 Olivier Lapicque and Kenton Varda\nUpdates and Maintenance by Konstanty Bialkowski"));
   gtk_widget_ref (label1);
   gtk_object_set_data_full (GTK_OBJECT (About), "label1", label1,
                             (GtkDestroyNotify) gtk_widget_unref);

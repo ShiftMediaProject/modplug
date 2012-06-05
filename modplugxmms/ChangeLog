@@ -15,7 +15,7 @@ ModPlug-XMMS v2.06 2005 (Unreleased)
 - Added all debian modplugxmms changes into main stream [including: rar with no mod files infinitite loop, rar/unrar filenames]
 - Checked in all changes from local CVS to Sourceforce CVS
 ModPlug-XMMS v2.05 Oct. 11, 2003
-- Seperate of libmodplug in source (so it can be used without the XMMS front end)
+- Separate of libmodplug in source (so it can be used without the XMMS front end)
 - modplugplay upgraded to 1.0
 
 ModPlug-XMMS v2.04 May. 10, 2003
@@ -29,7 +29,7 @@ ModPlug-XMMS v2.03 Oct. 8, 2002
 
 ModPlug-XMMS v2.02 Jul. 21, 2002
 + Created modplugxmms.spec to create RPM
-+ Two seperate RPMs libmodplug0, modplug-xmms
++ Two separate RPMs libmodplug0, modplug-xmms
 + Fixed archive importing, .zip, .rar, .gz, .bz2 (should work on all compilers too)
 + Patches for AMF decoding on Intel ARM
 
