@@ -148,15 +148,6 @@ void reset_keypress(void)
     return;
 }
 
-void ansi_cursor(int visible)
-{
-    if (visible) {
-	printf("\033[?25h");
-    } else {
-	printf("\033[?25l");    
-    }
-}
-
 void versioninfo()
 {
 	printf("\nCopyright (C) 2003 Gürkan Sengün\n");
@@ -296,7 +287,6 @@ int main(int argc, char* argv[])
     int channels = 2;
     int speed = 44100;
 
-    int c; // kontest
     char buffer[128];
     int result, nread;
     struct pollfd pollfds;
@@ -306,11 +296,6 @@ int main(int argc, char* argv[])
     int mono=0;
     int bits=0;
     int song;
-    int millisecond;
-    char *randplayed; /* randomly played songs
-			 songs that are n/N'd are done or not? */
-    /* what about N if the previous song is not playable? */
-    /* maybe mark it played in randplayed */
 
     // [rev--dly--] [sur--dly--] [bas--rng--]
     int rev=0;    // a

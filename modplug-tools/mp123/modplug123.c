@@ -148,15 +148,6 @@ void reset_keypress(void)
     return;
 }
 
-void ansi_cursor(int visible)
-{
-    if (visible) {
-	printf("\033[?25h");
-    } else {
-	printf("\033[?25l");    
-    }
-}
-
 void versioninfo()
 {
 	printf("\nmodplug123 - libAO based console player - Konstanty Bialkowski");
@@ -214,7 +205,7 @@ int main(int argc, char* argv[])
     char *filedata;
     term_size terminal;
     ModPlugFile *f2;
-    int mlen, len;
+    int mlen;
     struct timeval tvstart;
     struct timeval tv;
     struct timeval tvpause, tvunpause;
@@ -284,11 +275,6 @@ int main(int argc, char* argv[])
     int mono=0;
     int bits=0;
     int song;
-    int millisecond;
-    char *randplayed; /* randomly played songs
-			 songs that are n/N'd are done or not? */
-    /* what about N if the previous song is not playable? */
-    /* maybe mark it played in randplayed */
 
     // [rev--dly--] [sur--dly--] [bas--rng--]
     int rev=0;    // a
@@ -395,7 +381,6 @@ for (song=0; song<nFiles; song++) {
 		perror("audio write");
 		exit(1);
     	    }
-	    /*printf("%d %d\n",mlen,len);*/
         }
         printf(status,tv.tv_sec-tvstart.tv_sec-tvptotal.tv_sec,tv.tv_usec/100000,format.rate,format.channels,settings.mBits/*,rev,revdly,sur,surdly,bas,basrng*/);
 	fflush(stdout);
