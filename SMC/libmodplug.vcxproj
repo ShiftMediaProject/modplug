@@ -43,53 +43,53 @@
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v120</PlatformToolset>
-    <CharacterSet>Unicode</CharacterSet>
+    <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v120</PlatformToolset>
-    <CharacterSet>Unicode</CharacterSet>
+    <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DebugDLL|Win32'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v120</PlatformToolset>
-    <CharacterSet>Unicode</CharacterSet>
+    <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DebugDLL|x64'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v120</PlatformToolset>
-    <CharacterSet>Unicode</CharacterSet>
+    <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v120</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
-    <CharacterSet>Unicode</CharacterSet>
+    <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v120</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
-    <CharacterSet>Unicode</CharacterSet>
+    <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseDLL|Win32'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v120</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
-    <CharacterSet>Unicode</CharacterSet>
+    <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseDLL|x64'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v120</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
-    <CharacterSet>Unicode</CharacterSet>
+    <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -122,30 +122,38 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <OutDir>..\..\..\</OutDir>
     <IntDir>$(ProjectDir)\obj\$(Configuration)\$(Platform)\</IntDir>
+    <TargetName>libmodplugd</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <IntDir>$(ProjectDir)\obj\$(Configuration)\$(Platform)\</IntDir>
+    <TargetName>libmodplugd</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DebugDLL|Win32'">
     <OutDir>..\..\..\</OutDir>
     <IntDir>$(ProjectDir)\obj\$(Configuration)\$(Platform)\</IntDir>
+    <TargetName>modplugd</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DebugDLL|x64'">
     <IntDir>$(ProjectDir)\obj\$(Configuration)\$(Platform)\</IntDir>
+    <TargetName>modplugd</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <OutDir>..\..\..\</OutDir>
     <IntDir>$(ProjectDir)\obj\$(Configuration)\$(Platform)\</IntDir>
+    <TargetName>libmodplug</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <IntDir>$(ProjectDir)\obj\$(Configuration)\$(Platform)\</IntDir>
+    <TargetName>libmodplug</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseDLL|Win32'">
     <OutDir>..\..\..\</OutDir>
     <IntDir>$(ProjectDir)\obj\$(Configuration)\$(Platform)\</IntDir>
+    <TargetName>modplug</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseDLL|x64'">
     <IntDir>$(ProjectDir)\obj\$(Configuration)\$(Platform)\</IntDir>
+    <TargetName>modplug</TargetName>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -154,6 +162,8 @@
       <SDLCheck>false</SDLCheck>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
+      <AdditionalIncludeDirectories>..\libmodplug\src\libmodplug;..\libmodplug\src\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>MODPLUG_NO_FILESAVE;WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -163,6 +173,14 @@
       <TargetMachine>MachineX86</TargetMachine>
       <SubSystem>Windows</SubSystem>
     </Lib>
+    <PostBuildEvent>
+      <Command>mkdir $(OutputPath)\include
+mkdir $(OutputPath)\include\libmodplug
+copy ..\libmodplug\src\modplug.h $(OutputPath)\include
+copy ..\libmodplug\src\libmodplug\*.h $(OutputPath)\include\libmodplug
+mkdir $(OutputPath)\licenses
+copy ..\libmodplug\COPYING $(OutputPath)\licenses\libmodplug.txt</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -171,6 +189,8 @@
       <SDLCheck>false</SDLCheck>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
+      <AdditionalIncludeDirectories>..\libmodplug\src\libmodplug;..\libmodplug\src\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>MODPLUG_NO_FILESAVE;WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -180,6 +200,14 @@
       <TargetMachine>MachineX64</TargetMachine>
       <SubSystem>Windows</SubSystem>
     </Lib>
+    <PostBuildEvent>
+      <Command>mkdir $(OutputPath)\include
+mkdir $(OutputPath)\include\libmodplug
+copy ..\libmodplug\src\modplug.h $(OutputPath)\include
+copy ..\libmodplug\src\libmodplug\*.h $(OutputPath)\include\libmodplug
+mkdir $(OutputPath)\licenses
+copy ..\libmodplug\COPYING $(OutputPath)\licenses\libmodplug.txt</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='DebugDLL|Win32'">
     <ClCompile>
@@ -188,6 +216,8 @@
       <SDLCheck>false</SDLCheck>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
+      <AdditionalIncludeDirectories>..\libmodplug\src\libmodplug;..\libmodplug\src\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>MODPLUG_NO_FILESAVE;WIN32;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -196,7 +226,16 @@
       <SubSystem>Windows</SubSystem>
       <ImportLibrary>$(OutDir)\lib\$(TargetName).lib</ImportLibrary>
       <ProfileGuidedDatabase>$(OutDir)\bin\$(TargetName).pgd</ProfileGuidedDatabase>
+      <ModuleDefinitionFile>libmodplug.def</ModuleDefinitionFile>
     </Link>
+    <PostBuildEvent>
+      <Command>mkdir $(OutputPath)\include
+mkdir $(OutputPath)\include\libmodplug
+copy ..\libmodplug\src\modplug.h $(OutputPath)\include
+copy ..\libmodplug\src\libmodplug\*.h $(OutputPath)\include\libmodplug
+mkdir $(OutputPath)\licenses
+copy ..\libmodplug\COPYING $(OutputPath)\licenses\libmodplug.txt</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='DebugDLL|x64'">
     <ClCompile>
@@ -205,6 +244,8 @@
       <SDLCheck>false</SDLCheck>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
+      <AdditionalIncludeDirectories>..\libmodplug\src\libmodplug;..\libmodplug\src\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>MODPLUG_NO_FILESAVE;WIN32;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -213,7 +254,16 @@
       <SubSystem>Windows</SubSystem>
       <ImportLibrary>$(OutDir)\lib\x64\$(TargetName).lib</ImportLibrary>
       <ProfileGuidedDatabase>$(OutDir)\bin\x64\$(TargetName).pgd</ProfileGuidedDatabase>
+      <ModuleDefinitionFile>libmodplug.def</ModuleDefinitionFile>
     </Link>
+    <PostBuildEvent>
+      <Command>mkdir $(OutputPath)\include
+mkdir $(OutputPath)\include\libmodplug
+copy ..\libmodplug\src\modplug.h $(OutputPath)\include
+copy ..\libmodplug\src\libmodplug\*.h $(OutputPath)\include\libmodplug
+mkdir $(OutputPath)\licenses
+copy ..\libmodplug\COPYING $(OutputPath)\licenses\libmodplug.txt</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -233,6 +283,8 @@
       <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
       <FloatingPointModel>Fast</FloatingPointModel>
       <FloatingPointExceptions>false</FloatingPointExceptions>
+      <AdditionalIncludeDirectories>..\libmodplug\src\libmodplug;..\libmodplug\src\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>MODPLUG_NO_FILESAVE;WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -244,6 +296,14 @@
       <TargetMachine>MachineX86</TargetMachine>
       <SubSystem>Windows</SubSystem>
     </Lib>
+    <PostBuildEvent>
+      <Command>mkdir $(OutputPath)\include
+mkdir $(OutputPath)\include\libmodplug
+copy ..\libmodplug\src\modplug.h $(OutputPath)\include
+copy ..\libmodplug\src\libmodplug\*.h $(OutputPath)\include\libmodplug
+mkdir $(OutputPath)\licenses
+copy ..\libmodplug\COPYING $(OutputPath)\licenses\libmodplug.txt</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -263,6 +323,8 @@
       <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
       <FloatingPointModel>Fast</FloatingPointModel>
       <FloatingPointExceptions>false</FloatingPointExceptions>
+      <AdditionalIncludeDirectories>..\libmodplug\src\libmodplug;..\libmodplug\src\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>MODPLUG_NO_FILESAVE;WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -274,6 +336,14 @@
       <TargetMachine>MachineX64</TargetMachine>
       <SubSystem>Windows</SubSystem>
     </Lib>
+    <PostBuildEvent>
+      <Command>mkdir $(OutputPath)\include
+mkdir $(OutputPath)\include\libmodplug
+copy ..\libmodplug\src\modplug.h $(OutputPath)\include
+copy ..\libmodplug\src\libmodplug\*.h $(OutputPath)\include\libmodplug
+mkdir $(OutputPath)\licenses
+copy ..\libmodplug\COPYING $(OutputPath)\licenses\libmodplug.txt</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseDLL|Win32'">
     <ClCompile>
@@ -293,6 +363,8 @@
       <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
       <FloatingPointModel>Fast</FloatingPointModel>
       <FloatingPointExceptions>false</FloatingPointExceptions>
+      <AdditionalIncludeDirectories>..\libmodplug\src\libmodplug;..\libmodplug\src\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>MODPLUG_NO_FILESAVE;WIN32;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -303,7 +375,16 @@
       <SubSystem>Windows</SubSystem>
       <ImportLibrary>$(OutDir)\lib\$(TargetName).lib</ImportLibrary>
       <ProfileGuidedDatabase>$(OutDir)\bin\$(TargetName).pgd</ProfileGuidedDatabase>
+      <ModuleDefinitionFile>libmodplug.def</ModuleDefinitionFile>
     </Link>
+    <PostBuildEvent>
+      <Command>mkdir $(OutputPath)\include
+mkdir $(OutputPath)\include\libmodplug
+copy ..\libmodplug\src\modplug.h $(OutputPath)\include
+copy ..\libmodplug\src\libmodplug\*.h $(OutputPath)\include\libmodplug
+mkdir $(OutputPath)\licenses
+copy ..\libmodplug\COPYING $(OutputPath)\licenses\libmodplug.txt</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseDLL|x64'">
     <ClCompile>
@@ -323,6 +404,8 @@
       <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
       <FloatingPointModel>Fast</FloatingPointModel>
       <FloatingPointExceptions>false</FloatingPointExceptions>
+      <AdditionalIncludeDirectories>..\libmodplug\src\libmodplug;..\libmodplug\src\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>MODPLUG_NO_FILESAVE;WIN32;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -333,9 +416,63 @@
       <SubSystem>Windows</SubSystem>
       <ImportLibrary>$(OutDir)\lib\x64\$(TargetName).lib</ImportLibrary>
       <ProfileGuidedDatabase>$(OutDir)\bin\x64\$(TargetName).pgd</ProfileGuidedDatabase>
+      <ModuleDefinitionFile>libmodplug.def</ModuleDefinitionFile>
     </Link>
+    <PostBuildEvent>
+      <Command>mkdir $(OutputPath)\include
+mkdir $(OutputPath)\include\libmodplug
+copy ..\libmodplug\src\modplug.h $(OutputPath)\include
+copy ..\libmodplug\src\libmodplug\*.h $(OutputPath)\include\libmodplug
+mkdir $(OutputPath)\licenses
+copy ..\libmodplug\COPYING $(OutputPath)\licenses\libmodplug.txt</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="..\libmodplug\src\libmodplug\it_defs.h" />
+    <ClInclude Include="..\libmodplug\src\libmodplug\sndfile.h" />
+    <ClInclude Include="..\libmodplug\src\libmodplug\stdafx.h" />
+    <ClInclude Include="..\libmodplug\src\load_pat.h" />
+    <ClInclude Include="..\libmodplug\src\modplug.h" />
+    <ClInclude Include="..\libmodplug\src\tables.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\libmodplug\src\fastmix.cpp" />
+    <ClCompile Include="..\libmodplug\src\load_669.cpp" />
+    <ClCompile Include="..\libmodplug\src\load_abc.cpp" />
+    <ClCompile Include="..\libmodplug\src\load_amf.cpp" />
+    <ClCompile Include="..\libmodplug\src\load_ams.cpp" />
+    <ClCompile Include="..\libmodplug\src\load_dbm.cpp" />
+    <ClCompile Include="..\libmodplug\src\load_dmf.cpp" />
+    <ClCompile Include="..\libmodplug\src\load_dsm.cpp" />
+    <ClCompile Include="..\libmodplug\src\load_far.cpp" />
+    <ClCompile Include="..\libmodplug\src\load_it.cpp" />
+    <ClCompile Include="..\libmodplug\src\load_j2b.cpp" />
+    <ClCompile Include="..\libmodplug\src\load_mdl.cpp" />
+    <ClCompile Include="..\libmodplug\src\load_med.cpp" />
+    <ClCompile Include="..\libmodplug\src\load_mid.cpp" />
+    <ClCompile Include="..\libmodplug\src\load_mod.cpp" />
+    <ClCompile Include="..\libmodplug\src\load_mt2.cpp" />
+    <ClCompile Include="..\libmodplug\src\load_mtm.cpp" />
+    <ClCompile Include="..\libmodplug\src\load_okt.cpp" />
+    <ClCompile Include="..\libmodplug\src\load_pat.cpp" />
+    <ClCompile Include="..\libmodplug\src\load_psm.cpp" />
+    <ClCompile Include="..\libmodplug\src\load_ptm.cpp" />
+    <ClCompile Include="..\libmodplug\src\load_s3m.cpp" />
+    <ClCompile Include="..\libmodplug\src\load_stm.cpp" />
+    <ClCompile Include="..\libmodplug\src\load_ult.cpp" />
+    <ClCompile Include="..\libmodplug\src\load_umx.cpp" />
+    <ClCompile Include="..\libmodplug\src\load_wav.cpp" />
+    <ClCompile Include="..\libmodplug\src\load_xm.cpp" />
+    <ClCompile Include="..\libmodplug\src\mmcmp.cpp" />
+    <ClCompile Include="..\libmodplug\src\modplug.cpp" />
+    <ClCompile Include="..\libmodplug\src\sndfile.cpp" />
+    <ClCompile Include="..\libmodplug\src\sndmix.cpp" />
+    <ClCompile Include="..\libmodplug\src\snd_dsp.cpp" />
+    <ClCompile Include="..\libmodplug\src\snd_flt.cpp" />
+    <ClCompile Include="..\libmodplug\src\snd_fx.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="libmodplug.def" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
