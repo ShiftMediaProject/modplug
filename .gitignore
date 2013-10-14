@@ -173,3 +173,7 @@ stamp-h1
 *.lo
 *~
 libmodplug/libmodplug.pc
+
+
+#Ensure files required by SMC msvc builds are included
+!SMC/*.h
