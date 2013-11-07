@@ -174,6 +174,11 @@ copy ..\libmodplug\src\libmodplug\*.h $(OutputPath)\include\libmodplug
 mkdir $(OutputPath)\licenses
 copy ..\libmodplug\COPYING $(OutputPath)\licenses\libmodplug.txt</Command>
     </PostBuildEvent>
+    <PreBuildEvent>
+      <Command>if exist ..\libmodplug\src\config.h (
+del ..\libmodplug\src\config.h
+)</Command>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -202,6 +207,11 @@ copy ..\libmodplug\src\libmodplug\*.h $(OutputPath)\include\libmodplug
 mkdir $(OutputPath)\licenses
 copy ..\libmodplug\COPYING $(OutputPath)\licenses\libmodplug.txt</Command>
     </PostBuildEvent>
+    <PreBuildEvent>
+      <Command>if exist ..\libmodplug\src\config.h (
+del ..\libmodplug\src\config.h
+)</Command>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='DebugDLL|Win32'">
     <ClCompile>
@@ -231,6 +241,11 @@ copy ..\libmodplug\src\libmodplug\*.h $(OutputPath)\include\libmodplug
 mkdir $(OutputPath)\licenses
 copy ..\libmodplug\COPYING $(OutputPath)\licenses\libmodplug.txt</Command>
     </PostBuildEvent>
+    <PreBuildEvent>
+      <Command>if exist ..\libmodplug\src\config.h (
+del ..\libmodplug\src\config.h
+)</Command>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='DebugDLL|x64'">
     <ClCompile>
@@ -260,6 +275,11 @@ copy ..\libmodplug\src\libmodplug\*.h $(OutputPath)\include\libmodplug
 mkdir $(OutputPath)\licenses
 copy ..\libmodplug\COPYING $(OutputPath)\licenses\libmodplug.txt</Command>
     </PostBuildEvent>
+    <PreBuildEvent>
+      <Command>if exist ..\libmodplug\src\config.h (
+del ..\libmodplug\src\config.h
+)</Command>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -300,6 +320,11 @@ copy ..\libmodplug\src\libmodplug\*.h $(OutputPath)\include\libmodplug
 mkdir $(OutputPath)\licenses
 copy ..\libmodplug\COPYING $(OutputPath)\licenses\libmodplug.txt</Command>
     </PostBuildEvent>
+    <PreBuildEvent>
+      <Command>if exist ..\libmodplug\src\config.h (
+del ..\libmodplug\src\config.h
+)</Command>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -340,6 +365,11 @@ copy ..\libmodplug\src\libmodplug\*.h $(OutputPath)\include\libmodplug
 mkdir $(OutputPath)\licenses
 copy ..\libmodplug\COPYING $(OutputPath)\licenses\libmodplug.txt</Command>
     </PostBuildEvent>
+    <PreBuildEvent>
+      <Command>if exist ..\libmodplug\src\config.h (
+del ..\libmodplug\src\config.h
+)</Command>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseDLL|Win32'">
     <ClCompile>
@@ -381,6 +411,11 @@ copy ..\libmodplug\src\libmodplug\*.h $(OutputPath)\include\libmodplug
 mkdir $(OutputPath)\licenses
 copy ..\libmodplug\COPYING $(OutputPath)\licenses\libmodplug.txt</Command>
     </PostBuildEvent>
+    <PreBuildEvent>
+      <Command>if exist ..\libmodplug\src\config.h (
+del ..\libmodplug\src\config.h
+)</Command>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseDLL|x64'">
     <ClCompile>
@@ -422,6 +457,11 @@ copy ..\libmodplug\src\libmodplug\*.h $(OutputPath)\include\libmodplug
 mkdir $(OutputPath)\licenses
 copy ..\libmodplug\COPYING $(OutputPath)\licenses\libmodplug.txt</Command>
     </PostBuildEvent>
+    <PreBuildEvent>
+      <Command>if exist ..\libmodplug\src\config.h (
+del ..\libmodplug\src\config.h
+)</Command>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="..\libmodplug\src\libmodplug\it_defs.h" />
