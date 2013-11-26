@@ -159,6 +159,7 @@
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <UseIntelOptimizedHeaders>true</UseIntelOptimizedHeaders>
       <Cpp0xSupport>true</Cpp0xSupport>
+      <DisableSpecificWarnings>4996;4018;4244</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -194,6 +195,7 @@ del ..\libmodplug\src\config.h
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <UseIntelOptimizedHeaders>true</UseIntelOptimizedHeaders>
       <Cpp0xSupport>true</Cpp0xSupport>
+      <DisableSpecificWarnings>4996;4018;4244</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -229,6 +231,7 @@ del ..\libmodplug\src\config.h
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <UseIntelOptimizedHeaders>true</UseIntelOptimizedHeaders>
       <Cpp0xSupport>true</Cpp0xSupport>
+      <DisableSpecificWarnings>4996;4018;4244</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -265,6 +268,7 @@ del ..\libmodplug\src\config.h
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <UseIntelOptimizedHeaders>true</UseIntelOptimizedHeaders>
       <Cpp0xSupport>true</Cpp0xSupport>
+      <DisableSpecificWarnings>4996;4018;4244</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -310,6 +314,7 @@ del ..\libmodplug\src\config.h
       <PreprocessorDefinitions>MODPLUG_NO_FILESAVE;WIN32;_CRT_SECURE_NO_WARNINGS;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <OptimizeForWindowsApplication>true</OptimizeForWindowsApplication>
       <UseIntelOptimizedHeaders>true</UseIntelOptimizedHeaders>
+      <DisableSpecificWarnings>4996;4018;4244</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -357,6 +362,7 @@ del ..\libmodplug\src\config.h
       <PreprocessorDefinitions>MODPLUG_NO_FILESAVE;WIN32;_CRT_SECURE_NO_WARNINGS;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <UseIntelOptimizedHeaders>true</UseIntelOptimizedHeaders>
       <Cpp0xSupport>true</Cpp0xSupport>
+      <DisableSpecificWarnings>4996;4018;4244</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -405,6 +411,7 @@ del ..\libmodplug\src\config.h
       <UseProcessorExtensions>SSE3</UseProcessorExtensions>
       <UseIntelOptimizedHeaders>true</UseIntelOptimizedHeaders>
       <Cpp0xSupport>true</Cpp0xSupport>
+      <DisableSpecificWarnings>4996;4018;4244</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -453,6 +460,7 @@ del ..\libmodplug\src\config.h
       <PreprocessorDefinitions>MODPLUG_NO_FILESAVE;WIN32;_CRT_SECURE_NO_WARNINGS;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <UseIntelOptimizedHeaders>true</UseIntelOptimizedHeaders>
       <Cpp0xSupport>true</Cpp0xSupport>
+      <DisableSpecificWarnings>4996;4018;4244</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -509,6 +517,13 @@ del ..\libmodplug\src\config.h
     <ClCompile Include="..\libmodplug\src\load_okt.cpp" />
     <ClCompile Include="..\libmodplug\src\load_pat.cpp">
       <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">isblankMSVCCompat.h</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">isblankMSVCCompat.h</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='ReleaseDLL|Win32'">isblankMSVCCompat.h</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='DebugDLL|Win32'">isblankMSVCCompat.h</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">isblankMSVCCompat.h</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">isblankMSVCCompat.h</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='ReleaseDLL|x64'">isblankMSVCCompat.h</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='DebugDLL|x64'">isblankMSVCCompat.h</ForcedIncludeFiles>
     </ClCompile>
     <ClCompile Include="..\libmodplug\src\load_psm.cpp" />
     <ClCompile Include="..\libmodplug\src\load_ptm.cpp" />
