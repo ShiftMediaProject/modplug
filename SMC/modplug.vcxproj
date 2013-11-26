@@ -171,6 +171,9 @@
     </Lib>
     <PostBuildEvent>
       <Command>mkdir $(OutputPath)\include
+if exist $(OutDir)\include\libmodplug (
+rd /s /q $(OutDir)\include\libmodplug
+)
 mkdir $(OutputPath)\include\libmodplug
 copy ..\libmodplug\src\modplug.h $(OutputPath)\include
 copy ..\libmodplug\src\libmodplug\*.h $(OutputPath)\include\libmodplug
@@ -207,6 +210,9 @@ del ..\libmodplug\src\config.h
     </Lib>
     <PostBuildEvent>
       <Command>mkdir $(OutputPath)\include
+if exist $(OutDir)\include\libmodplug (
+rd /s /q $(OutDir)\include\libmodplug
+)
 mkdir $(OutputPath)\include\libmodplug
 copy ..\libmodplug\src\modplug.h $(OutputPath)\include
 copy ..\libmodplug\src\libmodplug\*.h $(OutputPath)\include\libmodplug
@@ -244,6 +250,9 @@ del ..\libmodplug\src\config.h
     </Link>
     <PostBuildEvent>
       <Command>mkdir $(OutputPath)\include
+if exist $(OutDir)\include\libmodplug (
+rd /s /q $(OutDir)\include\libmodplug
+)
 mkdir $(OutputPath)\include\libmodplug
 copy ..\libmodplug\src\modplug.h $(OutputPath)\include
 copy ..\libmodplug\src\libmodplug\*.h $(OutputPath)\include\libmodplug
@@ -281,6 +290,9 @@ del ..\libmodplug\src\config.h
     </Link>
     <PostBuildEvent>
       <Command>mkdir $(OutputPath)\include
+if exist $(OutDir)\include\libmodplug (
+rd /s /q $(OutDir)\include\libmodplug
+)
 mkdir $(OutputPath)\include\libmodplug
 copy ..\libmodplug\src\modplug.h $(OutputPath)\include
 copy ..\libmodplug\src\libmodplug\*.h $(OutputPath)\include\libmodplug
@@ -328,6 +340,9 @@ del ..\libmodplug\src\config.h
     </Lib>
     <PostBuildEvent>
       <Command>mkdir $(OutputPath)\include
+if exist $(OutDir)\include\libmodplug (
+rd /s /q $(OutDir)\include\libmodplug
+)
 mkdir $(OutputPath)\include\libmodplug
 copy ..\libmodplug\src\modplug.h $(OutputPath)\include
 copy ..\libmodplug\src\libmodplug\*.h $(OutputPath)\include\libmodplug
@@ -376,6 +391,9 @@ del ..\libmodplug\src\config.h
     </Lib>
     <PostBuildEvent>
       <Command>mkdir $(OutputPath)\include
+if exist $(OutDir)\include\libmodplug (
+rd /s /q $(OutDir)\include\libmodplug
+)
 mkdir $(OutputPath)\include\libmodplug
 copy ..\libmodplug\src\modplug.h $(OutputPath)\include
 copy ..\libmodplug\src\libmodplug\*.h $(OutputPath)\include\libmodplug
@@ -426,6 +444,9 @@ del ..\libmodplug\src\config.h
     </Link>
     <PostBuildEvent>
       <Command>mkdir $(OutputPath)\include
+if exist $(OutDir)\include\libmodplug (
+rd /s /q $(OutDir)\include\libmodplug
+)
 mkdir $(OutputPath)\include\libmodplug
 copy ..\libmodplug\src\modplug.h $(OutputPath)\include
 copy ..\libmodplug\src\libmodplug\*.h $(OutputPath)\include\libmodplug
@@ -475,6 +496,9 @@ del ..\libmodplug\src\config.h
     </Link>
     <PostBuildEvent>
       <Command>mkdir $(OutputPath)\include
+if exist $(OutDir)\include\libmodplug (
+rd /s /q $(OutDir)\include\libmodplug
+)
 mkdir $(OutputPath)\include\libmodplug
 copy ..\libmodplug\src\modplug.h $(OutputPath)\include
 copy ..\libmodplug\src\libmodplug\*.h $(OutputPath)\include\libmodplug
