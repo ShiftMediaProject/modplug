@@ -165,20 +165,20 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
     <Lib>
-      <OutputFile>$(OutDir)\lib\$(TargetName)$(TargetExt)</OutputFile>
+      <OutputFile>$(OutDir)\lib\msvc32\$(TargetName)$(TargetExt)</OutputFile>
       <TargetMachine>MachineX86</TargetMachine>
       <SubSystem>Windows</SubSystem>
     </Lib>
     <PostBuildEvent>
-      <Command>mkdir $(OutputPath)\include
-if exist $(OutDir)\include\libmodplug (
-rd /s /q $(OutDir)\include\libmodplug
+      <Command>mkdir $(OutDir)\include\msvc
+if exist $(OutDir)\include\msvc\libmodplug (
+rd /s /q $(OutDir)\include\msvc\libmodplug
 )
-mkdir $(OutputPath)\include\libmodplug
-copy ..\libmodplug\src\modplug.h $(OutputPath)\include
-copy ..\libmodplug\src\libmodplug\*.h $(OutputPath)\include\libmodplug
-mkdir $(OutputPath)\licenses
-copy ..\libmodplug\COPYING $(OutputPath)\licenses\libmodplug.txt</Command>
+mkdir $(OutDir)\include\msvc\libmodplug
+copy ..\libmodplug\src\modplug.h $(OutDir)\include\msvc
+copy ..\libmodplug\src\libmodplug\*.h $(OutDir)\include\msvc\libmodplug
+mkdir $(OutDir)\licenses
+copy ..\libmodplug\COPYING $(OutDir)\licenses\libmodplug.txt</Command>
     </PostBuildEvent>
     <PreBuildEvent>
       <Command>if exist ..\libmodplug\src\config.h (
@@ -204,20 +204,20 @@ del ..\libmodplug\src\config.h
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
     <Lib>
-      <OutputFile>$(OutDir)\lib\x64\$(TargetName)$(TargetExt)</OutputFile>
+      <OutputFile>$(OutDir)\lib\msvc64\$(TargetName)$(TargetExt)</OutputFile>
       <TargetMachine>MachineX64</TargetMachine>
       <SubSystem>Windows</SubSystem>
     </Lib>
     <PostBuildEvent>
-      <Command>mkdir $(OutputPath)\include
-if exist $(OutDir)\include\libmodplug (
-rd /s /q $(OutDir)\include\libmodplug
+      <Command>mkdir $(OutDir)\include\msvc
+if exist $(OutDir)\include\msvc\libmodplug (
+rd /s /q $(OutDir)\include\msvc\libmodplug
 )
-mkdir $(OutputPath)\include\libmodplug
-copy ..\libmodplug\src\modplug.h $(OutputPath)\include
-copy ..\libmodplug\src\libmodplug\*.h $(OutputPath)\include\libmodplug
-mkdir $(OutputPath)\licenses
-copy ..\libmodplug\COPYING $(OutputPath)\licenses\libmodplug.txt</Command>
+mkdir $(OutDir)\include\msvc\libmodplug
+copy ..\libmodplug\src\modplug.h $(OutDir)\include\msvc
+copy ..\libmodplug\src\libmodplug\*.h $(OutDir)\include\msvc\libmodplug
+mkdir $(OutDir)\licenses
+copy ..\libmodplug\COPYING $(OutDir)\licenses\libmodplug.txt</Command>
     </PostBuildEvent>
     <PreBuildEvent>
       <Command>if exist ..\libmodplug\src\config.h (
@@ -241,23 +241,23 @@ del ..\libmodplug\src\config.h
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <OutputFile>$(OutDir)\bin\$(TargetName)$(TargetExt)</OutputFile>
-      <ProgramDatabaseFile>$(OutDir)\bin\$(TargetName).pdb</ProgramDatabaseFile>
+      <OutputFile>$(OutDir)\bin\msvc32\$(TargetName)$(TargetExt)</OutputFile>
+      <ProgramDatabaseFile>$(OutDir)\bin\msvc32\$(TargetName).pdb</ProgramDatabaseFile>
       <SubSystem>Windows</SubSystem>
-      <ImportLibrary>$(OutDir)\lib\$(TargetName).lib</ImportLibrary>
-      <ProfileGuidedDatabase>$(OutDir)\bin\$(TargetName).pgd</ProfileGuidedDatabase>
+      <ImportLibrary>$(OutDir)\lib\msvc32\$(TargetName).lib</ImportLibrary>
+      <ProfileGuidedDatabase>$(OutDir)\bin\msvc32\$(TargetName).pgd</ProfileGuidedDatabase>
       <ModuleDefinitionFile>libmodplug.def</ModuleDefinitionFile>
     </Link>
     <PostBuildEvent>
-      <Command>mkdir $(OutputPath)\include
-if exist $(OutDir)\include\libmodplug (
-rd /s /q $(OutDir)\include\libmodplug
+      <Command>mkdir $(OutDir)\include\msvc
+if exist $(OutDir)\include\msvc\libmodplug (
+rd /s /q $(OutDir)\include\msvc\libmodplug
 )
-mkdir $(OutputPath)\include\libmodplug
-copy ..\libmodplug\src\modplug.h $(OutputPath)\include
-copy ..\libmodplug\src\libmodplug\*.h $(OutputPath)\include\libmodplug
-mkdir $(OutputPath)\licenses
-copy ..\libmodplug\COPYING $(OutputPath)\licenses\libmodplug.txt</Command>
+mkdir $(OutDir)\include\msvc\libmodplug
+copy ..\libmodplug\src\modplug.h $(OutDir)\include\msvc
+copy ..\libmodplug\src\libmodplug\*.h $(OutDir)\include\msvc\libmodplug
+mkdir $(OutDir)\licenses
+copy ..\libmodplug\COPYING $(OutDir)\licenses\libmodplug.txt</Command>
     </PostBuildEvent>
     <PreBuildEvent>
       <Command>if exist ..\libmodplug\src\config.h (
@@ -281,23 +281,23 @@ del ..\libmodplug\src\config.h
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <OutputFile>$(OutDir)\bin\x64\$(TargetName)$(TargetExt)</OutputFile>
-      <ProgramDatabaseFile>$(OutDir)\bin\x64\$(TargetName).pdb</ProgramDatabaseFile>
+      <OutputFile>$(OutDir)\bin\msvc64\$(TargetName)$(TargetExt)</OutputFile>
+      <ProgramDatabaseFile>$(OutDir)\bin\msvc64\$(TargetName).pdb</ProgramDatabaseFile>
       <SubSystem>Windows</SubSystem>
-      <ImportLibrary>$(OutDir)\lib\x64\$(TargetName).lib</ImportLibrary>
-      <ProfileGuidedDatabase>$(OutDir)\bin\x64\$(TargetName).pgd</ProfileGuidedDatabase>
+      <ImportLibrary>$(OutDir)\lib\msvc64\$(TargetName).lib</ImportLibrary>
+      <ProfileGuidedDatabase>$(OutDir)\bin\msvc64\$(TargetName).pgd</ProfileGuidedDatabase>
       <ModuleDefinitionFile>libmodplug.def</ModuleDefinitionFile>
     </Link>
     <PostBuildEvent>
-      <Command>mkdir $(OutputPath)\include
-if exist $(OutDir)\include\libmodplug (
-rd /s /q $(OutDir)\include\libmodplug
+      <Command>mkdir $(OutDir)\include\msvc
+if exist $(OutDir)\include\msvc\libmodplug (
+rd /s /q $(OutDir)\include\msvc\libmodplug
 )
-mkdir $(OutputPath)\include\libmodplug
-copy ..\libmodplug\src\modplug.h $(OutputPath)\include
-copy ..\libmodplug\src\libmodplug\*.h $(OutputPath)\include\libmodplug
-mkdir $(OutputPath)\licenses
-copy ..\libmodplug\COPYING $(OutputPath)\licenses\libmodplug.txt</Command>
+mkdir $(OutDir)\include\msvc\libmodplug
+copy ..\libmodplug\src\modplug.h $(OutDir)\include\msvc
+copy ..\libmodplug\src\libmodplug\*.h $(OutDir)\include\msvc\libmodplug
+mkdir $(OutDir)\licenses
+copy ..\libmodplug\COPYING $(OutDir)\licenses\libmodplug.txt</Command>
     </PostBuildEvent>
     <PreBuildEvent>
       <Command>if exist ..\libmodplug\src\config.h (
@@ -334,20 +334,20 @@ del ..\libmodplug\src\config.h
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
     <Lib>
-      <OutputFile>$(OutDir)\lib\$(TargetName)$(TargetExt)</OutputFile>
+      <OutputFile>$(OutDir)\lib\msvc32\$(TargetName)$(TargetExt)</OutputFile>
       <TargetMachine>MachineX86</TargetMachine>
       <SubSystem>Windows</SubSystem>
     </Lib>
     <PostBuildEvent>
-      <Command>mkdir $(OutputPath)\include
-if exist $(OutDir)\include\libmodplug (
-rd /s /q $(OutDir)\include\libmodplug
+      <Command>mkdir $(OutDir)\include\msvc
+if exist $(OutDir)\include\msvc\libmodplug (
+rd /s /q $(OutDir)\include\msvc\libmodplug
 )
-mkdir $(OutputPath)\include\libmodplug
-copy ..\libmodplug\src\modplug.h $(OutputPath)\include
-copy ..\libmodplug\src\libmodplug\*.h $(OutputPath)\include\libmodplug
-mkdir $(OutputPath)\licenses
-copy ..\libmodplug\COPYING $(OutputPath)\licenses\libmodplug.txt</Command>
+mkdir $(OutDir)\include\msvc\libmodplug
+copy ..\libmodplug\src\modplug.h $(OutDir)\include\msvc
+copy ..\libmodplug\src\libmodplug\*.h $(OutDir)\include\msvc\libmodplug
+mkdir $(OutDir)\licenses
+copy ..\libmodplug\COPYING $(OutDir)\licenses\libmodplug.txt</Command>
     </PostBuildEvent>
     <PreBuildEvent>
       <Command>if exist ..\libmodplug\src\config.h (
@@ -385,20 +385,20 @@ del ..\libmodplug\src\config.h
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
     <Lib>
-      <OutputFile>$(OutDir)\lib\x64\$(TargetName)$(TargetExt)</OutputFile>
+      <OutputFile>$(OutDir)\lib\msvc64\$(TargetName)$(TargetExt)</OutputFile>
       <TargetMachine>MachineX64</TargetMachine>
       <SubSystem>Windows</SubSystem>
     </Lib>
     <PostBuildEvent>
-      <Command>mkdir $(OutputPath)\include
-if exist $(OutDir)\include\libmodplug (
-rd /s /q $(OutDir)\include\libmodplug
+      <Command>mkdir $(OutDir)\include\msvc
+if exist $(OutDir)\include\msvc\libmodplug (
+rd /s /q $(OutDir)\include\msvc\libmodplug
 )
-mkdir $(OutputPath)\include\libmodplug
-copy ..\libmodplug\src\modplug.h $(OutputPath)\include
-copy ..\libmodplug\src\libmodplug\*.h $(OutputPath)\include\libmodplug
-mkdir $(OutputPath)\licenses
-copy ..\libmodplug\COPYING $(OutputPath)\licenses\libmodplug.txt</Command>
+mkdir $(OutDir)\include\msvc\libmodplug
+copy ..\libmodplug\src\modplug.h $(OutDir)\include\msvc
+copy ..\libmodplug\src\libmodplug\*.h $(OutDir)\include\msvc\libmodplug
+mkdir $(OutDir)\licenses
+copy ..\libmodplug\COPYING $(OutDir)\licenses\libmodplug.txt</Command>
     </PostBuildEvent>
     <PreBuildEvent>
       <Command>if exist ..\libmodplug\src\config.h (
@@ -435,23 +435,23 @@ del ..\libmodplug\src\config.h
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <OutputFile>$(OutDir)\bin\$(TargetName)$(TargetExt)</OutputFile>
-      <ProgramDatabaseFile>$(OutDir)\bin\$(TargetName).pdb</ProgramDatabaseFile>
+      <OutputFile>$(OutDir)\bin\msvc32\$(TargetName)$(TargetExt)</OutputFile>
+      <ProgramDatabaseFile>$(OutDir)\bin\msvc32\$(TargetName).pdb</ProgramDatabaseFile>
       <SubSystem>Windows</SubSystem>
-      <ImportLibrary>$(OutDir)\lib\$(TargetName).lib</ImportLibrary>
-      <ProfileGuidedDatabase>$(OutDir)\bin\$(TargetName).pgd</ProfileGuidedDatabase>
+      <ImportLibrary>$(OutDir)\lib\msvc32\$(TargetName).lib</ImportLibrary>
+      <ProfileGuidedDatabase>$(OutDir)\bin\msvc32\$(TargetName).pgd</ProfileGuidedDatabase>
       <ModuleDefinitionFile>libmodplug.def</ModuleDefinitionFile>
     </Link>
     <PostBuildEvent>
-      <Command>mkdir $(OutputPath)\include
-if exist $(OutDir)\include\libmodplug (
-rd /s /q $(OutDir)\include\libmodplug
+      <Command>mkdir $(OutDir)\include\msvc
+if exist $(OutDir)\include\msvc\libmodplug (
+rd /s /q $(OutDir)\include\msvc\libmodplug
 )
-mkdir $(OutputPath)\include\libmodplug
-copy ..\libmodplug\src\modplug.h $(OutputPath)\include
-copy ..\libmodplug\src\libmodplug\*.h $(OutputPath)\include\libmodplug
-mkdir $(OutputPath)\licenses
-copy ..\libmodplug\COPYING $(OutputPath)\licenses\libmodplug.txt</Command>
+mkdir $(OutDir)\include\msvc\libmodplug
+copy ..\libmodplug\src\modplug.h $(OutDir)\include\msvc
+copy ..\libmodplug\src\libmodplug\*.h $(OutDir)\include\msvc\libmodplug
+mkdir $(OutDir)\licenses
+copy ..\libmodplug\COPYING $(OutDir)\licenses\libmodplug.txt</Command>
     </PostBuildEvent>
     <PreBuildEvent>
       <Command>if exist ..\libmodplug\src\config.h (
@@ -487,23 +487,23 @@ del ..\libmodplug\src\config.h
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <OutputFile>$(OutDir)\bin\x64\$(TargetName)$(TargetExt)</OutputFile>
-      <ProgramDatabaseFile>$(OutDir)\bin\x64\$(TargetName).pdb</ProgramDatabaseFile>
+      <OutputFile>$(OutDir)\bin\msvc64\$(TargetName)$(TargetExt)</OutputFile>
+      <ProgramDatabaseFile>$(OutDir)\bin\msvc64\$(TargetName).pdb</ProgramDatabaseFile>
       <SubSystem>Windows</SubSystem>
-      <ImportLibrary>$(OutDir)\lib\x64\$(TargetName).lib</ImportLibrary>
-      <ProfileGuidedDatabase>$(OutDir)\bin\x64\$(TargetName).pgd</ProfileGuidedDatabase>
+      <ImportLibrary>$(OutDir)\lib\msvc64\$(TargetName).lib</ImportLibrary>
+      <ProfileGuidedDatabase>$(OutDir)\bin\msvc64\$(TargetName).pgd</ProfileGuidedDatabase>
       <ModuleDefinitionFile>libmodplug.def</ModuleDefinitionFile>
     </Link>
     <PostBuildEvent>
-      <Command>mkdir $(OutputPath)\include
-if exist $(OutDir)\include\libmodplug (
-rd /s /q $(OutDir)\include\libmodplug
+      <Command>mkdir $(OutDir)\include\msvc
+if exist $(OutDir)\include\msvc\libmodplug (
+rd /s /q $(OutDir)\include\msvc\libmodplug
 )
-mkdir $(OutputPath)\include\libmodplug
-copy ..\libmodplug\src\modplug.h $(OutputPath)\include
-copy ..\libmodplug\src\libmodplug\*.h $(OutputPath)\include\libmodplug
-mkdir $(OutputPath)\licenses
-copy ..\libmodplug\COPYING $(OutputPath)\licenses\libmodplug.txt</Command>
+mkdir $(OutDir)\include\msvc\libmodplug
+copy ..\libmodplug\src\modplug.h $(OutDir)\include\msvc
+copy ..\libmodplug\src\libmodplug\*.h $(OutDir)\include\msvc\libmodplug
+mkdir $(OutDir)\licenses
+copy ..\libmodplug\COPYING $(OutDir)\licenses\libmodplug.txt</Command>
     </PostBuildEvent>
     <PreBuildEvent>
       <Command>if exist ..\libmodplug\src\config.h (
