@@ -179,7 +179,7 @@ if exist $(OutDir)\include\libmodplug (
 rd /s /q $(OutDir)\include\libmodplug
 )
 mkdir $(OutDir)\include\libmodplug
-copy ..\libmodplug\src\modplug.h $(OutDir)\include
+copy ..\libmodplug\src\modplug.h $(OutDir)\include\libmodplug
 copy ..\libmodplug\src\libmodplug\*.h $(OutDir)\include\libmodplug
 mkdir $(OutDir)\licenses
 copy ..\libmodplug\COPYING $(OutDir)\licenses\libmodplug.txt</Command>
@@ -218,7 +218,7 @@ if exist $(OutDir)\include\libmodplug (
 rd /s /q $(OutDir)\include\libmodplug
 )
 mkdir $(OutDir)\include\libmodplug
-copy ..\libmodplug\src\modplug.h $(OutDir)\include
+copy ..\libmodplug\src\modplug.h $(OutDir)\include\libmodplug
 copy ..\libmodplug\src\libmodplug\*.h $(OutDir)\include\libmodplug
 mkdir $(OutDir)\licenses
 copy ..\libmodplug\COPYING $(OutDir)\licenses\libmodplug.txt</Command>
@@ -258,7 +258,7 @@ if exist $(OutDir)\include\libmodplug (
 rd /s /q $(OutDir)\include\libmodplug
 )
 mkdir $(OutDir)\include\libmodplug
-copy ..\libmodplug\src\modplug.h $(OutDir)\include
+copy ..\libmodplug\src\modplug.h $(OutDir)\include\libmodplug
 copy ..\libmodplug\src\libmodplug\*.h $(OutDir)\include\libmodplug
 mkdir $(OutDir)\licenses
 copy ..\libmodplug\COPYING $(OutDir)\licenses\libmodplug.txt</Command>
@@ -298,7 +298,7 @@ if exist $(OutDir)\include\libmodplug (
 rd /s /q $(OutDir)\include\libmodplug
 )
 mkdir $(OutDir)\include\libmodplug
-copy ..\libmodplug\src\modplug.h $(OutDir)\include
+copy ..\libmodplug\src\modplug.h $(OutDir)\include\libmodplug
 copy ..\libmodplug\src\libmodplug\*.h $(OutDir)\include\libmodplug
 mkdir $(OutDir)\licenses
 copy ..\libmodplug\COPYING $(OutDir)\licenses\libmodplug.txt</Command>
@@ -348,7 +348,7 @@ if exist $(OutDir)\include\libmodplug (
 rd /s /q $(OutDir)\include\libmodplug
 )
 mkdir $(OutDir)\include\libmodplug
-copy ..\libmodplug\src\modplug.h $(OutDir)\include
+copy ..\libmodplug\src\modplug.h $(OutDir)\include\libmodplug
 copy ..\libmodplug\src\libmodplug\*.h $(OutDir)\include\libmodplug
 mkdir $(OutDir)\licenses
 copy ..\libmodplug\COPYING $(OutDir)\licenses\libmodplug.txt</Command>
@@ -399,7 +399,7 @@ if exist $(OutDir)\include\libmodplug (
 rd /s /q $(OutDir)\include\libmodplug
 )
 mkdir $(OutDir)\include\libmodplug
-copy ..\libmodplug\src\modplug.h $(OutDir)\include
+copy ..\libmodplug\src\modplug.h $(OutDir)\include\libmodplug
 copy ..\libmodplug\src\libmodplug\*.h $(OutDir)\include\libmodplug
 mkdir $(OutDir)\licenses
 copy ..\libmodplug\COPYING $(OutDir)\licenses\libmodplug.txt</Command>
@@ -452,7 +452,7 @@ if exist $(OutDir)\include\libmodplug (
 rd /s /q $(OutDir)\include\libmodplug
 )
 mkdir $(OutDir)\include\libmodplug
-copy ..\libmodplug\src\modplug.h $(OutDir)\include
+copy ..\libmodplug\src\modplug.h $(OutDir)\include\libmodplug
 copy ..\libmodplug\src\libmodplug\*.h $(OutDir)\include\libmodplug
 mkdir $(OutDir)\licenses
 copy ..\libmodplug\COPYING $(OutDir)\licenses\libmodplug.txt</Command>
@@ -504,7 +504,7 @@ if exist $(OutDir)\include\libmodplug (
 rd /s /q $(OutDir)\include\libmodplug
 )
 mkdir $(OutDir)\include\libmodplug
-copy ..\libmodplug\src\modplug.h $(OutDir)\include
+copy ..\libmodplug\src\modplug.h $(OutDir)\include\libmodplug
 copy ..\libmodplug\src\libmodplug\*.h $(OutDir)\include\libmodplug
 mkdir $(OutDir)\licenses
 copy ..\libmodplug\COPYING $(OutDir)\licenses\libmodplug.txt</Command>
