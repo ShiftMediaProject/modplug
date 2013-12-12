@@ -159,7 +159,7 @@
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
       <AdditionalIncludeDirectories>..\libmodplug\src\libmodplug;..\libmodplug\src\;.\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>MODPLUG_NO_FILESAVE;WIN32;_CRT_SECURE_NO_WARNINGS;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>MODPLUG_NO_FILESAVE;WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <UseIntelOptimizedHeaders>true</UseIntelOptimizedHeaders>
       <Cpp0xSupport>true</Cpp0xSupport>
@@ -175,9 +175,6 @@
     </Lib>
     <PostBuildEvent>
       <Command>mkdir $(OutDir)\include
-if exist $(OutDir)\include\libmodplug (
-rd /s /q $(OutDir)\include\libmodplug
-)
 mkdir $(OutDir)\include\libmodplug
 copy ..\libmodplug\src\modplug.h $(OutDir)\include\libmodplug
 copy ..\libmodplug\src\libmodplug\*.h $(OutDir)\include\libmodplug
@@ -187,6 +184,11 @@ copy ..\libmodplug\COPYING $(OutDir)\licenses\libmodplug.txt</Command>
     <PreBuildEvent>
       <Command>if exist ..\libmodplug\src\config.h (
 del ..\libmodplug\src\config.h
+)
+if exist $(OutDir)\include\libmodplug (
+rd /s /q $(OutDir)\include\libmodplug
+cd ../
+cd $(ProjectDir)
 )</Command>
     </PreBuildEvent>
   </ItemDefinitionGroup>
@@ -198,7 +200,7 @@ del ..\libmodplug\src\config.h
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
       <AdditionalIncludeDirectories>..\libmodplug\src\libmodplug;..\libmodplug\src\;.\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>MODPLUG_NO_FILESAVE;WIN32;_CRT_SECURE_NO_WARNINGS;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>MODPLUG_NO_FILESAVE;WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <UseIntelOptimizedHeaders>true</UseIntelOptimizedHeaders>
       <Cpp0xSupport>true</Cpp0xSupport>
@@ -214,9 +216,6 @@ del ..\libmodplug\src\config.h
     </Lib>
     <PostBuildEvent>
       <Command>mkdir $(OutDir)\include
-if exist $(OutDir)\include\libmodplug (
-rd /s /q $(OutDir)\include\libmodplug
-)
 mkdir $(OutDir)\include\libmodplug
 copy ..\libmodplug\src\modplug.h $(OutDir)\include\libmodplug
 copy ..\libmodplug\src\libmodplug\*.h $(OutDir)\include\libmodplug
@@ -226,6 +225,11 @@ copy ..\libmodplug\COPYING $(OutDir)\licenses\libmodplug.txt</Command>
     <PreBuildEvent>
       <Command>if exist ..\libmodplug\src\config.h (
 del ..\libmodplug\src\config.h
+)
+if exist $(OutDir)\include\libmodplug (
+rd /s /q $(OutDir)\include\libmodplug
+cd ../
+cd $(ProjectDir)
 )</Command>
     </PreBuildEvent>
   </ItemDefinitionGroup>
@@ -237,7 +241,7 @@ del ..\libmodplug\src\config.h
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
       <AdditionalIncludeDirectories>..\libmodplug\src\libmodplug;..\libmodplug\src\;.\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>MODPLUG_NO_FILESAVE;WIN32;_CRT_SECURE_NO_WARNINGS;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>MODPLUG_NO_FILESAVE;WIN32;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <UseIntelOptimizedHeaders>true</UseIntelOptimizedHeaders>
       <Cpp0xSupport>true</Cpp0xSupport>
@@ -253,9 +257,6 @@ del ..\libmodplug\src\config.h
     </Link>
     <PostBuildEvent>
       <Command>mkdir $(OutDir)\include
-if exist $(OutDir)\include\libmodplug (
-rd /s /q $(OutDir)\include\libmodplug
-)
 mkdir $(OutDir)\include\libmodplug
 copy ..\libmodplug\src\modplug.h $(OutDir)\include\libmodplug
 copy ..\libmodplug\src\libmodplug\*.h $(OutDir)\include\libmodplug
@@ -265,6 +266,11 @@ copy ..\libmodplug\COPYING $(OutDir)\licenses\libmodplug.txt</Command>
     <PreBuildEvent>
       <Command>if exist ..\libmodplug\src\config.h (
 del ..\libmodplug\src\config.h
+)
+if exist $(OutDir)\include\libmodplug (
+rd /s /q $(OutDir)\include\libmodplug
+cd ../
+cd $(ProjectDir)
 )</Command>
     </PreBuildEvent>
   </ItemDefinitionGroup>
@@ -276,7 +282,7 @@ del ..\libmodplug\src\config.h
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
       <AdditionalIncludeDirectories>..\libmodplug\src\libmodplug;..\libmodplug\src\;.\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>MODPLUG_NO_FILESAVE;WIN32;_CRT_SECURE_NO_WARNINGS;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>MODPLUG_NO_FILESAVE;WIN32;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <UseIntelOptimizedHeaders>true</UseIntelOptimizedHeaders>
       <Cpp0xSupport>true</Cpp0xSupport>
@@ -292,9 +298,6 @@ del ..\libmodplug\src\config.h
     </Link>
     <PostBuildEvent>
       <Command>mkdir $(OutDir)\include
-if exist $(OutDir)\include\libmodplug (
-rd /s /q $(OutDir)\include\libmodplug
-)
 mkdir $(OutDir)\include\libmodplug
 copy ..\libmodplug\src\modplug.h $(OutDir)\include\libmodplug
 copy ..\libmodplug\src\libmodplug\*.h $(OutDir)\include\libmodplug
@@ -304,6 +307,11 @@ copy ..\libmodplug\COPYING $(OutDir)\licenses\libmodplug.txt</Command>
     <PreBuildEvent>
       <Command>if exist ..\libmodplug\src\config.h (
 del ..\libmodplug\src\config.h
+)
+if exist $(OutDir)\include\libmodplug (
+rd /s /q $(OutDir)\include\libmodplug
+cd ../
+cd $(ProjectDir)
 )</Command>
     </PreBuildEvent>
   </ItemDefinitionGroup>
@@ -325,7 +333,7 @@ del ..\libmodplug\src\config.h
       <FloatingPointModel>Fast</FloatingPointModel>
       <FloatingPointExceptions>false</FloatingPointExceptions>
       <AdditionalIncludeDirectories>..\libmodplug\src\libmodplug;..\libmodplug\src\;.\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>MODPLUG_NO_FILESAVE;WIN32;_CRT_SECURE_NO_WARNINGS;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>MODPLUG_NO_FILESAVE;WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <OptimizeForWindowsApplication>true</OptimizeForWindowsApplication>
       <UseIntelOptimizedHeaders>true</UseIntelOptimizedHeaders>
       <DisableSpecificWarnings>4996;4018;4244</DisableSpecificWarnings>
@@ -342,9 +350,6 @@ del ..\libmodplug\src\config.h
     </Lib>
     <PostBuildEvent>
       <Command>mkdir $(OutDir)\include
-if exist $(OutDir)\include\libmodplug (
-rd /s /q $(OutDir)\include\libmodplug
-)
 mkdir $(OutDir)\include\libmodplug
 copy ..\libmodplug\src\modplug.h $(OutDir)\include\libmodplug
 copy ..\libmodplug\src\libmodplug\*.h $(OutDir)\include\libmodplug
@@ -354,6 +359,11 @@ copy ..\libmodplug\COPYING $(OutDir)\licenses\libmodplug.txt</Command>
     <PreBuildEvent>
       <Command>if exist ..\libmodplug\src\config.h (
 del ..\libmodplug\src\config.h
+)
+if exist $(OutDir)\include\libmodplug (
+rd /s /q $(OutDir)\include\libmodplug
+cd ../
+cd $(ProjectDir)
 )</Command>
     </PreBuildEvent>
   </ItemDefinitionGroup>
@@ -376,7 +386,7 @@ del ..\libmodplug\src\config.h
       <FloatingPointModel>Fast</FloatingPointModel>
       <FloatingPointExceptions>false</FloatingPointExceptions>
       <AdditionalIncludeDirectories>..\libmodplug\src\libmodplug;..\libmodplug\src\;.\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>MODPLUG_NO_FILESAVE;WIN32;_CRT_SECURE_NO_WARNINGS;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>MODPLUG_NO_FILESAVE;WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <UseIntelOptimizedHeaders>true</UseIntelOptimizedHeaders>
       <Cpp0xSupport>true</Cpp0xSupport>
       <DisableSpecificWarnings>4996;4018;4244</DisableSpecificWarnings>
@@ -393,9 +403,6 @@ del ..\libmodplug\src\config.h
     </Lib>
     <PostBuildEvent>
       <Command>mkdir $(OutDir)\include
-if exist $(OutDir)\include\libmodplug (
-rd /s /q $(OutDir)\include\libmodplug
-)
 mkdir $(OutDir)\include\libmodplug
 copy ..\libmodplug\src\modplug.h $(OutDir)\include\libmodplug
 copy ..\libmodplug\src\libmodplug\*.h $(OutDir)\include\libmodplug
@@ -405,6 +412,11 @@ copy ..\libmodplug\COPYING $(OutDir)\licenses\libmodplug.txt</Command>
     <PreBuildEvent>
       <Command>if exist ..\libmodplug\src\config.h (
 del ..\libmodplug\src\config.h
+)
+if exist $(OutDir)\include\libmodplug (
+rd /s /q $(OutDir)\include\libmodplug
+cd ../
+cd $(ProjectDir)
 )</Command>
     </PreBuildEvent>
   </ItemDefinitionGroup>
@@ -426,7 +438,7 @@ del ..\libmodplug\src\config.h
       <FloatingPointModel>Fast</FloatingPointModel>
       <FloatingPointExceptions>false</FloatingPointExceptions>
       <AdditionalIncludeDirectories>..\libmodplug\src\libmodplug;..\libmodplug\src\;.\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>MODPLUG_NO_FILESAVE;WIN32;_CRT_SECURE_NO_WARNINGS;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>MODPLUG_NO_FILESAVE;WIN32;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <OptimizeForWindowsApplication>true</OptimizeForWindowsApplication>
       <UseProcessorExtensions>SSE3</UseProcessorExtensions>
       <UseIntelOptimizedHeaders>true</UseIntelOptimizedHeaders>
@@ -445,9 +457,6 @@ del ..\libmodplug\src\config.h
     </Link>
     <PostBuildEvent>
       <Command>mkdir $(OutDir)\include
-if exist $(OutDir)\include\libmodplug (
-rd /s /q $(OutDir)\include\libmodplug
-)
 mkdir $(OutDir)\include\libmodplug
 copy ..\libmodplug\src\modplug.h $(OutDir)\include\libmodplug
 copy ..\libmodplug\src\libmodplug\*.h $(OutDir)\include\libmodplug
@@ -457,6 +466,11 @@ copy ..\libmodplug\COPYING $(OutDir)\licenses\libmodplug.txt</Command>
     <PreBuildEvent>
       <Command>if exist ..\libmodplug\src\config.h (
 del ..\libmodplug\src\config.h
+)
+if exist $(OutDir)\include\libmodplug (
+rd /s /q $(OutDir)\include\libmodplug
+cd ../
+cd $(ProjectDir)
 )</Command>
     </PreBuildEvent>
   </ItemDefinitionGroup>
@@ -479,7 +493,7 @@ del ..\libmodplug\src\config.h
       <FloatingPointModel>Fast</FloatingPointModel>
       <FloatingPointExceptions>false</FloatingPointExceptions>
       <AdditionalIncludeDirectories>..\libmodplug\src\libmodplug;..\libmodplug\src\;.\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>MODPLUG_NO_FILESAVE;WIN32;_CRT_SECURE_NO_WARNINGS;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>MODPLUG_NO_FILESAVE;WIN32;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <UseIntelOptimizedHeaders>true</UseIntelOptimizedHeaders>
       <Cpp0xSupport>true</Cpp0xSupport>
       <DisableSpecificWarnings>4996;4018;4244</DisableSpecificWarnings>
@@ -496,9 +510,6 @@ del ..\libmodplug\src\config.h
     </Link>
     <PostBuildEvent>
       <Command>mkdir $(OutDir)\include
-if exist $(OutDir)\include\libmodplug (
-rd /s /q $(OutDir)\include\libmodplug
-)
 mkdir $(OutDir)\include\libmodplug
 copy ..\libmodplug\src\modplug.h $(OutDir)\include\libmodplug
 copy ..\libmodplug\src\libmodplug\*.h $(OutDir)\include\libmodplug
@@ -508,6 +519,11 @@ copy ..\libmodplug\COPYING $(OutDir)\licenses\libmodplug.txt</Command>
     <PreBuildEvent>
       <Command>if exist ..\libmodplug\src\config.h (
 del ..\libmodplug\src\config.h
+)
+if exist $(OutDir)\include\libmodplug (
+rd /s /q $(OutDir)\include\libmodplug
+cd ../
+cd $(ProjectDir)
 )</Command>
     </PreBuildEvent>
   </ItemDefinitionGroup>
