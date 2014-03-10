@@ -33,9 +33,6 @@
     <ClInclude Include="..\libmodplug\src\load_pat.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="isblankMSVCCompat.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\libmodplug\src\load_wav.cpp">
