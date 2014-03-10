@@ -10,28 +10,37 @@
     <Filter Include="Source Files">
       <UniqueIdentifier>{10c617ff-1335-4c90-b2ee-a8511694db8f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\libmodplug">
+    <Filter Include="Header Files\modplug">
+      <UniqueIdentifier>{f08172bd-6f3f-45a5-af95-59327883ec30}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\modplug\libmodplug">
       <UniqueIdentifier>{b3ddf662-59fc-46e2-8273-0aa80c002a2a}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\libmodplug\src\libmodplug\sndfile.h">
-      <Filter>Header Files\libmodplug</Filter>
+      <Filter>Header Files\modplug\libmodplug</Filter>
     </ClInclude>
     <ClInclude Include="..\libmodplug\src\libmodplug\stdafx.h">
-      <Filter>Header Files\libmodplug</Filter>
+      <Filter>Header Files\modplug\libmodplug</Filter>
     </ClInclude>
     <ClInclude Include="..\libmodplug\src\libmodplug\it_defs.h">
-      <Filter>Header Files\libmodplug</Filter>
+      <Filter>Header Files\modplug\libmodplug</Filter>
     </ClInclude>
-    <ClInclude Include="..\libmodplug\src\tables.h">
+    <ClInclude Include="config.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\libmodplug\src\modplug.h">
+    <ClInclude Include="version.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\libmodplug\src\load_pat.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\modplug</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libmodplug\src\modplug.h">
+      <Filter>Header Files\modplug</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libmodplug\src\tables.h">
+      <Filter>Header Files\modplug</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
