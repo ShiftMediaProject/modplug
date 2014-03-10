@@ -745,7 +745,7 @@ static void mid_add_pitchwheel(MIDHANDLE *h, int mch, int wheel)
 	}
 }
 
-static long int mid_read_long(MIDHANDLE *h)
+static uint32_t mid_read_long(MIDHANDLE *h)
 {
 	BYTE buf[4];
 	mmreadUBYTES(buf, 4, h->mmf);
@@ -1107,6 +1107,7 @@ static int MID_ReadPatterns(MODCOMMAND *pattern[], WORD psize[], MIDHANDLE *h, i
 			ch = 0;
 			tempo = 0;
 			patbrk = 0;
+			if ( h->track )
 			for( e=mid_next_global(h->track->workevent); e && e->tracktick < tt2; e=mid_next_global(e->next) ) {
 				if( e && e->tracktick >= tt1 ) {	// we have a controller event in this row
 					switch( e->fx ) {
@@ -1416,7 +1417,7 @@ BOOL CSoundFile::ReadMID(const BYTE *lpStream, DWORD dwMemLength)
 	MIDTRACK *ttp;
 	uint32_t t, numpats;
 	char buf[256];
-	long miditracklen;
+	uint32_t miditracklen;
 	BYTE runningstatus;
 	BYTE cmd;
 	BYTE midibyte[2];
@@ -1462,6 +1463,8 @@ BOOL CSoundFile::ReadMID(const BYTE *lpStream, DWORD dwMemLength)
 	h->tracktime = 0;
 	h->speed = 6;
 	if (h->miditracks == 0) {
+		MID_Cleanup(h);
+		avoid_reentry = 0;
 		return FALSE;
 	}
 	p = (BYTE *)getenv(ENV_MMMID_SPEED);
@@ -1509,6 +1512,7 @@ BOOL CSoundFile::ReadMID(const BYTE *lpStream, DWORD dwMemLength)
 		buf[4] = '\0';
 		if( strcmp(buf,"MTrk") ) {
 			mid_message("invalid track-chunk '%s' is not 'MTrk'",buf);
+			MID_Cleanup(h);
 			avoid_reentry = 0;
 			return FALSE;
 		}
@@ -1699,7 +1703,7 @@ BOOL CSoundFile::ReadMID(const BYTE *lpStream, DWORD dwMemLength)
 									if( m_nDefaultTempo == 0 ) m_nDefaultTempo = h->tempo;
 									else {
 										ttp = h->track;
-										if( !ttp ) ttp = mid_locate_track(h, 0, 0xff);
+										if( !ttp ) mid_locate_track(h, 0, 0xff);
 										mid_add_tempo_event(h,h->tempo);
 									}
 									if( h->tempo > maxtempo ) maxtempo = h->tempo;
@@ -1707,7 +1711,7 @@ BOOL CSoundFile::ReadMID(const BYTE *lpStream, DWORD dwMemLength)
 								case 0x2f: // type: end of track
 									if( h->debug ) printf("%2d %08ld META end of track\n", t, (long)(h->tracktime));
 									if( miditracklen > 0 ) {
-										sprintf(buf, "%ld", miditracklen);
+										sprintf(buf, "%u", miditracklen);
 										mid_message("Meta event not at end of track, %s bytes left in track", buf);
 										miditracklen = 0;
 									}
@@ -1774,8 +1778,10 @@ BOOL CSoundFile::ReadMID(const BYTE *lpStream, DWORD dwMemLength)
 		if( ttp->tail && ttp->tail->tracktick > h->tracktime )
 			h->tracktime = ttp->tail->tracktick;
 	}
+
 	h->tracktime += h->divider >> 2; // add one quartnote to the song for silence
-	mid_add_partbreak(h);
+	if ( h->track )
+		mid_add_partbreak(h);
 	if( h->debug )
 		mid_dump_tracks(h);
 	numchans = mid_numchans(h);
@@ -1881,9 +1887,9 @@ BOOL CSoundFile::ReadMID(const BYTE *lpStream, DWORD dwMemLength)
 		ChnSettings[t].nVolume = 64;
 		t++;
 	}
+	if( h->verbose ) printf("Cleanup.\n");
 	MID_Cleanup(h);	// we dont need it anymore
 #endif
-	if( h->verbose ) printf("Done\n");
 	avoid_reentry = 0; // it is safe now, I'm finished
 	return TRUE;
 }

@@ -454,15 +454,16 @@ typedef struct {
 static MMFILE *mmfopen(const char *name, const char *mode)
 {
 	FILE *fp;
-	MMFILE *mmfile;
+	MMFILE *mmfile = NULL;
 	long len;
 	if( *mode != 'r' ) return NULL;
 	fp = fopen(name, mode);
 	if( !fp ) return NULL;
 	fseek(fp, 0, SEEK_END);
 	len = ftell(fp);
-	mmfile = (MMFILE *)malloc(len+sizeof(MMFILE));
-	if( !mmfile ) {
+	if ( len > 0 )
+		mmfile = (MMFILE *)malloc(len+sizeof(MMFILE));
+	if( !mmfile || len <= 0 ) {
 		fclose(fp);
 		return NULL;
 	}
@@ -573,7 +574,7 @@ static void abc_new_macro(ABCHANDLE *h, const char *m)
 	char key[256], value[256];
 	abc_extractkeyvalue(key, sizeof(key), value, sizeof(value), m);
 
-    retval = (ABCMACRO *)_mm_calloc(h->macrohandle, 1,sizeof(ABCTRACK));
+    retval = (ABCMACRO *)_mm_calloc(h->macrohandle, 1,sizeof(ABCMACRO));
     retval->name  = DupStr(h->macrohandle, key, strlen(key));
 		retval->n     = strrchr(retval->name, 'n'); // for transposing macro's
     retval->subst = DupStr(h->macrohandle, value, strlen(value));
@@ -604,7 +605,7 @@ static void abc_new_umacro(ABCHANDLE *h, const char *m)
 			}
 			return;
 		}
-    retval = (ABCMACRO *)_mm_calloc(h->macrohandle, 1,sizeof(ABCTRACK));
+    retval = (ABCMACRO *)_mm_calloc(h->macrohandle, 1,sizeof(ABCMACRO));
     retval->name  = DupStr(h->macrohandle, key, 1);
     retval->subst = DupStr(h->macrohandle, value, strlen(value));
 		retval->n     = 0;
@@ -776,7 +777,6 @@ static int abc_transpose(const char *v)
 			global_octave_shift = 0;
 		}
 		if( j && !strncasecmp(v,"bass",4) ) {
-			m = "D,";
 			j = 0;
 			v += 4;
 			switch( *v ) {
@@ -1855,8 +1855,8 @@ static void	abc_set_parts(char **d, char *p)
 		}
 	}
 	// even if j overflows above, it will only wrap around and still be okay
-	size = ( j > INT_MAX )? INT_MAX : j;
-	q = (char *)_mm_calloc(h, size, sizeof(char));	// enough storage for the worst case
+	size = ( j >= INT_MAX )? INT_MAX - 1 : j;
+	q = (char *)_mm_calloc(h, size + 1, sizeof(char)); // enough storage for the worst case
 	// now copy bytes from p to *d, taking parens and digits in account
 	j = 0;
 	for( i=0; p[i] && p[i] != '%' && j < size && i < size; i++ ) {
@@ -2112,7 +2112,7 @@ static void abc_song_to_parts(ABCHANDLE *h, char **abcparts, BYTE partp[27][2])
 							x = 0;
 							break;
 						default:
-							x = 0;
+							// defaults set above.
 							break;
 					}
 					if( vmask[partno] != -1 ) nextp[partno] = x;
@@ -2352,6 +2352,7 @@ BOOL CSoundFile::TestABC(const BYTE *lpStream, DWORD dwMemLength)
 // =====================================================================================
 {
     char id[128];
+    int hasText = 0;
     // scan file for first K: line (last in header)
 #ifdef NEWMIKMOD
 		_mm_fseek(mmfile,0,SEEK_SET);
@@ -2366,7 +2367,7 @@ BOOL CSoundFile::TestABC(const BYTE *lpStream, DWORD dwMemLength)
 		while(abc_fgets(&mmfile,id,128)) {
 #endif
 
-		if (id[0] == 0 && mmfile.pos < ppos + 120) return(0); //probably binary
+		if (id[0] == 0 && hasText == 0 && mmfile.pos < ppos + 120) return(0); //probably binary
 		if (id[0] == 0) continue; // blank line.
 
 		if (!abc_isvalidchar(id[0])  || !abc_isvalidchar(id[1])) {
@@ -2375,6 +2376,10 @@ BOOL CSoundFile::TestABC(const BYTE *lpStream, DWORD dwMemLength)
 	    if(id[0]=='K'
 			&& id[1]==':'
 			&& (isalpha(id[2]) || isspace(id[2])) ) return 1;
+            // disable binary error if have any "tag"
+	    if((id[0]>='A' && id[0]<='Z')
+			&& id[1]==':'
+			&& (isalpha(id[2]) || isspace(id[2])) ) hasText = 1;
 		}
     return 0;
 }
@@ -2739,6 +2744,7 @@ static int ABC_ReadPatterns(MODCOMMAND *pattern[], WORD psize[], ABCHANDLE *h, i
 			ch = 0;
 			tempo = 0;
 			patbrk = 0;
+			if ( h->track )
 			for( e=abc_next_global(h->track->capostart); e && e->tracktick < tt2; e=abc_next_global(e->next) ) {
 				if( e && e->tracktick >= tt1 ) {	// we have a tempo event in this row
 					switch( e->cmd ) {
@@ -2892,10 +2898,9 @@ static int ABC_ReadPatterns(MODCOMMAND *pattern[], WORD psize[], ABCHANDLE *h, i
 static int ABC_Key(const char *p)
 {
 	int i,j;
-	char c[8] = {0};
+	char c[8] = {}; // initialize all to zero.
 	const char *q;
 	while( isspace(*p) ) p++;
-	i = 0;
 	q = p;
 	for( i=0; i<8 && *p && *p != ']'; p++ ) {
 		if( isspace(*p) ) {
@@ -2906,7 +2911,6 @@ static int ABC_Key(const char *p)
 		c[i] = *p;
 		i++;
 	}
-	c[i] = '\0';
 	if( !strcmp(c,"Hp") || !strcmp(c,"HP") ) // highland pipes
 		strcpy(c,"Bm");	// two sharps at c and f
 	if( !strcasecmp(c+1, "minor") ) i=2;
@@ -2919,7 +2923,6 @@ static int ABC_Key(const char *p)
 	if( !strcasecmp(c+2, "maj") ) i=2;
 	for( ; i<6; i++ )
 		c[i] = ' ';
-	c[i] = '\0';
 	for( i=0; keySigs[i]; i++ ) {
 		for( j=10; j<46; j+=6 )
 			if( !strncasecmp(keySigs[i]+j, c, 6) )
@@ -3191,7 +3194,7 @@ static void abc_MIDI_voice(const char *p, ABCTRACK *tp, ABCHANDLE *h)
 static void abc_MIDI_chordname(const char *p)
 {
 	char name[20];
-	int i, notes[6];
+	int i, notes[6] = {};
 
 	for( ; *p && isspace(*p); p++ ) ;
 	i = 0;
@@ -3206,7 +3209,7 @@ static void abc_MIDI_chordname(const char *p)
 	}
 	else {
 		i = 0;
-		while ((i <= 6) && isspace(*p)) {
+		while ((i < 6) && isspace(*p)) {
 			for( ; *p && isspace(*p); p++ ) ;
 			p += abc_getnumber(p, &notes[i]);
 			i = i + 1;
@@ -3393,10 +3396,15 @@ static void abc_add_drum(ABCHANDLE *h, uint32_t tracktime, uint32_t bartime)
 	}
 	stime = (tracktime - etime) * steps;
 	rtime = 0;
+
+	// if no drumsteps, there is nothing we can do anyway.
+	if( steps == 0 )
+		return;
+
 	while( rtime < stime ) {
 		gnote = h->drum[g*2];
 		i = h->drum[g*2+1] - '0';
-		if(gnote=='d') {
+		if( gnote=='d') {
 			tp->instr = pat_gm_drumnr(h->drumins[g]-1);
 			nnum      = pat_gm_drumnote(h->drumins[g]);
 			abc_add_drumnote(h, tp, etime + rtime/steps, nnum, h->drumvol[g]);
@@ -3458,7 +3466,6 @@ static void abc_add_gchord(ABCHANDLE *h, uint32_t tracktime, uint32_t bartime)
 		gnote = h->gchord[2*g];
 		glen  = h->gchord[2*g+1] - '0';
 		if( ++g == gsteps ) g = 0;
-		nnum = 0;
 		switch(gnote) {
 			case 'b':
 				tp = abc_locate_track(h, h->tpc->v, GCHORDFPOS);
@@ -3631,6 +3638,7 @@ static int abc_partpat_to_orderlist(BYTE partp[27][2], const char *abcparts, ABC
 			for( t = partp[*p - 'A'][0]; t < partp[*p - 'A'][1]; t++ ) {
 				if( orderlen == ordersize ) {
 					ordersize <<= 1;
+					if (ordersize == 0) ordersize = 2;
 					orderlist = (BYTE *)_mm_recalloc(h->ho, orderlist, ordersize, sizeof(BYTE));
 					*list = orderlist;
 				}
@@ -3645,6 +3653,7 @@ static int abc_partpat_to_orderlist(BYTE partp[27][2], const char *abcparts, ABC
 	for( t = partp[26][0]; t < partp[26][1]; t++ ) {
 		if( orderlen == ordersize ) {
 			ordersize <<= 1;
+			if (ordersize == 0) ordersize = 2;
 			orderlist = (BYTE *)_mm_recalloc(h->ho, orderlist, ordersize, sizeof(BYTE));
 			*list = orderlist;
 		}

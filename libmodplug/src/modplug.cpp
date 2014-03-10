@@ -4,8 +4,8 @@
  * Authors: Kenton Varda <temporal@gauge3d.org> (C interface wrapper)
  */
 
-#include "modplug.h"
 #include "stdafx.h"
+#include "modplug.h"
 #include "sndfile.h"
 
 struct _ModPlugFile
@@ -258,7 +258,9 @@ void ModPlug_Seek(ModPlugFile* file, int millisecond)
 	if(millisecond > maxtime)
 		millisecond = maxtime;
 	maxpos = file->mSoundFile.GetMaxPosition();
-	postime = (float)maxpos / (float)maxtime;
+	postime = 0.0f;
+	if (maxtime != 0.0f)
+		postime = (float)maxpos / (float)maxtime;
 
 	file->mSoundFile.SetCurrentPos((int)(millisecond * postime));
 }
