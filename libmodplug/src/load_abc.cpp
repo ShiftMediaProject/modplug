@@ -46,6 +46,11 @@ typedef UWORD WORD;
 
 #include "load_pat.h"
 
+#if _MSC_VER >= 1600
+#define putenv _putenv
+#define strdup _strdup
+#endif
+
 #define MAXABCINCLUDES	8
 #define MAXCHORDNAMES 80
 #define ABC_ENV_DUMPTRACKS		"MMABC_DUMPTRACKS"
@@ -1932,8 +1937,9 @@ static void abc_appendpart(ABCHANDLE *h, ABCTRACK *tp, uint32_t pt1, uint32_t pt
 static uint32_t abc_pattracktime(ABCHANDLE *h, uint32_t tracktime)
 {
 	ABCEVENT *e;
-	uint32_t dt,et,pt=abcticks(64 * h->speed);
+	uint32_t dt,et;
 	if(!h || !h->track || !h->track->head ) return 0;
+	uint32_t pt=abcticks(64 * h->speed);
 	dt = 0;
 	for( e=h->track->head; e && e->tracktick <= tracktime; e=e->next ) {
 		if( e->flg == 1 && e->cmd == cmdpartbrk ) {
@@ -2251,19 +2257,11 @@ static void abc_preprocess(ABCHANDLE *h, ABCMACRO *m)
 	if( m->n ) {
 		k = m->n - m->name;
 		for( i=0; i<14; i++ ) {
-#ifdef _MSC_VER
-			char* t = reinterpret_cast<char*>(malloc(strlen(m->name) + 1));
-#else
-			char t[strlen(m->name) + 1];
-#endif
+			char *t = new char[strlen(m->name) + 1];
 			strcpy(t, m->name);
 			t[k] = "CDEFGABcdefgab"[i];
 			l = strlen(m->subst);
-#ifdef _MSC_VER
-			char* s = reinterpret_cast<char*>(malloc(2 * l + 1));
-#else
-			char s[2 * l + 1];
-#endif
+			char *s = new char[2 * l + 1];
 			char *p = s;
 			for( j=0; j<l; j++ ) {
 				a = m->subst[j];
@@ -2280,10 +2278,8 @@ static void abc_preprocess(ABCHANDLE *h, ABCMACRO *m)
 			}
 			*p = '\0';
 			abc_substitute(h, t, s);
-#ifdef _MSC_VER
-			free(s);
-			free(t);
-#endif
+			delete[] s;
+			delete[] t;
 		}
 	}
 	else
