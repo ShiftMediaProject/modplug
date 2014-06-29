@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.20827.3
+VisualStudioVersion = 12.0.30501.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "modplug", "modplug.vcxproj", "{38E671C9-3FE3-40B7-A1AF-D2D566762186}"
 EndProject
@@ -15,6 +15,8 @@ Global
 		Release|x64 = Release|x64
 		ReleaseDLL|Win32 = ReleaseDLL|Win32
 		ReleaseDLL|x64 = ReleaseDLL|x64
+		ReleaseLTO|Win32 = ReleaseLTO|Win32
+		ReleaseLTO|x64 = ReleaseLTO|x64
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{38E671C9-3FE3-40B7-A1AF-D2D566762186}.Debug|Win32.ActiveCfg = Debug|Win32
@@ -33,6 +35,10 @@ Global
 		{38E671C9-3FE3-40B7-A1AF-D2D566762186}.ReleaseDLL|Win32.Build.0 = ReleaseDLL|Win32
 		{38E671C9-3FE3-40B7-A1AF-D2D566762186}.ReleaseDLL|x64.ActiveCfg = ReleaseDLL|x64
 		{38E671C9-3FE3-40B7-A1AF-D2D566762186}.ReleaseDLL|x64.Build.0 = ReleaseDLL|x64
+		{38E671C9-3FE3-40B7-A1AF-D2D566762186}.ReleaseLTO|Win32.ActiveCfg = ReleaseLTO|Win32
+		{38E671C9-3FE3-40B7-A1AF-D2D566762186}.ReleaseLTO|Win32.Build.0 = ReleaseLTO|Win32
+		{38E671C9-3FE3-40B7-A1AF-D2D566762186}.ReleaseLTO|x64.ActiveCfg = ReleaseLTO|x64
+		{38E671C9-3FE3-40B7-A1AF-D2D566762186}.ReleaseLTO|x64.Build.0 = ReleaseLTO|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
