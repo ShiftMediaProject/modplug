@@ -206,7 +206,7 @@
       <PreprocessorDefinitions>MODPLUG_BUILD;HAVE_CONFIG_H;MODPLUG_NO_FILESAVE;WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <Cpp0xSupport>true</Cpp0xSupport>
-      <DisableSpecificWarnings>4996;4018;4244</DisableSpecificWarnings>
+      <DisableSpecificWarnings>4996;4018;4244;4005;4267</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -246,7 +246,7 @@ cd $(ProjectDir)
       <PreprocessorDefinitions>MODPLUG_BUILD;HAVE_CONFIG_H;MODPLUG_NO_FILESAVE;WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <Cpp0xSupport>true</Cpp0xSupport>
-      <DisableSpecificWarnings>4996;4018;4244</DisableSpecificWarnings>
+      <DisableSpecificWarnings>4996;4018;4244;4005;4267</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -286,7 +286,7 @@ cd $(ProjectDir)
       <PreprocessorDefinitions>MODPLUG_BUILD;HAVE_CONFIG_H;MODPLUG_NO_FILESAVE;WIN32;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <Cpp0xSupport>true</Cpp0xSupport>
-      <DisableSpecificWarnings>4996;4018;4244</DisableSpecificWarnings>
+      <DisableSpecificWarnings>4996;4018;4244;4005;4267</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <OutputFile>$(OutDir)\bin\$(TargetName)$(TargetExt)</OutputFile>
@@ -326,7 +326,7 @@ cd $(ProjectDir)
       <PreprocessorDefinitions>MODPLUG_BUILD;HAVE_CONFIG_H;MODPLUG_NO_FILESAVE;WIN32;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <Cpp0xSupport>true</Cpp0xSupport>
-      <DisableSpecificWarnings>4996;4018;4244</DisableSpecificWarnings>
+      <DisableSpecificWarnings>4996;4018;4244;4005;4267</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <OutputFile>$(OutDir)\bin\$(TargetName)$(TargetExt)</OutputFile>
@@ -374,7 +374,7 @@ cd $(ProjectDir)
       <FloatingPointExceptions>false</FloatingPointExceptions>
       <AdditionalIncludeDirectories>.\;..\libmodplug\src\libmodplug;..\libmodplug\src\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>MODPLUG_BUILD;HAVE_CONFIG_H;MODPLUG_NO_FILESAVE;WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <DisableSpecificWarnings>4996;4018;4244</DisableSpecificWarnings>
+      <DisableSpecificWarnings>4996;4018;4244;4005;4267</DisableSpecificWarnings>
       <InterproceduralOptimization>SingleFile</InterproceduralOptimization>
     </ClCompile>
     <Link>
@@ -425,7 +425,7 @@ cd $(ProjectDir)
       <FloatingPointExceptions>false</FloatingPointExceptions>
       <AdditionalIncludeDirectories>.\;..\libmodplug\src\libmodplug;..\libmodplug\src\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>MODPLUG_BUILD;HAVE_CONFIG_H;MODPLUG_NO_FILESAVE;WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <DisableSpecificWarnings>4996;4018;4244</DisableSpecificWarnings>
+      <DisableSpecificWarnings>4996;4018;4244;4005;4267</DisableSpecificWarnings>
       <InterproceduralOptimization>SingleFile</InterproceduralOptimization>
     </ClCompile>
     <Link>
@@ -478,7 +478,7 @@ cd $(ProjectDir)
       <AdditionalIncludeDirectories>.\;..\libmodplug\src\libmodplug;..\libmodplug\src\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>MODPLUG_BUILD;HAVE_CONFIG_H;MODPLUG_NO_FILESAVE;WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <Cpp0xSupport>true</Cpp0xSupport>
-      <DisableSpecificWarnings>4996;4018;4244</DisableSpecificWarnings>
+      <DisableSpecificWarnings>4996;4018;4244;4005;4267</DisableSpecificWarnings>
       <InterproceduralOptimization>SingleFile</InterproceduralOptimization>
     </ClCompile>
     <Link>
@@ -531,7 +531,7 @@ cd $(ProjectDir)
       <AdditionalIncludeDirectories>.\;..\libmodplug\src\libmodplug;..\libmodplug\src\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>MODPLUG_BUILD;HAVE_CONFIG_H;MODPLUG_NO_FILESAVE;WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <Cpp0xSupport>true</Cpp0xSupport>
-      <DisableSpecificWarnings>4996;4018;4244</DisableSpecificWarnings>
+      <DisableSpecificWarnings>4996;4018;4244;4005;4267</DisableSpecificWarnings>
       <InterproceduralOptimization>SingleFile</InterproceduralOptimization>
     </ClCompile>
     <Link>
@@ -585,7 +585,7 @@ cd $(ProjectDir)
       <OptimizeForWindowsApplication>true</OptimizeForWindowsApplication>
       <UseProcessorExtensions>SSE3</UseProcessorExtensions>
       <Cpp0xSupport>true</Cpp0xSupport>
-      <DisableSpecificWarnings>4996;4018;4244</DisableSpecificWarnings>
+      <DisableSpecificWarnings>4996;4018;4244;4005;4267</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
@@ -637,7 +637,7 @@ cd $(ProjectDir)
       <AdditionalIncludeDirectories>.\;..\libmodplug\src\libmodplug;..\libmodplug\src\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>MODPLUG_BUILD;HAVE_CONFIG_H;MODPLUG_NO_FILESAVE;WIN32;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <Cpp0xSupport>true</Cpp0xSupport>
-      <DisableSpecificWarnings>4996;4018;4244</DisableSpecificWarnings>
+      <DisableSpecificWarnings>4996;4018;4244;4005;4267</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
@@ -697,28 +697,7 @@ cd $(ProjectDir)
     <ClCompile Include="..\libmodplug\src\load_mt2.cpp" />
     <ClCompile Include="..\libmodplug\src\load_mtm.cpp" />
     <ClCompile Include="..\libmodplug\src\load_okt.cpp" />
-    <ClCompile Include="..\libmodplug\src\load_pat.cpp">
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-      </ForcedIncludeFiles>
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='ReleaseLTO|Win32'">
-      </ForcedIncludeFiles>
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-      </ForcedIncludeFiles>
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='ReleaseDLL|Win32'">
-      </ForcedIncludeFiles>
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='DebugDLL|Win32'">
-      </ForcedIncludeFiles>
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-      </ForcedIncludeFiles>
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-      </ForcedIncludeFiles>
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='ReleaseLTO|x64'">
-      </ForcedIncludeFiles>
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='ReleaseDLL|x64'">
-      </ForcedIncludeFiles>
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='DebugDLL|x64'">
-      </ForcedIncludeFiles>
-    </ClCompile>
+    <ClCompile Include="..\libmodplug\src\load_pat.cpp" />
     <ClCompile Include="..\libmodplug\src\load_psm.cpp" />
     <ClCompile Include="..\libmodplug\src\load_ptm.cpp" />
     <ClCompile Include="..\libmodplug\src\load_s3m.cpp" />
