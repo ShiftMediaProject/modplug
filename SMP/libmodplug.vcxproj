@@ -201,7 +201,7 @@
       <Optimization>Disabled</Optimization>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
-      <AdditionalIncludeDirectories>.\;..\libmodplug\src\libmodplug;..\libmodplug\src\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.\;..\src\libmodplug;..\src\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>MODPLUG_BUILD;HAVE_CONFIG_H;MODPLUG_NO_FILESAVE;WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <Cpp0xSupport>true</Cpp0xSupport>
@@ -218,14 +218,14 @@
     <PostBuildEvent>
       <Command>mkdir $(OutDir)\include
 mkdir $(OutDir)\include\libmodplug
-copy ..\libmodplug\src\modplug.h $(OutDir)\include\libmodplug
-copy ..\libmodplug\src\libmodplug\*.h $(OutDir)\include\libmodplug
+copy ..\src\modplug.h $(OutDir)\include\libmodplug
+copy ..\src\libmodplug\*.h $(OutDir)\include\libmodplug
 mkdir $(OutDir)\licenses
-copy ..\libmodplug\COPYING $(OutDir)\licenses\libmodplug.txt</Command>
+copy ..\COPYING $(OutDir)\licenses\libmodplug.txt</Command>
     </PostBuildEvent>
     <PreBuildEvent>
-      <Command>if exist ..\libmodplug\src\config.h (
-del ..\libmodplug\src\config.h
+      <Command>if exist ..\src\config.h (
+del ..\src\config.h
 )
 if exist $(OutDir)\include\libmodplug (
 rd /s /q $(OutDir)\include\libmodplug
@@ -239,7 +239,7 @@ cd $(ProjectDir)
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
-      <AdditionalIncludeDirectories>.\;..\libmodplug\src\libmodplug;..\libmodplug\src\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.\;..\src\libmodplug;..\src\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>MODPLUG_BUILD;HAVE_CONFIG_H;MODPLUG_NO_FILESAVE;WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <Cpp0xSupport>true</Cpp0xSupport>
@@ -256,14 +256,14 @@ cd $(ProjectDir)
     <PostBuildEvent>
       <Command>mkdir $(OutDir)\include
 mkdir $(OutDir)\include\libmodplug
-copy ..\libmodplug\src\modplug.h $(OutDir)\include\libmodplug
-copy ..\libmodplug\src\libmodplug\*.h $(OutDir)\include\libmodplug
+copy ..\src\modplug.h $(OutDir)\include\libmodplug
+copy ..\src\libmodplug\*.h $(OutDir)\include\libmodplug
 mkdir $(OutDir)\licenses
-copy ..\libmodplug\COPYING $(OutDir)\licenses\libmodplug.txt</Command>
+copy ..\COPYING $(OutDir)\licenses\libmodplug.txt</Command>
     </PostBuildEvent>
     <PreBuildEvent>
-      <Command>if exist ..\libmodplug\src\config.h (
-del ..\libmodplug\src\config.h
+      <Command>if exist ..\src\config.h (
+del ..\src\config.h
 )
 if exist $(OutDir)\include\libmodplug (
 rd /s /q $(OutDir)\include\libmodplug
@@ -278,7 +278,7 @@ cd $(ProjectDir)
       <Optimization>Disabled</Optimization>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
-      <AdditionalIncludeDirectories>.\;..\libmodplug\src\libmodplug;..\libmodplug\src\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.\;..\src\libmodplug;..\src\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>MODPLUG_BUILD;HAVE_CONFIG_H;MODPLUG_NO_FILESAVE;WIN32;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <Cpp0xSupport>true</Cpp0xSupport>
@@ -296,14 +296,14 @@ cd $(ProjectDir)
     <PostBuildEvent>
       <Command>mkdir $(OutDir)\include
 mkdir $(OutDir)\include\libmodplug
-copy ..\libmodplug\src\modplug.h $(OutDir)\include\libmodplug
-copy ..\libmodplug\src\libmodplug\*.h $(OutDir)\include\libmodplug
+copy ..\src\modplug.h $(OutDir)\include\libmodplug
+copy ..\src\libmodplug\*.h $(OutDir)\include\libmodplug
 mkdir $(OutDir)\licenses
-copy ..\libmodplug\COPYING $(OutDir)\licenses\libmodplug.txt</Command>
+copy ..\COPYING $(OutDir)\licenses\libmodplug.txt</Command>
     </PostBuildEvent>
     <PreBuildEvent>
-      <Command>if exist ..\libmodplug\src\config.h (
-del ..\libmodplug\src\config.h
+      <Command>if exist ..\src\config.h (
+del ..\src\config.h
 )
 if exist $(OutDir)\include\libmodplug (
 rd /s /q $(OutDir)\include\libmodplug
@@ -317,7 +317,7 @@ cd $(ProjectDir)
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
-      <AdditionalIncludeDirectories>.\;..\libmodplug\src\libmodplug;..\libmodplug\src\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.\;..\src\libmodplug;..\src\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>MODPLUG_BUILD;HAVE_CONFIG_H;MODPLUG_NO_FILESAVE;WIN32;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <Cpp0xSupport>true</Cpp0xSupport>
@@ -334,14 +334,14 @@ cd $(ProjectDir)
     <PostBuildEvent>
       <Command>mkdir $(OutDir)\include
 mkdir $(OutDir)\include\libmodplug
-copy ..\libmodplug\src\modplug.h $(OutDir)\include\libmodplug
-copy ..\libmodplug\src\libmodplug\*.h $(OutDir)\include\libmodplug
+copy ..\src\modplug.h $(OutDir)\include\libmodplug
+copy ..\src\libmodplug\*.h $(OutDir)\include\libmodplug
 mkdir $(OutDir)\licenses
-copy ..\libmodplug\COPYING $(OutDir)\licenses\libmodplug.txt</Command>
+copy ..\COPYING $(OutDir)\licenses\libmodplug.txt</Command>
     </PostBuildEvent>
     <PreBuildEvent>
-      <Command>if exist ..\libmodplug\src\config.h (
-del ..\libmodplug\src\config.h
+      <Command>if exist ..\src\config.h (
+del ..\src\config.h
 )
 if exist $(OutDir)\include\libmodplug (
 rd /s /q $(OutDir)\include\libmodplug
@@ -366,7 +366,7 @@ cd $(ProjectDir)
       <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
       <FloatingPointModel>Fast</FloatingPointModel>
       <FloatingPointExceptions>false</FloatingPointExceptions>
-      <AdditionalIncludeDirectories>.\;..\libmodplug\src\libmodplug;..\libmodplug\src\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.\;..\src\libmodplug;..\src\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>MODPLUG_BUILD;HAVE_CONFIG_H;MODPLUG_NO_FILESAVE;WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <DisableSpecificWarnings>4996;4018;4244;4005;4267</DisableSpecificWarnings>
       <InterproceduralOptimization>SingleFile</InterproceduralOptimization>
@@ -384,14 +384,14 @@ cd $(ProjectDir)
     <PostBuildEvent>
       <Command>mkdir $(OutDir)\include
 mkdir $(OutDir)\include\libmodplug
-copy ..\libmodplug\src\modplug.h $(OutDir)\include\libmodplug
-copy ..\libmodplug\src\libmodplug\*.h $(OutDir)\include\libmodplug
+copy ..\src\modplug.h $(OutDir)\include\libmodplug
+copy ..\src\libmodplug\*.h $(OutDir)\include\libmodplug
 mkdir $(OutDir)\licenses
-copy ..\libmodplug\COPYING $(OutDir)\licenses\libmodplug.txt</Command>
+copy ..\COPYING $(OutDir)\licenses\libmodplug.txt</Command>
     </PostBuildEvent>
     <PreBuildEvent>
-      <Command>if exist ..\libmodplug\src\config.h (
-del ..\libmodplug\src\config.h
+      <Command>if exist ..\src\config.h (
+del ..\src\config.h
 )
 if exist $(OutDir)\include\libmodplug (
 rd /s /q $(OutDir)\include\libmodplug
@@ -416,7 +416,7 @@ cd $(ProjectDir)
       <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
       <FloatingPointModel>Fast</FloatingPointModel>
       <FloatingPointExceptions>false</FloatingPointExceptions>
-      <AdditionalIncludeDirectories>.\;..\libmodplug\src\libmodplug;..\libmodplug\src\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.\;..\src\libmodplug;..\src\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>MODPLUG_BUILD;HAVE_CONFIG_H;MODPLUG_NO_FILESAVE;WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <DisableSpecificWarnings>4996;4018;4244;4005;4267</DisableSpecificWarnings>
       <InterproceduralOptimization>SingleFile</InterproceduralOptimization>
@@ -434,14 +434,14 @@ cd $(ProjectDir)
     <PostBuildEvent>
       <Command>mkdir $(OutDir)\include
 mkdir $(OutDir)\include\libmodplug
-copy ..\libmodplug\src\modplug.h $(OutDir)\include\libmodplug
-copy ..\libmodplug\src\libmodplug\*.h $(OutDir)\include\libmodplug
+copy ..\src\modplug.h $(OutDir)\include\libmodplug
+copy ..\src\libmodplug\*.h $(OutDir)\include\libmodplug
 mkdir $(OutDir)\licenses
-copy ..\libmodplug\COPYING $(OutDir)\licenses\libmodplug.txt</Command>
+copy ..\COPYING $(OutDir)\licenses\libmodplug.txt</Command>
     </PostBuildEvent>
     <PreBuildEvent>
-      <Command>if exist ..\libmodplug\src\config.h (
-del ..\libmodplug\src\config.h
+      <Command>if exist ..\src\config.h (
+del ..\src\config.h
 )
 if exist $(OutDir)\include\libmodplug (
 rd /s /q $(OutDir)\include\libmodplug
@@ -466,7 +466,7 @@ cd $(ProjectDir)
       <BufferSecurityCheck>false</BufferSecurityCheck>
       <FloatingPointModel>Fast</FloatingPointModel>
       <FloatingPointExceptions>false</FloatingPointExceptions>
-      <AdditionalIncludeDirectories>.\;..\libmodplug\src\libmodplug;..\libmodplug\src\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.\;..\src\libmodplug;..\src\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>MODPLUG_BUILD;HAVE_CONFIG_H;MODPLUG_NO_FILESAVE;WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <Cpp0xSupport>true</Cpp0xSupport>
       <DisableSpecificWarnings>4996;4018;4244;4005;4267</DisableSpecificWarnings>
@@ -485,14 +485,14 @@ cd $(ProjectDir)
     <PostBuildEvent>
       <Command>mkdir $(OutDir)\include
 mkdir $(OutDir)\include\libmodplug
-copy ..\libmodplug\src\modplug.h $(OutDir)\include\libmodplug
-copy ..\libmodplug\src\libmodplug\*.h $(OutDir)\include\libmodplug
+copy ..\src\modplug.h $(OutDir)\include\libmodplug
+copy ..\src\libmodplug\*.h $(OutDir)\include\libmodplug
 mkdir $(OutDir)\licenses
-copy ..\libmodplug\COPYING $(OutDir)\licenses\libmodplug.txt</Command>
+copy ..\COPYING $(OutDir)\licenses\libmodplug.txt</Command>
     </PostBuildEvent>
     <PreBuildEvent>
-      <Command>if exist ..\libmodplug\src\config.h (
-del ..\libmodplug\src\config.h
+      <Command>if exist ..\src\config.h (
+del ..\src\config.h
 )
 if exist $(OutDir)\include\libmodplug (
 rd /s /q $(OutDir)\include\libmodplug
@@ -517,7 +517,7 @@ cd $(ProjectDir)
       <BufferSecurityCheck>false</BufferSecurityCheck>
       <FloatingPointModel>Fast</FloatingPointModel>
       <FloatingPointExceptions>false</FloatingPointExceptions>
-      <AdditionalIncludeDirectories>.\;..\libmodplug\src\libmodplug;..\libmodplug\src\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.\;..\src\libmodplug;..\src\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>MODPLUG_BUILD;HAVE_CONFIG_H;MODPLUG_NO_FILESAVE;WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <Cpp0xSupport>true</Cpp0xSupport>
       <DisableSpecificWarnings>4996;4018;4244;4005;4267</DisableSpecificWarnings>
@@ -536,14 +536,14 @@ cd $(ProjectDir)
     <PostBuildEvent>
       <Command>mkdir $(OutDir)\include
 mkdir $(OutDir)\include\libmodplug
-copy ..\libmodplug\src\modplug.h $(OutDir)\include\libmodplug
-copy ..\libmodplug\src\libmodplug\*.h $(OutDir)\include\libmodplug
+copy ..\src\modplug.h $(OutDir)\include\libmodplug
+copy ..\src\libmodplug\*.h $(OutDir)\include\libmodplug
 mkdir $(OutDir)\licenses
-copy ..\libmodplug\COPYING $(OutDir)\licenses\libmodplug.txt</Command>
+copy ..\COPYING $(OutDir)\licenses\libmodplug.txt</Command>
     </PostBuildEvent>
     <PreBuildEvent>
-      <Command>if exist ..\libmodplug\src\config.h (
-del ..\libmodplug\src\config.h
+      <Command>if exist ..\src\config.h (
+del ..\src\config.h
 )
 if exist $(OutDir)\include\libmodplug (
 rd /s /q $(OutDir)\include\libmodplug
@@ -568,7 +568,7 @@ cd $(ProjectDir)
       <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
       <FloatingPointModel>Fast</FloatingPointModel>
       <FloatingPointExceptions>false</FloatingPointExceptions>
-      <AdditionalIncludeDirectories>.\;..\libmodplug\src\libmodplug;..\libmodplug\src\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.\;..\src\libmodplug;..\src\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>MODPLUG_BUILD;HAVE_CONFIG_H;MODPLUG_NO_FILESAVE;WIN32;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <OptimizeForWindowsApplication>true</OptimizeForWindowsApplication>
       <UseProcessorExtensions>SSE3</UseProcessorExtensions>
@@ -589,14 +589,14 @@ cd $(ProjectDir)
     <PostBuildEvent>
       <Command>mkdir $(OutDir)\include
 mkdir $(OutDir)\include\libmodplug
-copy ..\libmodplug\src\modplug.h $(OutDir)\include\libmodplug
-copy ..\libmodplug\src\libmodplug\*.h $(OutDir)\include\libmodplug
+copy ..\src\modplug.h $(OutDir)\include\libmodplug
+copy ..\src\libmodplug\*.h $(OutDir)\include\libmodplug
 mkdir $(OutDir)\licenses
-copy ..\libmodplug\COPYING $(OutDir)\licenses\libmodplug.txt</Command>
+copy ..\COPYING $(OutDir)\licenses\libmodplug.txt</Command>
     </PostBuildEvent>
     <PreBuildEvent>
-      <Command>if exist ..\libmodplug\src\config.h (
-del ..\libmodplug\src\config.h
+      <Command>if exist ..\src\config.h (
+del ..\src\config.h
 )
 if exist $(OutDir)\include\libmodplug (
 rd /s /q $(OutDir)\include\libmodplug
@@ -621,7 +621,7 @@ cd $(ProjectDir)
       <BufferSecurityCheck>false</BufferSecurityCheck>
       <FloatingPointModel>Fast</FloatingPointModel>
       <FloatingPointExceptions>false</FloatingPointExceptions>
-      <AdditionalIncludeDirectories>.\;..\libmodplug\src\libmodplug;..\libmodplug\src\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.\;..\src\libmodplug;..\src\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>MODPLUG_BUILD;HAVE_CONFIG_H;MODPLUG_NO_FILESAVE;WIN32;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <Cpp0xSupport>true</Cpp0xSupport>
       <DisableSpecificWarnings>4996;4018;4244;4005;4267</DisableSpecificWarnings>
@@ -639,14 +639,14 @@ cd $(ProjectDir)
     <PostBuildEvent>
       <Command>mkdir $(OutDir)\include
 mkdir $(OutDir)\include\libmodplug
-copy ..\libmodplug\src\modplug.h $(OutDir)\include\libmodplug
-copy ..\libmodplug\src\libmodplug\*.h $(OutDir)\include\libmodplug
+copy ..\src\modplug.h $(OutDir)\include\libmodplug
+copy ..\src\libmodplug\*.h $(OutDir)\include\libmodplug
 mkdir $(OutDir)\licenses
-copy ..\libmodplug\COPYING $(OutDir)\licenses\libmodplug.txt</Command>
+copy ..\COPYING $(OutDir)\licenses\libmodplug.txt</Command>
     </PostBuildEvent>
     <PreBuildEvent>
-      <Command>if exist ..\libmodplug\src\config.h (
-del ..\libmodplug\src\config.h
+      <Command>if exist ..\src\config.h (
+del ..\src\config.h
 )
 if exist $(OutDir)\include\libmodplug (
 rd /s /q $(OutDir)\include\libmodplug
@@ -656,50 +656,50 @@ cd $(ProjectDir)
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="..\libmodplug\src\libmodplug\it_defs.h" />
-    <ClInclude Include="..\libmodplug\src\libmodplug\sndfile.h" />
-    <ClInclude Include="..\libmodplug\src\libmodplug\stdafx.h" />
-    <ClInclude Include="..\libmodplug\src\load_pat.h" />
-    <ClInclude Include="..\libmodplug\src\modplug.h" />
-    <ClInclude Include="..\libmodplug\src\tables.h" />
+    <ClInclude Include="..\src\libmodplug\it_defs.h" />
+    <ClInclude Include="..\src\libmodplug\sndfile.h" />
+    <ClInclude Include="..\src\libmodplug\stdafx.h" />
+    <ClInclude Include="..\src\load_pat.h" />
+    <ClInclude Include="..\src\modplug.h" />
+    <ClInclude Include="..\src\tables.h" />
     <ClInclude Include="config.h" />
     <ClInclude Include="version.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\libmodplug\src\fastmix.cpp" />
-    <ClCompile Include="..\libmodplug\src\load_669.cpp" />
-    <ClCompile Include="..\libmodplug\src\load_abc.cpp" />
-    <ClCompile Include="..\libmodplug\src\load_amf.cpp" />
-    <ClCompile Include="..\libmodplug\src\load_ams.cpp" />
-    <ClCompile Include="..\libmodplug\src\load_dbm.cpp" />
-    <ClCompile Include="..\libmodplug\src\load_dmf.cpp" />
-    <ClCompile Include="..\libmodplug\src\load_dsm.cpp" />
-    <ClCompile Include="..\libmodplug\src\load_far.cpp" />
-    <ClCompile Include="..\libmodplug\src\load_it.cpp" />
-    <ClCompile Include="..\libmodplug\src\load_j2b.cpp" />
-    <ClCompile Include="..\libmodplug\src\load_mdl.cpp" />
-    <ClCompile Include="..\libmodplug\src\load_med.cpp" />
-    <ClCompile Include="..\libmodplug\src\load_mid.cpp" />
-    <ClCompile Include="..\libmodplug\src\load_mod.cpp" />
-    <ClCompile Include="..\libmodplug\src\load_mt2.cpp" />
-    <ClCompile Include="..\libmodplug\src\load_mtm.cpp" />
-    <ClCompile Include="..\libmodplug\src\load_okt.cpp" />
-    <ClCompile Include="..\libmodplug\src\load_pat.cpp" />
-    <ClCompile Include="..\libmodplug\src\load_psm.cpp" />
-    <ClCompile Include="..\libmodplug\src\load_ptm.cpp" />
-    <ClCompile Include="..\libmodplug\src\load_s3m.cpp" />
-    <ClCompile Include="..\libmodplug\src\load_stm.cpp" />
-    <ClCompile Include="..\libmodplug\src\load_ult.cpp" />
-    <ClCompile Include="..\libmodplug\src\load_umx.cpp" />
-    <ClCompile Include="..\libmodplug\src\load_wav.cpp" />
-    <ClCompile Include="..\libmodplug\src\load_xm.cpp" />
-    <ClCompile Include="..\libmodplug\src\mmcmp.cpp" />
-    <ClCompile Include="..\libmodplug\src\modplug.cpp" />
-    <ClCompile Include="..\libmodplug\src\sndfile.cpp" />
-    <ClCompile Include="..\libmodplug\src\sndmix.cpp" />
-    <ClCompile Include="..\libmodplug\src\snd_dsp.cpp" />
-    <ClCompile Include="..\libmodplug\src\snd_flt.cpp" />
-    <ClCompile Include="..\libmodplug\src\snd_fx.cpp" />
+    <ClCompile Include="..\src\fastmix.cpp" />
+    <ClCompile Include="..\src\load_669.cpp" />
+    <ClCompile Include="..\src\load_abc.cpp" />
+    <ClCompile Include="..\src\load_amf.cpp" />
+    <ClCompile Include="..\src\load_ams.cpp" />
+    <ClCompile Include="..\src\load_dbm.cpp" />
+    <ClCompile Include="..\src\load_dmf.cpp" />
+    <ClCompile Include="..\src\load_dsm.cpp" />
+    <ClCompile Include="..\src\load_far.cpp" />
+    <ClCompile Include="..\src\load_it.cpp" />
+    <ClCompile Include="..\src\load_j2b.cpp" />
+    <ClCompile Include="..\src\load_mdl.cpp" />
+    <ClCompile Include="..\src\load_med.cpp" />
+    <ClCompile Include="..\src\load_mid.cpp" />
+    <ClCompile Include="..\src\load_mod.cpp" />
+    <ClCompile Include="..\src\load_mt2.cpp" />
+    <ClCompile Include="..\src\load_mtm.cpp" />
+    <ClCompile Include="..\src\load_okt.cpp" />
+    <ClCompile Include="..\src\load_pat.cpp" />
+    <ClCompile Include="..\src\load_psm.cpp" />
+    <ClCompile Include="..\src\load_ptm.cpp" />
+    <ClCompile Include="..\src\load_s3m.cpp" />
+    <ClCompile Include="..\src\load_stm.cpp" />
+    <ClCompile Include="..\src\load_ult.cpp" />
+    <ClCompile Include="..\src\load_umx.cpp" />
+    <ClCompile Include="..\src\load_wav.cpp" />
+    <ClCompile Include="..\src\load_xm.cpp" />
+    <ClCompile Include="..\src\mmcmp.cpp" />
+    <ClCompile Include="..\src\modplug.cpp" />
+    <ClCompile Include="..\src\sndfile.cpp" />
+    <ClCompile Include="..\src\sndmix.cpp" />
+    <ClCompile Include="..\src\snd_dsp.cpp" />
+    <ClCompile Include="..\src\snd_flt.cpp" />
+    <ClCompile Include="..\src\snd_fx.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="libmodplug.def" />
