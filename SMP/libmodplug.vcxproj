@@ -675,7 +675,6 @@ cd $(ProjectDir)
     <ClInclude Include="..\src\modplug.h" />
     <ClInclude Include="..\src\tables.h" />
     <ClInclude Include="config.h" />
-    <ClInclude Include="version.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\fastmix.cpp" />
