@@ -211,7 +211,7 @@
       <Optimization>Disabled</Optimization>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <AdditionalIncludeDirectories>.\;..\src\libmodplug;..\src\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>MODPLUG_BUILD;HAVE_CONFIG_H;MODPLUG_NO_FILESAVE;WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>MODPLUG_BUILD;HAVE_CONFIG_H;MODPLUG_NO_FILESAVE;WIN32;_WIN32_WINNT=0x0502;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <Cpp0xSupport>true</Cpp0xSupport>
       <DisableSpecificWarnings>4996;4018;4244;4005;4267;%(DisableSpecificWarnings)</DisableSpecificWarnings>
@@ -250,7 +250,7 @@ cd $(ProjectDir)
       <Optimization>Disabled</Optimization>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <AdditionalIncludeDirectories>.\;..\src\libmodplug;..\src\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>MODPLUG_BUILD;HAVE_CONFIG_H;MODPLUG_NO_FILESAVE;WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>MODPLUG_BUILD;HAVE_CONFIG_H;MODPLUG_NO_FILESAVE;WIN32;_WIN32_WINNT=0x0600;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <Cpp0xSupport>true</Cpp0xSupport>
       <DisableSpecificWarnings>4996;4018;4244;4005;4267;%(DisableSpecificWarnings)</DisableSpecificWarnings>
@@ -289,7 +289,7 @@ cd $(ProjectDir)
       <Optimization>Disabled</Optimization>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <AdditionalIncludeDirectories>.\;..\src\libmodplug;..\src\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>MODPLUG_BUILD;HAVE_CONFIG_H;MODPLUG_NO_FILESAVE;WIN32;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>MODPLUG_BUILD;HAVE_CONFIG_H;MODPLUG_NO_FILESAVE;WIN32;_WIN32_WINNT=0x0502;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <Cpp0xSupport>true</Cpp0xSupport>
       <DisableSpecificWarnings>4996;4018;4244;4005;4267;%(DisableSpecificWarnings)</DisableSpecificWarnings>
@@ -330,7 +330,7 @@ cd $(ProjectDir)
       <Optimization>Disabled</Optimization>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <AdditionalIncludeDirectories>.\;..\src\libmodplug;..\src\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>MODPLUG_BUILD;HAVE_CONFIG_H;MODPLUG_NO_FILESAVE;WIN32;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>MODPLUG_BUILD;HAVE_CONFIG_H;MODPLUG_NO_FILESAVE;WIN32;_WIN32_WINNT=0x0600;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <Cpp0xSupport>true</Cpp0xSupport>
       <DisableSpecificWarnings>4996;4018;4244;4005;4267;%(DisableSpecificWarnings)</DisableSpecificWarnings>
@@ -380,7 +380,7 @@ cd $(ProjectDir)
       <FloatingPointModel>Fast</FloatingPointModel>
       <FloatingPointExceptions>false</FloatingPointExceptions>
       <AdditionalIncludeDirectories>.\;..\src\libmodplug;..\src\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>MODPLUG_BUILD;HAVE_CONFIG_H;MODPLUG_NO_FILESAVE;WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>MODPLUG_BUILD;HAVE_CONFIG_H;MODPLUG_NO_FILESAVE;WIN32;_WIN32_WINNT=0x0502;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <DisableSpecificWarnings>4996;4018;4244;4005;4267;%(DisableSpecificWarnings)</DisableSpecificWarnings>
       <InterproceduralOptimization>SingleFile</InterproceduralOptimization>
       <ProgramDataBaseFileName>$(OutDir)\lib\x86\$(TargetName).pdb</ProgramDataBaseFileName>
@@ -430,7 +430,7 @@ cd $(ProjectDir)
       <FloatingPointModel>Fast</FloatingPointModel>
       <FloatingPointExceptions>false</FloatingPointExceptions>
       <AdditionalIncludeDirectories>.\;..\src\libmodplug;..\src\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>MODPLUG_BUILD;HAVE_CONFIG_H;MODPLUG_NO_FILESAVE;WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>MODPLUG_BUILD;HAVE_CONFIG_H;MODPLUG_NO_FILESAVE;WIN32;_WIN32_WINNT=0x0502;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <DisableSpecificWarnings>4996;4018;4244;4005;4267;%(DisableSpecificWarnings)</DisableSpecificWarnings>
       <InterproceduralOptimization>SingleFile</InterproceduralOptimization>
       <ProgramDataBaseFileName>$(OutDir)\lib\x86\$(TargetName).pdb</ProgramDataBaseFileName>
@@ -481,7 +481,7 @@ cd $(ProjectDir)
       <FloatingPointModel>Fast</FloatingPointModel>
       <FloatingPointExceptions>false</FloatingPointExceptions>
       <AdditionalIncludeDirectories>.\;..\src\libmodplug;..\src\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>MODPLUG_BUILD;HAVE_CONFIG_H;MODPLUG_NO_FILESAVE;WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>MODPLUG_BUILD;HAVE_CONFIG_H;MODPLUG_NO_FILESAVE;WIN32;_WIN32_WINNT=0x0600;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <Cpp0xSupport>true</Cpp0xSupport>
       <DisableSpecificWarnings>4996;4018;4244;4005;4267;%(DisableSpecificWarnings)</DisableSpecificWarnings>
       <InterproceduralOptimization>SingleFile</InterproceduralOptimization>
@@ -533,7 +533,7 @@ cd $(ProjectDir)
       <FloatingPointModel>Fast</FloatingPointModel>
       <FloatingPointExceptions>false</FloatingPointExceptions>
       <AdditionalIncludeDirectories>.\;..\src\libmodplug;..\src\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>MODPLUG_BUILD;HAVE_CONFIG_H;MODPLUG_NO_FILESAVE;WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>MODPLUG_BUILD;HAVE_CONFIG_H;MODPLUG_NO_FILESAVE;WIN32;_WIN32_WINNT=0x0600;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <Cpp0xSupport>true</Cpp0xSupport>
       <DisableSpecificWarnings>4996;4018;4244;4005;4267;%(DisableSpecificWarnings)</DisableSpecificWarnings>
       <InterproceduralOptimization>SingleFile</InterproceduralOptimization>
@@ -584,7 +584,7 @@ cd $(ProjectDir)
       <FloatingPointModel>Fast</FloatingPointModel>
       <FloatingPointExceptions>false</FloatingPointExceptions>
       <AdditionalIncludeDirectories>.\;..\src\libmodplug;..\src\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>MODPLUG_BUILD;HAVE_CONFIG_H;MODPLUG_NO_FILESAVE;WIN32;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>MODPLUG_BUILD;HAVE_CONFIG_H;MODPLUG_NO_FILESAVE;WIN32;_WIN32_WINNT=0x0502;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <OptimizeForWindowsApplication>true</OptimizeForWindowsApplication>
       <UseProcessorExtensions>SSE3</UseProcessorExtensions>
       <Cpp0xSupport>true</Cpp0xSupport>
@@ -638,7 +638,7 @@ cd $(ProjectDir)
       <FloatingPointModel>Fast</FloatingPointModel>
       <FloatingPointExceptions>false</FloatingPointExceptions>
       <AdditionalIncludeDirectories>.\;..\src\libmodplug;..\src\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>MODPLUG_BUILD;HAVE_CONFIG_H;MODPLUG_NO_FILESAVE;WIN32;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>MODPLUG_BUILD;HAVE_CONFIG_H;MODPLUG_NO_FILESAVE;WIN32;_WIN32_WINNT=0x0600;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <Cpp0xSupport>true</Cpp0xSupport>
       <DisableSpecificWarnings>4996;4018;4244;4005;4267;%(DisableSpecificWarnings)</DisableSpecificWarnings>
       <ProgramDataBaseFileName>$(IntDir)$(TargetName).pdb</ProgramDataBaseFileName>
