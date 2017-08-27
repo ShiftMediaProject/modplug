@@ -179,14 +179,12 @@
     <OutDir>$(ProjectDir)..\..\..\msvc\</OutDir>
     <IntDir>$(SolutionDir)obj\$(Configuration)\$(Platform)\$(ProjectName)\</IntDir>
     <TargetName>modplugd</TargetName>
-    <LinkIncremental>false</LinkIncremental>
     <CustomBuildAfterTargets>Clean</CustomBuildAfterTargets>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DebugDLL|x64'">
     <IntDir>$(SolutionDir)obj\$(Configuration)\$(Platform)\$(ProjectName)\</IntDir>
     <TargetName>modplugd</TargetName>
     <OutDir>$(ProjectDir)..\..\..\msvc\</OutDir>
-    <LinkIncremental>false</LinkIncremental>
     <CustomBuildAfterTargets>Clean</CustomBuildAfterTargets>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -235,6 +233,7 @@
       <Cpp0xSupport>true</Cpp0xSupport>
       <DisableSpecificWarnings>4996;4018;4244;4005;4267;%(DisableSpecificWarnings)</DisableSpecificWarnings>
       <ProgramDataBaseFileName>$(OutDir)\lib\x86\$(TargetName).pdb</ProgramDataBaseFileName>
+      <MinimalRebuild>false</MinimalRebuild>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -285,6 +284,7 @@ del /f /q $(OutDir)\licenses\libmodplug.txt
       <Cpp0xSupport>true</Cpp0xSupport>
       <DisableSpecificWarnings>4996;4018;4244;4005;4267;%(DisableSpecificWarnings)</DisableSpecificWarnings>
       <ProgramDataBaseFileName>$(OutDir)\lib\x64\$(TargetName).pdb</ProgramDataBaseFileName>
+      <MinimalRebuild>false</MinimalRebuild>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -335,6 +335,7 @@ del /f /q $(OutDir)\licenses\libmodplug.txt
       <Cpp0xSupport>true</Cpp0xSupport>
       <DisableSpecificWarnings>4996;4018;4244;4005;4267;%(DisableSpecificWarnings)</DisableSpecificWarnings>
       <ProgramDataBaseFileName>$(IntDir)$(TargetName).pdb</ProgramDataBaseFileName>
+      <MinimalRebuild>false</MinimalRebuild>
     </ClCompile>
     <Link>
       <OutputFile>$(OutDir)\bin\x86\$(TargetName)$(TargetExt)</OutputFile>
@@ -388,6 +389,7 @@ del /f /q $(OutDir)\licenses\libmodplug.txt
       <Cpp0xSupport>true</Cpp0xSupport>
       <DisableSpecificWarnings>4996;4018;4244;4005;4267;%(DisableSpecificWarnings)</DisableSpecificWarnings>
       <ProgramDataBaseFileName>$(IntDir)$(TargetName).pdb</ProgramDataBaseFileName>
+      <MinimalRebuild>false</MinimalRebuild>
     </ClCompile>
     <Link>
       <OutputFile>$(OutDir)\bin\x64\$(TargetName)$(TargetExt)</OutputFile>
@@ -441,9 +443,6 @@ del /f /q $(OutDir)\licenses\libmodplug.txt
       <EnableFiberSafeOptimizations>true</EnableFiberSafeOptimizations>
       <OmitFramePointers>true</OmitFramePointers>
       <StringPooling>true</StringPooling>
-      <BufferSecurityCheck>false</BufferSecurityCheck>
-      <FloatingPointModel>Fast</FloatingPointModel>
-      <FloatingPointExceptions>false</FloatingPointExceptions>
       <AdditionalIncludeDirectories>.\;..\src\libmodplug;..\src\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>MODPLUG_BUILD;HAVE_CONFIG_H;MODPLUG_NO_FILESAVE;WIN32;_WIN32_WINNT=0x0502;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <DisableSpecificWarnings>4996;4018;4244;4005;4267;%(DisableSpecificWarnings)</DisableSpecificWarnings>
@@ -502,9 +501,6 @@ del /f /q $(OutDir)\licenses\libmodplug.txt
       <EnableFiberSafeOptimizations>true</EnableFiberSafeOptimizations>
       <OmitFramePointers>true</OmitFramePointers>
       <StringPooling>true</StringPooling>
-      <BufferSecurityCheck>false</BufferSecurityCheck>
-      <FloatingPointModel>Fast</FloatingPointModel>
-      <FloatingPointExceptions>false</FloatingPointExceptions>
       <AdditionalIncludeDirectories>.\;..\src\libmodplug;..\src\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>MODPLUG_BUILD;HAVE_CONFIG_H;MODPLUG_NO_FILESAVE;WIN32;_WIN32_WINNT=0x0502;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <DisableSpecificWarnings>4996;4018;4244;4005;4267;%(DisableSpecificWarnings)</DisableSpecificWarnings>
@@ -564,9 +560,6 @@ del /f /q $(OutDir)\licenses\libmodplug.txt
       <EnableFiberSafeOptimizations>true</EnableFiberSafeOptimizations>
       <OmitFramePointers>true</OmitFramePointers>
       <StringPooling>true</StringPooling>
-      <BufferSecurityCheck>false</BufferSecurityCheck>
-      <FloatingPointModel>Fast</FloatingPointModel>
-      <FloatingPointExceptions>false</FloatingPointExceptions>
       <AdditionalIncludeDirectories>.\;..\src\libmodplug;..\src\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>MODPLUG_BUILD;HAVE_CONFIG_H;MODPLUG_NO_FILESAVE;WIN32;_WIN32_WINNT=0x0600;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <Cpp0xSupport>true</Cpp0xSupport>
@@ -627,9 +620,6 @@ del /f /q $(OutDir)\licenses\libmodplug.txt
       <EnableFiberSafeOptimizations>true</EnableFiberSafeOptimizations>
       <OmitFramePointers>true</OmitFramePointers>
       <StringPooling>true</StringPooling>
-      <BufferSecurityCheck>false</BufferSecurityCheck>
-      <FloatingPointModel>Fast</FloatingPointModel>
-      <FloatingPointExceptions>false</FloatingPointExceptions>
       <AdditionalIncludeDirectories>.\;..\src\libmodplug;..\src\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>MODPLUG_BUILD;HAVE_CONFIG_H;MODPLUG_NO_FILESAVE;WIN32;_WIN32_WINNT=0x0600;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <Cpp0xSupport>true</Cpp0xSupport>
@@ -689,9 +679,6 @@ del /f /q $(OutDir)\licenses\libmodplug.txt
       <EnableFiberSafeOptimizations>true</EnableFiberSafeOptimizations>
       <OmitFramePointers>true</OmitFramePointers>
       <StringPooling>true</StringPooling>
-      <BufferSecurityCheck>false</BufferSecurityCheck>
-      <FloatingPointModel>Fast</FloatingPointModel>
-      <FloatingPointExceptions>false</FloatingPointExceptions>
       <AdditionalIncludeDirectories>.\;..\src\libmodplug;..\src\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>MODPLUG_BUILD;HAVE_CONFIG_H;MODPLUG_NO_FILESAVE;WIN32;_WIN32_WINNT=0x0502;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <OptimizeForWindowsApplication>true</OptimizeForWindowsApplication>
@@ -756,9 +743,6 @@ del /f /q $(OutDir)\licenses\libmodplug.txt
       <EnableFiberSafeOptimizations>true</EnableFiberSafeOptimizations>
       <OmitFramePointers>true</OmitFramePointers>
       <StringPooling>true</StringPooling>
-      <BufferSecurityCheck>false</BufferSecurityCheck>
-      <FloatingPointModel>Fast</FloatingPointModel>
-      <FloatingPointExceptions>false</FloatingPointExceptions>
       <AdditionalIncludeDirectories>.\;..\src\libmodplug;..\src\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>MODPLUG_BUILD;HAVE_CONFIG_H;MODPLUG_NO_FILESAVE;WIN32;_WIN32_WINNT=0x0600;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <Cpp0xSupport>true</Cpp0xSupport>
