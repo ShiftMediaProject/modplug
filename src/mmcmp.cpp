@@ -175,7 +175,7 @@ BOOL MMCMP_Unpack(LPCBYTE *ppMemFile, LPDWORD pdwMemLength)
 	 || (!pmmh->nblocks) || (pmmh->filesize < 16) || (pmmh->filesize > 0x8000000)
 	 || (pmmh->blktable >= dwMemLength) || (pmmh->blktable + 4*pmmh->nblocks > dwMemLength)) return FALSE;
 	dwFileSize = pmmh->filesize;
-	if ((pBuffer = (LPBYTE)GlobalAllocPtr(GHND, (dwFileSize + 31) & ~15)) == NULL) return FALSE;
+	if ((pBuffer = (LPBYTE)GlobalAlloc(GHND, (dwFileSize + 31) & ~15)) == NULL) return FALSE;
 	pblk_table = (const DWORD *)(lpMemFile+pmmh->blktable);
 	for (UINT nBlock=0; nBlock<pmmh->nblocks; nBlock++)
 	{
@@ -382,7 +382,7 @@ BOOL MMCMP_Unpack(LPCBYTE *ppMemFile, LPDWORD pdwMemLength)
 			}
 		} else
 		{
-			GlobalFreePtr(pBuffer);
+			GlobalFree(pBuffer);
 			return FALSE;
 		}
 	}
@@ -495,7 +495,7 @@ BOOL PP20_Unpack(LPCBYTE *ppMemFile, LPDWORD pdwMemLength)
 	dwDstLen = (lpMemFile[dwMemLength-4]<<16) | (lpMemFile[dwMemLength-3]<<8) | (lpMemFile[dwMemLength-2]);
 	//Log("PP20 detected: Packed length=%d, Unpacked length=%d\n", dwMemLength, dwDstLen);
 	if ((dwDstLen < 512) || (dwDstLen > 0x400000) || (dwDstLen > 16*dwMemLength)) return FALSE;
-	if ((pBuffer = (LPBYTE)GlobalAllocPtr(GHND, (dwDstLen + 31) & ~15)) == NULL) return FALSE;
+	if ((pBuffer = (LPBYTE)GlobalAlloc(GHND, (dwDstLen + 31) & ~15)) == NULL) return FALSE;
 	PP20_DoUnpack(lpMemFile+4, dwMemLength-4, pBuffer, dwDstLen);
 	*ppMemFile = pBuffer;
 	*pdwMemLength = dwDstLen;

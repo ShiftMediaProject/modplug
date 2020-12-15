@@ -39,6 +39,7 @@
 #include <stdio.h>
 #include <malloc.h>
 #include <stdint.h>
+#include <strsafe.h>
 
 #define srandom(_seed)  srand(_seed)
 #define random()        rand()
@@ -55,6 +56,62 @@ inline void ProcessPlugins(int n) {}
 
 #ifndef isblank
 #define isblank(c) ((c) == ' ' || (c) == '\t')
+#endif
+
+#if !WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
+static __inline LPSTR lstrcpynA(LPSTR lpDst, LPCSTR lpStr, int iMaxLength)
+{
+    WCHAR wlpSrc[MAX_PATH];
+    if (MultiByteToWideChar(CP_UTF8, 0, lpStr, -1, wlpSrc, MAX_PATH) == 0) {
+        return NULL;
+    }
+    WCHAR wlpDst[MAX_PATH];
+    if (StringCchCopyNW(wlpDst, MAX_PATH, wlpSrc, iMaxLength) == NULL) {
+        return NULL;
+    }
+    if (WideCharToMultiByte(CP_UTF8, 0, wlpDst, iMaxLength, lpDst, MAX_PATH, NULL, NULL) == 0) {
+        return NULL;
+    }
+    return lpDst;
+}
+static __inline LPSTR lstrcpyA(LPSTR lpDst, LPCSTR lpStr)
+{
+    WCHAR wlpSrc[MAX_PATH];
+    if (MultiByteToWideChar(CP_UTF8, 0, lpStr, -1, wlpSrc, MAX_PATH) == 0) {
+        return NULL;
+    }
+    WCHAR wlpDst[MAX_PATH];
+    if (StringCchCopyW(wlpDst, MAX_PATH, wlpSrc) == NULL) {
+        return NULL;
+    }
+    if (WideCharToMultiByte(CP_UTF8, 0, wlpDst, -1, lpDst, MAX_PATH, NULL, NULL) == 0) {
+        return NULL;
+    }
+    return lpDst;
+}
+static __inline int wsprintfA(LPSTR lpDst, LPCSTR lpFmt, ...)
+{
+    WCHAR wlpDst[MAX_PATH];
+    if (MultiByteToWideChar(CP_UTF8, 0, lpDst, -1, wlpDst, MAX_PATH) == 0) {
+        return 0;
+	}
+    WCHAR wlpFmt[MAX_PATH];
+    if (MultiByteToWideChar(CP_UTF8, 0, lpFmt, -1, wlpFmt, MAX_PATH) == 0) {
+        return 0;
+    }
+    va_list args;
+    va_start(args, lpFmt);
+    int length = StringCchVPrintfW(wlpDst, MAX_PATH, wlpFmt, args);
+    va_end(args);
+    if (WideCharToMultiByte(CP_UTF8, 0, wlpDst, -1, lpDst, MAX_PATH, NULL, NULL) == 0) {
+        return 0;
+    }
+    return length;
+}
+#endif
+
+#ifndef WAVE_FORMAT_PCM
+#define WAVE_FORMAT_PCM 1
 #endif
 
 #else
@@ -95,16 +152,16 @@ inline LONG MulDiv (long a, long b, long c)
 }
 
 #define LPCTSTR LPCSTR
-#define lstrcpyn strncpy
-#define lstrcpy strcpy
+#define lstrcpynA strncpy
+#define lstrcpyA strcpy
 #define lstrcmp strcmp
-#define wsprintf sprintf
+#define wsprintfA sprintf
 
 #define WAVE_FORMAT_PCM 1
 
 #define  GHND   0
-#define GlobalFreePtr(p) free((void *)(p))
-inline int8_t * GlobalAllocPtr(unsigned int, size_t size)
+#define GlobalFree(p) free((void *)(p))
+inline int8_t * GlobalAlloc(unsigned int, size_t size)
 {
   int8_t * p = (int8_t *) malloc(size);
 
