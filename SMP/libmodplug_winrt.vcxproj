@@ -1,14 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{38E671C9-3FE3-40B7-A1AF-D2D566762186}</ProjectGuid>
+    <ProjectGuid>{A8E671C9-3FE3-40B7-A1AF-D2D566762186}</ProjectGuid>
     <RootNamespace>modplug</RootNamespace>
   </PropertyGroup>
   <ImportGroup Label="PropertySheets">
-    <Import Project="smp.props" />
+    <Import Project="smp_winrt.props" />
     <Import Project="libmodplug_files.props" />
   </ImportGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='DebugWinRT|Win32'">
     <ClCompile>
       <AdditionalIncludeDirectories>.\;..\src\libmodplug;..\src\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>MODPLUG_BUILD;HAVE_CONFIG_H;MODPLUG_NO_FILESAVE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -46,7 +46,7 @@ del /f /q $(OutDir)\licenses\libmodplug.txt
 )</Command>
     </CustomBuildStep>
   </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='DebugWinRT|x64'">
     <ClCompile>
       <AdditionalIncludeDirectories>.\;..\src\libmodplug;..\src\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>MODPLUG_BUILD;HAVE_CONFIG_H;MODPLUG_NO_FILESAVE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -84,48 +84,7 @@ del /f /q $(OutDir)\licenses\libmodplug.txt
 )</Command>
     </CustomBuildStep>
   </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='DebugDLL|Win32'">
-    <ClCompile>
-      <AdditionalIncludeDirectories>.\;..\src\libmodplug;..\src\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>MODPLUG_BUILD;HAVE_CONFIG_H;MODPLUG_NO_FILESAVE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <Cpp0xSupport>true</Cpp0xSupport>
-      <DisableSpecificWarnings>4996;4018;4244;4005;4267;%(DisableSpecificWarnings)</DisableSpecificWarnings>
-    </ClCompile>
-    <Link>
-      <ModuleDefinitionFile>libmodplug.def</ModuleDefinitionFile>
-    </Link>
-    <PostBuildEvent>
-      <Command>mkdir "$(OutDir)"\include
-mkdir "$(OutDir)"\include\libmodplug
-copy ..\src\modplug.h "$(OutDir)"\include\libmodplug
-copy ..\src\libmodplug\*.h "$(OutDir)"\include\libmodplug
-mkdir $(OutDir)\licenses
-copy ..\COPYING $(OutDir)\licenses\libmodplug.txt</Command>
-    </PostBuildEvent>
-    <PreBuildEvent>
-      <Command>if exist ..\src\config.h (
-del ..\src\config.h
-)
-if exist "$(OutDir)"\include\libmodplug (
-rd /s /q "$(OutDir)"\include\libmodplug
-cd ../
-cd $(ProjectDir)
-)</Command>
-    </PreBuildEvent>
-    <CustomBuildStep>
-      <Message>Custom Clean Step</Message>
-    </CustomBuildStep>
-    <CustomBuildStep>
-      <Outputs>force_clean</Outputs>
-      <Command>if exist "$(OutDir)"\include\libmodplug (
-rmdir /s /q "$(OutDir)"\include\libmodplug
-)
-if exist $(OutDir)\licenses\libmodplug.txt (
-del /f /q $(OutDir)\licenses\libmodplug.txt
-)</Command>
-    </CustomBuildStep>
-  </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='DebugDLL|x64'">
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='DebugDLLWinRT|Win32'">
     <ClCompile>
       <AdditionalIncludeDirectories>.\;..\src\libmodplug;..\src\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>MODPLUG_BUILD;HAVE_CONFIG_H;MODPLUG_NO_FILESAVE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -166,7 +125,48 @@ del /f /q $(OutDir)\licenses\libmodplug.txt
 )</Command>
     </CustomBuildStep>
   </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='DebugDLLWinRT|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>.\;..\src\libmodplug;..\src\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>MODPLUG_BUILD;HAVE_CONFIG_H;MODPLUG_NO_FILESAVE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Cpp0xSupport>true</Cpp0xSupport>
+      <DisableSpecificWarnings>4996;4018;4244;4005;4267;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+    </ClCompile>
+    <Link>
+      <ModuleDefinitionFile>libmodplug.def</ModuleDefinitionFile>
+    </Link>
+    <PostBuildEvent>
+      <Command>mkdir "$(OutDir)"\include
+mkdir "$(OutDir)"\include\libmodplug
+copy ..\src\modplug.h "$(OutDir)"\include\libmodplug
+copy ..\src\libmodplug\*.h "$(OutDir)"\include\libmodplug
+mkdir $(OutDir)\licenses
+copy ..\COPYING $(OutDir)\licenses\libmodplug.txt</Command>
+    </PostBuildEvent>
+    <PreBuildEvent>
+      <Command>if exist ..\src\config.h (
+del ..\src\config.h
+)
+if exist "$(OutDir)"\include\libmodplug (
+rd /s /q "$(OutDir)"\include\libmodplug
+cd ../
+cd $(ProjectDir)
+)</Command>
+    </PreBuildEvent>
+    <CustomBuildStep>
+      <Message>Custom Clean Step</Message>
+    </CustomBuildStep>
+    <CustomBuildStep>
+      <Outputs>force_clean</Outputs>
+      <Command>if exist "$(OutDir)"\include\libmodplug (
+rmdir /s /q "$(OutDir)"\include\libmodplug
+)
+if exist $(OutDir)\licenses\libmodplug.txt (
+del /f /q $(OutDir)\licenses\libmodplug.txt
+)</Command>
+    </CustomBuildStep>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseWinRT|Win32'">
     <ClCompile>
       <AdditionalIncludeDirectories>.\;..\src\libmodplug;..\src\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>MODPLUG_BUILD;HAVE_CONFIG_H;MODPLUG_NO_FILESAVE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -203,7 +203,7 @@ del /f /q $(OutDir)\licenses\libmodplug.txt
 )</Command>
     </CustomBuildStep>
   </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseWinRT|x64'">
     <ClCompile>
       <AdditionalIncludeDirectories>.\;..\src\libmodplug;..\src\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>MODPLUG_BUILD;HAVE_CONFIG_H;MODPLUG_NO_FILESAVE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -241,7 +241,7 @@ del /f /q $(OutDir)\licenses\libmodplug.txt
 )</Command>
     </CustomBuildStep>
   </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseDLL|Win32'">
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseDLLWinRT|Win32'">
     <ClCompile>
       <AdditionalIncludeDirectories>.\;..\src\libmodplug;..\src\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>MODPLUG_BUILD;HAVE_CONFIG_H;MODPLUG_NO_FILESAVE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -283,7 +283,7 @@ del /f /q $(OutDir)\licenses\libmodplug.txt
 )</Command>
     </CustomBuildStep>
   </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseDLL|x64'">
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseDLLWinRT|x64'">
     <ClCompile>
       <AdditionalIncludeDirectories>.\;..\src\libmodplug;..\src\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>MODPLUG_BUILD;HAVE_CONFIG_H;MODPLUG_NO_FILESAVE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
