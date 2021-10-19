@@ -45,7 +45,4 @@
     <ClCompile Include="..\src\snd_flt.cpp" />
     <ClCompile Include="..\src\snd_fx.cpp" />
   </ItemGroup>
-  <ItemGroup>
-    <None Include="libmodplug.def" />
-  </ItemGroup>
 </Project>

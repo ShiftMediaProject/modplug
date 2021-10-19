@@ -87,13 +87,11 @@ del /f /q $(OutDir)\licenses\libmodplug.txt
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='DebugDLLWinRT|Win32'">
     <ClCompile>
       <AdditionalIncludeDirectories>.\;..\src\libmodplug;..\src\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>MODPLUG_BUILD;HAVE_CONFIG_H;MODPLUG_NO_FILESAVE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>MODPLUG_BUILD;HAVE_CONFIG_H;MODPLUG_NO_FILESAVE;DLL_EXPORT;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <Cpp0xSupport>true</Cpp0xSupport>
       <DisableSpecificWarnings>4996;4018;4244;4005;4267;%(DisableSpecificWarnings)</DisableSpecificWarnings>
     </ClCompile>
-    <Link>
-      <ModuleDefinitionFile>libmodplug.def</ModuleDefinitionFile>
-    </Link>
+    <Link />
     <PostBuildEvent>
       <Command>mkdir "$(OutDir)"\include
 mkdir "$(OutDir)"\include\libmodplug
@@ -128,13 +126,11 @@ del /f /q $(OutDir)\licenses\libmodplug.txt
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='DebugDLLWinRT|x64'">
     <ClCompile>
       <AdditionalIncludeDirectories>.\;..\src\libmodplug;..\src\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>MODPLUG_BUILD;HAVE_CONFIG_H;MODPLUG_NO_FILESAVE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>MODPLUG_BUILD;HAVE_CONFIG_H;MODPLUG_NO_FILESAVE;DLL_EXPORT;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <Cpp0xSupport>true</Cpp0xSupport>
       <DisableSpecificWarnings>4996;4018;4244;4005;4267;%(DisableSpecificWarnings)</DisableSpecificWarnings>
     </ClCompile>
-    <Link>
-      <ModuleDefinitionFile>libmodplug.def</ModuleDefinitionFile>
-    </Link>
+    <Link />
     <PostBuildEvent>
       <Command>mkdir "$(OutDir)"\include
 mkdir "$(OutDir)"\include\libmodplug
@@ -244,14 +240,12 @@ del /f /q $(OutDir)\licenses\libmodplug.txt
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseDLLWinRT|Win32'">
     <ClCompile>
       <AdditionalIncludeDirectories>.\;..\src\libmodplug;..\src\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>MODPLUG_BUILD;HAVE_CONFIG_H;MODPLUG_NO_FILESAVE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>MODPLUG_BUILD;HAVE_CONFIG_H;MODPLUG_NO_FILESAVE;DLL_EXPORT;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <OptimizeForWindowsApplication>true</OptimizeForWindowsApplication>
       <Cpp0xSupport>true</Cpp0xSupport>
       <DisableSpecificWarnings>4996;4018;4244;4005;4267;%(DisableSpecificWarnings)</DisableSpecificWarnings>
     </ClCompile>
-    <Link>
-      <ModuleDefinitionFile>libmodplug.def</ModuleDefinitionFile>
-    </Link>
+    <Link />
     <PostBuildEvent>
       <Command>mkdir "$(OutDir)"\include
 mkdir "$(OutDir)"\include\libmodplug
@@ -286,13 +280,11 @@ del /f /q $(OutDir)\licenses\libmodplug.txt
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseDLLWinRT|x64'">
     <ClCompile>
       <AdditionalIncludeDirectories>.\;..\src\libmodplug;..\src\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>MODPLUG_BUILD;HAVE_CONFIG_H;MODPLUG_NO_FILESAVE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>MODPLUG_BUILD;HAVE_CONFIG_H;MODPLUG_NO_FILESAVE;DLL_EXPORT;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <Cpp0xSupport>true</Cpp0xSupport>
       <DisableSpecificWarnings>4996;4018;4244;4005;4267;%(DisableSpecificWarnings)</DisableSpecificWarnings>
     </ClCompile>
-    <Link>
-      <ModuleDefinitionFile>libmodplug.def</ModuleDefinitionFile>
-    </Link>
+    <Link />
     <PostBuildEvent>
       <Command>mkdir "$(OutDir)"\include
 mkdir "$(OutDir)"\include\libmodplug

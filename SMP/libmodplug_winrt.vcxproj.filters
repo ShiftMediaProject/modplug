@@ -144,9 +144,4 @@
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
-  <ItemGroup>
-    <None Include="libmodplug.def">
-      <Filter>Resource Files</Filter>
-    </None>
-  </ItemGroup>
 </Project>
